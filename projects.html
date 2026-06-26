@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROJECTS - LIKITH RAJ</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;font-family:'Segoe UI',Roboto,sans-serif;background:#000;color:#fff}
+
+canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
+
+header{position:fixed;top:0;right:0;z-index:100;padding:2rem;display:flex;gap:2rem}
+.icon-link{color:#fff;font-size:1.3rem;text-decoration:none;transition:all 0.3s ease}
+.icon-link:hover{transform:translateY(-6px);color:#888}
+
+.back-btn{position:fixed;top:2rem;left:2rem;padding:0.7rem 1.5rem;background:#111;border:1px solid #333;color:#fff;text-decoration:none;border-radius:6px;font-size:0.8rem;text-transform:uppercase;transition:all 0.3s ease;z-index:100;cursor:pointer}
+.back-btn:hover{border-color:#fff;background:#1a1a1a}
+
+.content{max-width:1000px;margin:4rem auto;padding:2rem;animation:fadeIn 0.8s ease}
+
+h1{font-size:2.2rem;font-weight:800;margin-bottom:2rem;text-transform:uppercase}
+
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+
+.project-card{background:#111;border:1px solid #333;padding:2rem;border-radius:10px;transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1);animation:fadeInUp 0.6s ease-out backwards;cursor:pointer}
+.project-card:nth-child(1){animation-delay:0.1s}
+.project-card:nth-child(2){animation-delay:0.2s}
+.project-card:nth-child(3){animation-delay:0.3s}
+
+.project-card:hover{border-color:#fff;background:#1a1a1a;transform:translateY(-10px);box-shadow:0 20px 40px rgba(255,255,255,0.1)}
+
+.project-title{font-size:1.1rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1rem;color:#fff}
+.project-desc{font-size:0.9rem;line-height:1.6;color:#bbb;margin-bottom:1.5rem}
+
+.tags{display:flex;flex-wrap:wrap;gap:0.6rem}
+.tag{background:#000;color:#fff;padding:0.4rem 0.8rem;font-size:0.75rem;border:1px solid #444;border-radius:4px;letter-spacing:0.04em;text-transform:uppercase;transition:all 0.3s ease}
+.tag:hover{border-color:#fff;background:#fff;color:#000}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:768px){
+.content{padding:1rem;margin-top:6rem}
+.projects-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<a href="index.html" class="back-btn">← HOME</a>
+
+<header>
+<a href="https://linkedin.com/in/likith-raj-267213318" target="_blank" class="icon-link"><i class="fab fa-linkedin"></i></a>
+<a href="https://github.com/likith-raj" target="_blank" class="icon-link"><i class="fab fa-github"></i></a>
+<a href="mailto:snkth123@gmail.com" class="icon-link"><i class="fas fa-envelope"></i></a>
+</header>
+
+<div class="content">
+
+<h1>PROJECTS</h1>
+
+<div class="projects-grid">
+
+<div class="project-card">
+<div class="project-title">FAILED LOGIN ALERT SYSTEM</div>
+<div class="project-desc">END-TO-END SIEM SOLUTION DETECTING BRUTE FORCE ATTEMPTS AUTOMATICALLY. TRIGGERS AUTOMATED EMAIL ALERTS WHEN 3+ FAILED LOGINS ARE DETECTED IN REAL-TIME. DEMONSTRATES PRODUCTION-GRADE SECURITY MONITORING AND AUTOMATION.</div>
+<div class="tags">
+<span class="tag">SPLUNK</span>
+<span class="tag">EVENT ID 4625</span>
+<span class="tag">SMTP</span>
+<span class="tag">AUTOMATION</span>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-title">BRUTE FORCE DETECTION DASHBOARD</div>
+<div class="project-desc">REAL-TIME VISUALIZATION OF FAILED LOGIN PATTERNS WITH ATTACK TIMELINES, TOP SOURCE IPS, AND TARGETED USER ACCOUNTS. ENABLES RAPID INCIDENT RESPONSE AND THREAT ANALYSIS.</div>
+<div class="tags">
+<span class="tag">DASHBOARD STUDIO</span>
+<span class="tag">LOG ANALYSIS</span>
+<span class="tag">SPL QUERIES</span>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-title">ACCOUNT LOCKOUT MONITORING</div>
+<div class="project-desc">ACTIVE DIRECTORY LOCKOUT TRACKING DASHBOARD MONITORING EVENT ID 4740 FOR SUSPICIOUS PATTERNS. PROVIDES REAL-TIME OPERATIONAL VISIBILITY AND INCIDENT RESPONSE SUPPORT.</div>
+<div class="tags">
+<span class="tag">ACTIVE DIRECTORY</span>
+<span class="tag">EVENT ID 4740</span>
+<span class="tag">MONITORING</span>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let particles = [];
+for(let i=0;i<30;i++){
+  particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5+0.3,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});
+}
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let p of particles){
+    ctx.beginPath();ctx.fillStyle="rgba(255,255,255,0.08)";ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+    p.x+=p.dx;p.y+=p.dy;
+    if(p.x<0||p.x>canvas.width)p.dx*=-1;
+    if(p.y<0||p.y>canvas.height)p.dy*=-1;
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+window.addEventListener("resize",()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RESUME - LIKITH RAJ</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;font-family:'Segoe UI',Roboto,sans-serif;background:#000;color:#fff}
+
+canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
+
+header{position:fixed;top:0;right:0;z-index:100;padding:2rem;display:flex;gap:2rem}
+.icon-link{color:#fff;font-size:1.3rem;text-decoration:none;transition:all 0.3s ease}
+.icon-link:hover{transform:translateY(-6px);color:#888}
+
+.back-btn{position:fixed;top:2rem;left:2rem;padding:0.7rem 1.5rem;background:#111;border:1px solid #333;color:#fff;text-decoration:none;border-radius:6px;font-size:0.8rem;text-transform:uppercase;transition:all 0.3s ease;z-index:100;cursor:pointer}
+.back-btn:hover{border-color:#fff;background:#1a1a1a}
+
+.content{max-width:900px;margin:4rem auto;padding:2rem;animation:fadeIn 0.8s ease}
+
+h1{font-size:2.2rem;font-weight:800;margin-bottom:0.5rem;text-transform:uppercase}
+.subtitle{color:#888;font-size:0.95rem;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:2rem}
+
+.download-btn{display:inline-block;margin-bottom:2rem;padding:0.8rem 1.5rem;background:#fff;color:#000;text-decoration:none;font-weight:700;text-transform:uppercase;font-size:0.8rem;border-radius:6px;transition:all 0.3s ease;cursor:pointer}
+.download-btn:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(255,255,255,0.3)}
+
+.section{margin-bottom:3rem}
+.section-title{font-size:1.5rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #fff}
+
+.resume-item{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid #222}
+.resume-item:last-child{border-bottom:none}
+
+.item-title{font-size:1.1rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.3rem}
+.item-meta{color:#888;font-size:0.9rem;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:0.8rem}
+.item-desc{color:#bbb;font-size:0.9rem;line-height:1.6}
+
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.skill-box{background:#111;padding:1.5rem;border:1px solid #333;border-radius:8px}
+.skill-box h4{font-size:0.95rem;font-weight:800;text-transform:uppercase;margin-bottom:1rem}
+.skill-box p{font-size:0.85rem;color:#bbb;line-height:1.5}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+@media(max-width:768px){
+.content{padding:1rem;margin-top:6rem}
+.skills-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<a href="index.html" class="back-btn">← HOME</a>
+
+<header>
+<a href="https://linkedin.com/in/likith-raj-267213318" target="_blank" class="icon-link"><i class="fab fa-linkedin"></i></a>
+<a href="https://github.com/likith-raj" target="_blank" class="icon-link"><i class="fab fa-github"></i></a>
+<a href="mailto:snkth123@gmail.com" class="icon-link"><i class="fas fa-envelope"></i></a>
+</header>
+
+<div class="content">
+
+<h1>LIKITH RAJ</h1>
+<p class="subtitle">SOC ANALYST | CYBERSECURITY PROFESSIONAL</p>
+
+<button class="download-btn" onclick="window.print()">📥 DOWNLOAD PDF</button>
+
+<div class="section">
+<h2 class="section-title">PROFESSIONAL SUMMARY</h2>
+<p style="color:#bbb;line-height:1.8;font-size:0.95rem;">FINAL-YEAR COMPUTER SCIENCE ENGINEERING STUDENT WITH DEMONSTRATED EXPERTISE IN SPLUNK SIEM, WINDOWS EVENT LOG ANALYSIS, AND SECURITY THREAT DETECTION. HANDS-ON EXPERIENCE BUILDING PRODUCTION-GRADE SECURITY MONITORING SYSTEMS. CURRENTLY PURSUING CISCO CYBERSECURITY DEFENSE ANALYST CERTIFICATION. STRONG FOUNDATION IN NETWORKING, WINDOWS SECURITY, LOG ANALYSIS, AND INCIDENT RESPONSE WORKFLOWS. SEEKING ENTRY-LEVEL SOC ANALYST OR CYBERSECURITY INTERNSHIP POSITIONS.</p>
+</div>
+
+<div class="section">
+<h2 class="section-title">EDUCATION</h2>
+<div class="resume-item">
+<div class="item-title">BACHELOR OF TECHNOLOGY - COMPUTER SCIENCE</div>
+<div class="item-meta">VEL TECH TECHNICAL UNIVERSITY | AUG 2022 - AUG 2026</div>
+<div class="item-desc">FINAL-YEAR STUDENT | GREATER CHENNAI AREA, INDIA</div>
+</div>
+<div class="resume-item">
+<div class="item-title">CISCO CYBERSECURITY DEFENSE ANALYST CAREER PATH</div>
+<div class="item-meta">CISCO NETWORKING ACADEMY | EXPECTED JUL 2026</div>
+<div class="item-desc">30-HOUR COMPREHENSIVE TRAINING | SPLUNK ENTERPRISE SECURITY FOCUS | THREAT HUNTING & INCIDENT INVESTIGATION</div>
+</div>
+<div class="resume-item">
+<div class="item-title">XCEEDGE SOC ANALYST TRAINING</div>
+<div class="item-meta">XCEEDGE | IN PROGRESS</div>
+<div class="item-desc">HANDS-ON SECURITY MONITORING & SIEM FUNDAMENTALS | PRACTICAL PROJECT DEVELOPMENT</div>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">TECHNICAL SKILLS</h2>
+<div class="skills-grid">
+<div class="skill-box">
+<h4>SIEM & SECURITY TOOLS</h4>
+<p>Splunk Enterprise, Alert Configuration, Dashboard Studio, Email Integration (SMTP), Event Log Analysis</p>
+</div>
+<div class="skill-box">
+<h4>WINDOWS SECURITY</h4>
+<p>Event Viewer, Event ID Analysis (4625, 4740, 4672, 4728/4732), Active Directory Basics, Registry Basics</p>
+</div>
+<div class="skill-box">
+<h4>SECURITY OPERATIONS</h4>
+<p>Threat Detection, Log Analysis, Incident Response, Brute Force Detection, Account Lockout Monitoring</p>
+</div>
+<div class="skill-box">
+<h4>NETWORKING & TOOLS</h4>
+<p>Wireshark, TCP/IP Protocols, DNS Analysis, Network Fundamentals, Command Line Tools</p>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">PROJECTS</h2>
+<div class="resume-item">
+<div class="item-title">FAILED LOGIN ALERT SYSTEM (SPLUNK)</div>
+<div class="item-desc">BUILT END-TO-END SIEM SOLUTION DETECTING BRUTE FORCE ATTEMPTS AUTOMATICALLY. IMPLEMENTED SPLUNK ALERT MONITORING EVENT ID 4625 THAT TRIGGERS AUTOMATED EMAIL NOTIFICATIONS WHEN 3+ FAILED LOGIN ATTEMPTS ARE DETECTED IN REAL-TIME. DEMONSTRATES PRODUCTION-GRADE SECURITY MONITORING AND AUTOMATION CAPABILITIES.</div>
+</div>
+<div class="resume-item">
+<div class="item-title">BRUTE FORCE DETECTION DASHBOARD</div>
+<div class="item-desc">CREATED REAL-TIME VISUALIZATION DASHBOARD IN SPLUNK STUDIO ANALYZING FAILED LOGIN PATTERNS. DISPLAYS ATTACK TIMELINES, TOP SOURCE IPS, TARGETED USER ACCOUNTS, AND ENABLES RAPID INCIDENT RESPONSE. BUILT USING SPL QUERIES ON WINDOWS EVENT ID 4625 DATA.</div>
+</div>
+<div class="resume-item">
+<div class="item-title">ACCOUNT LOCKOUT MONITORING DASHBOARD</div>
+<div class="item-desc">DEVELOPED ACTIVE DIRECTORY LOCKOUT TRACKING DASHBOARD MONITORING EVENT ID 4740. PROVIDES REAL-TIME OPERATIONAL VISIBILITY INTO SUSPICIOUS ACCOUNT LOCKOUT PATTERNS AND SUPPORTS INCIDENT RESPONSE WORKFLOWS.</div>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">CONTACT INFORMATION</h2>
+<p style="color:#bbb;font-size:0.95rem;line-height:1.8;">
+📧 EMAIL: snkth123@gmail.com<br>
+📱 PHONE: +91-7207230851<br>
+🔗 LINKEDIN: linkedin.com/in/likith-raj-267213318<br>
+💻 GITHUB: github.com/likith-raj<br>
+📍 LOCATION: GREATER CHENNAI AREA, INDIA | OPEN TO BENGALURU, HYDERABAD
+</p>
+</div>
+
+<div style="text-align:center;margin-top:4rem;padding-top:2rem;border-top:1px solid #222;color:#555;font-size:0.8rem;">
+<p>BUILT & DESIGNED BY LIKITH RAJ. ALL RIGHTS RESERVED © 2026.</p>
+</div>
+
+</div>
+
+<script>
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let particles = [];
+for(let i=0;i<30;i++){
+  particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5+0.3,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});
+}
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let p of particles){
+    ctx.beginPath();ctx.fillStyle="rgba(255,255,255,0.08)";ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+    p.x+=p.dx;p.y+=p.dy;
+    if(p.x<0||p.x>canvas.width)p.dx*=-1;
+    if(p.y<0||p.y>canvas.height)p.dy*=-1;
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+window.addEventListener("resize",()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight});
+</script>
+
+</body>
+</html>

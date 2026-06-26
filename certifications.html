@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CERTIFICATIONS - LIKITH RAJ</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;font-family:'Segoe UI',Roboto,sans-serif;background:#000;color:#fff}
+
+canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
+
+header{position:fixed;top:0;right:0;z-index:100;padding:2rem;display:flex;gap:2rem}
+.icon-link{color:#fff;font-size:1.3rem;text-decoration:none;transition:all 0.3s ease}
+.icon-link:hover{transform:translateY(-6px);color:#888}
+
+.back-btn{position:fixed;top:2rem;left:2rem;padding:0.7rem 1.5rem;background:#111;border:1px solid #333;color:#fff;text-decoration:none;border-radius:6px;font-size:0.8rem;text-transform:uppercase;transition:all 0.3s ease;z-index:100;cursor:pointer}
+.back-btn:hover{border-color:#fff;background:#1a1a1a}
+
+.content{max-width:800px;margin:4rem auto;padding:2rem;animation:fadeIn 0.8s ease}
+
+h1{font-size:2.2rem;font-weight:800;margin-bottom:2rem;text-transform:uppercase}
+
+.cert-item{background:#111;border:1px solid #333;padding:2rem;border-radius:10px;margin-bottom:1.5rem;transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1);animation:fadeInUp 0.6s ease-out backwards}
+.cert-item:nth-child(1){animation-delay:0.1s}
+.cert-item:nth-child(2){animation-delay:0.2s}
+.cert-item:nth-child(3){animation-delay:0.3s}
+
+.cert-item:hover{border-color:#fff;background:#1a1a1a;transform:translateY(-6px)}
+
+.cert-date{font-size:0.85rem;color:#888;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.5rem;font-weight:700}
+.cert-title{font-size:1.15rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.3rem;color:#fff}
+.cert-org{font-size:0.9rem;color:#999;letter-spacing:0.04em;text-transform:uppercase}
+
+.progress-bar{width:100%;height:5px;background:#222;border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;width:75%;animation:grow 1.5s ease-out}
+
+@keyframes grow{from{width:0}to{width:75%}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:768px){
+.content{padding:1rem;margin-top:6rem}
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<a href="index.html" class="back-btn">← HOME</a>
+
+<header>
+<a href="https://linkedin.com/in/likith-raj-267213318" target="_blank" class="icon-link"><i class="fab fa-linkedin"></i></a>
+<a href="https://github.com/likith-raj" target="_blank" class="icon-link"><i class="fab fa-github"></i></a>
+<a href="mailto:snkth123@gmail.com" class="icon-link"><i class="fas fa-envelope"></i></a>
+</header>
+
+<div class="content">
+
+<h1>CERTIFICATIONS & EDUCATION</h1>
+
+<div class="cert-item">
+<div class="cert-date">AUG 2022 - AUG 2026</div>
+<div class="cert-title">BACHELOR OF TECHNOLOGY</div>
+<div class="cert-org">COMPUTER SCIENCE | VEL TECH TECHNICAL UNIVERSITY</div>
+</div>
+
+<div class="cert-item">
+<div class="cert-date">EXPECTED JUL 2026</div>
+<div class="cert-title">CISCO CYBERSECURITY DEFENSE ANALYST</div>
+<div class="cert-org">CISCO NETWORKING ACADEMY (30 HOURS)</div>
+<div class="progress-bar"><div class="progress-fill"></div></div>
+</div>
+
+<div class="cert-item">
+<div class="cert-date">IN PROGRESS</div>
+<div class="cert-title">XCEEDGE SOC ANALYST TRAINING</div>
+<div class="cert-org">HANDS-ON SECURITY MONITORING & SIEM</div>
+</div>
+
+</div>
+
+<script>
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let particles = [];
+for(let i=0;i<30;i++){
+  particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5+0.3,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});
+}
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let p of particles){
+    ctx.beginPath();ctx.fillStyle="rgba(255,255,255,0.08)";ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+    p.x+=p.dx;p.y+=p.dy;
+    if(p.x<0||p.x>canvas.width)p.dx*=-1;
+    if(p.y<0||p.y>canvas.height)p.dy*=-1;
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+window.addEventListener("resize",()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight});
+</script>
+
+</body>
+</html>
