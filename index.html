@@ -69,7 +69,7 @@ html, body {
     100% { transform: rotate(360deg) scale(0.95); }
 }
 
-/* ===== CANVAS PARTICLES - SUBTLE ON WHITE ===== */
+/* ===== CANVAS PARTICLES ===== */
 #particleCanvas {
     position: fixed;
     top: 0;
@@ -81,7 +81,7 @@ html, body {
     background: #ffffff;
 }
 
-/* ===== FLOATING BUBBLES - SLOW ANIMATION ===== */
+/* ===== FLOATING BUBBLES ===== */
 .bubbles-container {
     position: fixed;
     inset: 0;
@@ -96,287 +96,36 @@ html, body {
     opacity: 0.5;
     animation: floatBubble 30s ease-in-out infinite alternate;
     border: 2px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 
-        0 0 30px rgba(0, 0, 0, 0.08),
-        inset 0 0 30px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.08), inset 0 0 30px rgba(255, 255, 255, 0.5);
 }
 
-/* BUBBLE 1 - ORANGE */
-.bubble:nth-child(1) {
-    width: 140px;
-    height: 140px;
-    background: radial-gradient(circle at 30% 30%, #ff9a56, #ff6b35, #e0552d);
-    top: 5%;
-    left: 2%;
-    animation-duration: 28s;
-    animation-delay: 0s;
-    border-color: rgba(255, 107, 53, 0.6);
-    box-shadow: 0 0 50px rgba(255, 107, 53, 0.25);
-}
-
-/* BUBBLE 2 - PINK */
-.bubble:nth-child(2) {
-    width: 180px;
-    height: 180px;
-    background: radial-gradient(circle at 30% 30%, #ff8aac, #ff1493, #d4127a);
-    top: 52%;
-    left: 80%;
-    animation-duration: 32s;
-    animation-delay: -3s;
-    border-color: rgba(255, 20, 147, 0.6);
-    box-shadow: 0 0 50px rgba(255, 20, 147, 0.25);
-}
-
-/* BUBBLE 3 - CYAN/BLUE */
-.bubble:nth-child(3) {
-    width: 110px;
-    height: 110px;
-    background: radial-gradient(circle at 30% 30%, #4dd0e1, #00bcd4, #0097a7);
-    top: 20%;
-    left: 70%;
-    animation-duration: 26s;
-    animation-delay: -6s;
-    border-color: rgba(0, 188, 212, 0.6);
-    box-shadow: 0 0 50px rgba(0, 188, 212, 0.25);
-}
-
-/* BUBBLE 4 - PURPLE */
-.bubble:nth-child(4) {
-    width: 160px;
-    height: 160px;
-    background: radial-gradient(circle at 30% 30%, #b39ddb, #7c3aed, #5b21b6);
-    top: 70%;
-    left: 5%;
-    animation-duration: 34s;
-    animation-delay: -9s;
-    border-color: rgba(124, 58, 237, 0.6);
-    box-shadow: 0 0 50px rgba(124, 58, 237, 0.25);
-}
-
-/* BUBBLE 5 - HOT PINK */
-.bubble:nth-child(5) {
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle at 30% 30%, #f8a5c2, #f78fb3, #e84393);
-    top: 40%;
-    left: 40%;
-    animation-duration: 29s;
-    animation-delay: -4s;
-    border-color: rgba(232, 67, 147, 0.6);
-    box-shadow: 0 0 50px rgba(232, 67, 147, 0.25);
-}
-
-/* BUBBLE 6 - YELLOW */
-.bubble:nth-child(6) {
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle at 30% 30%, #ffe082, #fdd835, #f9a825);
-    top: 2%;
-    left: 45%;
-    animation-duration: 36s;
-    animation-delay: -7s;
-    border-color: rgba(253, 216, 53, 0.6);
-    box-shadow: 0 0 50px rgba(253, 216, 53, 0.25);
-}
-
-/* BUBBLE 7 - GREEN */
-.bubble:nth-child(7) {
-    width: 90px;
-    height: 90px;
-    background: radial-gradient(circle at 30% 30%, #81c784, #4caf50, #2e7d32);
-    top: 80%;
-    left: 55%;
-    animation-duration: 24s;
-    animation-delay: -2s;
-    border-color: rgba(76, 175, 80, 0.6);
-    box-shadow: 0 0 50px rgba(76, 175, 80, 0.25);
-}
-
-/* BUBBLE 8 - LIGHT BLUE */
-.bubble:nth-child(8) {
-    width: 150px;
-    height: 150px;
-    background: radial-gradient(circle at 30% 30%, #81d4fa, #29b6f6, #0288d1);
-    top: 30%;
-    left: 15%;
-    animation-duration: 30s;
-    animation-delay: -8s;
-    border-color: rgba(41, 182, 246, 0.6);
-    box-shadow: 0 0 50px rgba(41, 182, 246, 0.25);
-}
-
-/* BUBBLE 9 - RED */
-.bubble:nth-child(9) {
-    width: 170px;
-    height: 170px;
-    background: radial-gradient(circle at 30% 30%, #ef9a9a, #ef5350, #c62828);
-    top: 10%;
-    left: 88%;
-    animation-duration: 27s;
-    animation-delay: -5s;
-    border-color: rgba(239, 83, 80, 0.6);
-    box-shadow: 0 0 50px rgba(239, 83, 80, 0.25);
-}
-
-/* BUBBLE 10 - TEAL */
-.bubble:nth-child(10) {
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle at 30% 30%, #80cbc4, #26a69a, #00695c);
-    top: 65%;
-    left: 25%;
-    animation-duration: 31s;
-    animation-delay: -10s;
-    border-color: rgba(38, 166, 154, 0.6);
-    box-shadow: 0 0 50px rgba(38, 166, 154, 0.25);
-}
-
-/* BUBBLE 11 - INDIGO */
-.bubble:nth-child(11) {
-    width: 130px;
-    height: 130px;
-    background: radial-gradient(circle at 30% 30%, #9fa8da, #5c6bc0, #283593);
-    top: 45%;
-    left: 65%;
-    animation-duration: 33s;
-    animation-delay: -1s;
-    border-color: rgba(92, 107, 192, 0.6);
-    box-shadow: 0 0 50px rgba(92, 107, 192, 0.25);
-}
-
-/* BUBBLE 12 - AMBER */
-.bubble:nth-child(12) {
-    width: 85px;
-    height: 85px;
-    background: radial-gradient(circle at 30% 30%, #ffcc80, #ffa726, #e65100);
-    top: 85%;
-    left: 75%;
-    animation-duration: 25s;
-    animation-delay: -11s;
-    border-color: rgba(255, 167, 38, 0.6);
-    box-shadow: 0 0 50px rgba(255, 167, 38, 0.25);
-}
-
-/* BUBBLE 13 - PINK RED */
-.bubble:nth-child(13) {
-    width: 190px;
-    height: 190px;
-    background: radial-gradient(circle at 30% 30%, #ef9a9a, #e57373, #d32f2f);
-    top: 35%;
-    left: 10%;
-    animation-duration: 35s;
-    animation-delay: -6s;
-    border-color: rgba(229, 115, 115, 0.6);
-    box-shadow: 0 0 50px rgba(229, 115, 115, 0.25);
-}
-
-/* BUBBLE 14 - LIME */
-.bubble:nth-child(14) {
-    width: 95px;
-    height: 95px;
-    background: radial-gradient(circle at 30% 30%, #c5e1a5, #8bc34a, #33691e);
-    top: 15%;
-    left: 35%;
-    animation-duration: 29s;
-    animation-delay: -13s;
-    border-color: rgba(139, 195, 74, 0.6);
-    box-shadow: 0 0 50px rgba(139, 195, 74, 0.25);
-}
-
-/* BUBBLE 15 - DEEP PURPLE */
-.bubble:nth-child(15) {
-    width: 115px;
-    height: 115px;
-    background: radial-gradient(circle at 30% 30%, #b39ddb, #9575cd, #4527a0);
-    top: 60%;
-    left: 45%;
-    animation-duration: 31s;
-    animation-delay: -8s;
-    border-color: rgba(149, 117, 205, 0.6);
-    box-shadow: 0 0 50px rgba(149, 117, 205, 0.25);
-}
-
-/* BUBBLE 16 - LIGHT GREEN */
-.bubble:nth-child(16) {
-    width: 155px;
-    height: 155px;
-    background: radial-gradient(circle at 30% 30%, #a5d6a7, #66bb6a, #1b5e20);
-    top: 75%;
-    left: 62%;
-    animation-duration: 28s;
-    animation-delay: -4s;
-    border-color: rgba(102, 187, 106, 0.6);
-    box-shadow: 0 0 50px rgba(102, 187, 106, 0.25);
-}
-
-/* BUBBLE 17 - CYAN */
-.bubble:nth-child(17) {
-    width: 135px;
-    height: 135px;
-    background: radial-gradient(circle at 30% 30%, #80deea, #00acc1, #006064);
-    top: 8%;
-    left: 55%;
-    animation-duration: 32s;
-    animation-delay: -9s;
-    border-color: rgba(0, 172, 193, 0.6);
-    box-shadow: 0 0 50px rgba(0, 172, 193, 0.25);
-}
-
-/* BUBBLE 18 - ORANGE RED */
-.bubble:nth-child(18) {
-    width: 105px;
-    height: 105px;
-    background: radial-gradient(circle at 30% 30%, #ffab91, #ff7043, #bf360c);
-    top: 50%;
-    left: 8%;
-    animation-duration: 30s;
-    animation-delay: -12s;
-    border-color: rgba(255, 112, 67, 0.6);
-    box-shadow: 0 0 50px rgba(255, 112, 67, 0.25);
-}
-
-/* BUBBLE 19 - BLUE GREY */
-.bubble:nth-child(19) {
-    width: 125px;
-    height: 125px;
-    background: radial-gradient(circle at 30% 30%, #90a4ae, #607d8b, #263238);
-    top: 28%;
-    left: 82%;
-    animation-duration: 34s;
-    animation-delay: -3s;
-    border-color: rgba(96, 125, 139, 0.6);
-    box-shadow: 0 0 50px rgba(96, 125, 139, 0.25);
-}
-
-/* BUBBLE 20 - PINK LIGHT */
-.bubble:nth-child(20) {
-    width: 145px;
-    height: 145px;
-    background: radial-gradient(circle at 30% 30%, #f48fb1, #ec407a, #880e4f);
-    top: 90%;
-    left: 35%;
-    animation-duration: 26s;
-    animation-delay: -7s;
-    border-color: rgba(236, 64, 122, 0.6);
-    box-shadow: 0 0 50px rgba(236, 64, 122, 0.25);
-}
+.bubble:nth-child(1) { width: 140px; height: 140px; background: radial-gradient(circle at 30% 30%, #ff9a56, #ff6b35, #e0552d); top: 5%; left: 2%; animation-duration: 28s; border-color: rgba(255, 107, 53, 0.6); box-shadow: 0 0 50px rgba(255, 107, 53, 0.25); }
+.bubble:nth-child(2) { width: 180px; height: 180px; background: radial-gradient(circle at 30% 30%, #ff8aac, #ff1493, #d4127a); top: 52%; left: 80%; animation-duration: 32s; animation-delay: -3s; border-color: rgba(255, 20, 147, 0.6); box-shadow: 0 0 50px rgba(255, 20, 147, 0.25); }
+.bubble:nth-child(3) { width: 110px; height: 110px; background: radial-gradient(circle at 30% 30%, #4dd0e1, #00bcd4, #0097a7); top: 20%; left: 70%; animation-duration: 26s; animation-delay: -6s; border-color: rgba(0, 188, 212, 0.6); box-shadow: 0 0 50px rgba(0, 188, 212, 0.25); }
+.bubble:nth-child(4) { width: 160px; height: 160px; background: radial-gradient(circle at 30% 30%, #b39ddb, #7c3aed, #5b21b6); top: 70%; left: 5%; animation-duration: 34s; animation-delay: -9s; border-color: rgba(124, 58, 237, 0.6); box-shadow: 0 0 50px rgba(124, 58, 237, 0.25); }
+.bubble:nth-child(5) { width: 120px; height: 120px; background: radial-gradient(circle at 30% 30%, #f8a5c2, #f78fb3, #e84393); top: 40%; left: 40%; animation-duration: 29s; animation-delay: -4s; border-color: rgba(232, 67, 147, 0.6); box-shadow: 0 0 50px rgba(232, 67, 147, 0.25); }
+.bubble:nth-child(6) { width: 200px; height: 200px; background: radial-gradient(circle at 30% 30%, #ffe082, #fdd835, #f9a825); top: 2%; left: 45%; animation-duration: 36s; animation-delay: -7s; border-color: rgba(253, 216, 53, 0.6); box-shadow: 0 0 50px rgba(253, 216, 53, 0.25); }
+.bubble:nth-child(7) { width: 90px; height: 90px; background: radial-gradient(circle at 30% 30%, #81c784, #4caf50, #2e7d32); top: 80%; left: 55%; animation-duration: 24s; animation-delay: -2s; border-color: rgba(76, 175, 80, 0.6); box-shadow: 0 0 50px rgba(76, 175, 80, 0.25); }
+.bubble:nth-child(8) { width: 150px; height: 150px; background: radial-gradient(circle at 30% 30%, #81d4fa, #29b6f6, #0288d1); top: 30%; left: 15%; animation-duration: 30s; animation-delay: -8s; border-color: rgba(41, 182, 246, 0.6); box-shadow: 0 0 50px rgba(41, 182, 246, 0.25); }
+.bubble:nth-child(9) { width: 170px; height: 170px; background: radial-gradient(circle at 30% 30%, #ef9a9a, #ef5350, #c62828); top: 10%; left: 88%; animation-duration: 27s; animation-delay: -5s; border-color: rgba(239, 83, 80, 0.6); box-shadow: 0 0 50px rgba(239, 83, 80, 0.25); }
+.bubble:nth-child(10) { width: 100px; height: 100px; background: radial-gradient(circle at 30% 30%, #80cbc4, #26a69a, #00695c); top: 65%; left: 25%; animation-duration: 31s; animation-delay: -10s; border-color: rgba(38, 166, 154, 0.6); box-shadow: 0 0 50px rgba(38, 166, 154, 0.25); }
+.bubble:nth-child(11) { width: 130px; height: 130px; background: radial-gradient(circle at 30% 30%, #9fa8da, #5c6bc0, #283593); top: 45%; left: 65%; animation-duration: 33s; animation-delay: -1s; border-color: rgba(92, 107, 192, 0.6); box-shadow: 0 0 50px rgba(92, 107, 192, 0.25); }
+.bubble:nth-child(12) { width: 85px; height: 85px; background: radial-gradient(circle at 30% 30%, #ffcc80, #ffa726, #e65100); top: 85%; left: 75%; animation-duration: 25s; animation-delay: -11s; border-color: rgba(255, 167, 38, 0.6); box-shadow: 0 0 50px rgba(255, 167, 38, 0.25); }
+.bubble:nth-child(13) { width: 190px; height: 190px; background: radial-gradient(circle at 30% 30%, #ef9a9a, #e57373, #d32f2f); top: 35%; left: 10%; animation-duration: 35s; animation-delay: -6s; border-color: rgba(229, 115, 115, 0.6); box-shadow: 0 0 50px rgba(229, 115, 115, 0.25); }
+.bubble:nth-child(14) { width: 95px; height: 95px; background: radial-gradient(circle at 30% 30%, #c5e1a5, #8bc34a, #33691e); top: 15%; left: 35%; animation-duration: 29s; animation-delay: -13s; border-color: rgba(139, 195, 74, 0.6); box-shadow: 0 0 50px rgba(139, 195, 74, 0.25); }
+.bubble:nth-child(15) { width: 115px; height: 115px; background: radial-gradient(circle at 30% 30%, #b39ddb, #9575cd, #4527a0); top: 60%; left: 45%; animation-duration: 31s; animation-delay: -8s; border-color: rgba(149, 117, 205, 0.6); box-shadow: 0 0 50px rgba(149, 117, 205, 0.25); }
+.bubble:nth-child(16) { width: 155px; height: 155px; background: radial-gradient(circle at 30% 30%, #a5d6a7, #66bb6a, #1b5e20); top: 75%; left: 62%; animation-duration: 28s; animation-delay: -4s; border-color: rgba(102, 187, 106, 0.6); box-shadow: 0 0 50px rgba(102, 187, 106, 0.25); }
+.bubble:nth-child(17) { width: 135px; height: 135px; background: radial-gradient(circle at 30% 30%, #80deea, #00acc1, #006064); top: 8%; left: 55%; animation-duration: 32s; animation-delay: -9s; border-color: rgba(0, 172, 193, 0.6); box-shadow: 0 0 50px rgba(0, 172, 193, 0.25); }
+.bubble:nth-child(18) { width: 105px; height: 105px; background: radial-gradient(circle at 30% 30%, #ffab91, #ff7043, #bf360c); top: 50%; left: 8%; animation-duration: 30s; animation-delay: -12s; border-color: rgba(255, 112, 67, 0.6); box-shadow: 0 0 50px rgba(255, 112, 67, 0.25); }
+.bubble:nth-child(19) { width: 125px; height: 125px; background: radial-gradient(circle at 30% 30%, #90a4ae, #607d8b, #263238); top: 28%; left: 82%; animation-duration: 34s; animation-delay: -3s; border-color: rgba(96, 125, 139, 0.6); box-shadow: 0 0 50px rgba(96, 125, 139, 0.25); }
+.bubble:nth-child(20) { width: 145px; height: 145px; background: radial-gradient(circle at 30% 30%, #f48fb1, #ec407a, #880e4f); top: 90%; left: 35%; animation-duration: 26s; animation-delay: -7s; border-color: rgba(236, 64, 122, 0.6); box-shadow: 0 0 50px rgba(236, 64, 122, 0.25); }
 
 @keyframes floatBubble {
-    0% {
-        transform: translate(0, 0) scale(1) rotate(0deg);
-    }
-    25% {
-        transform: translate(60px, -80px) scale(1.15) rotate(45deg);
-    }
-    50% {
-        transform: translate(-40px, 60px) scale(0.85) rotate(90deg);
-    }
-    75% {
-        transform: translate(80px, 40px) scale(1.08) rotate(135deg);
-    }
-    100% {
-        transform: translate(-60px, -60px) scale(1) rotate(180deg);
-    }
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    25% { transform: translate(60px, -80px) scale(1.15) rotate(45deg); }
+    50% { transform: translate(-40px, 60px) scale(0.85) rotate(90deg); }
+    75% { transform: translate(80px, 40px) scale(1.08) rotate(135deg); }
+    100% { transform: translate(-60px, -60px) scale(1) rotate(180deg); }
 }
 
 /* ===== CURSOR ===== */
@@ -514,7 +263,6 @@ section.visible {
     background-clip: text;
 }
 
-/* ===== TYPING ANIMATION ===== */
 .typewriter {
     margin-top: 10px;
     font-size: 19px;
@@ -585,7 +333,6 @@ section.visible {
     color: #111;
     border: 2px solid #e0e0e0;
 }
-
 .btn-outline:hover {
     background: #7c3aed;
     color: #fff;
@@ -602,7 +349,6 @@ section.visible {
     color: #111;
     border: 2px solid #7c3aed;
 }
-
 .btn-secondary:hover {
     background: #7c3aed;
     color: #fff;
@@ -615,7 +361,6 @@ section.visible {
     color: #fff;
     border: none;
 }
-
 .btn-dark:hover {
     background: #7c3aed;
     transform: translateY(-4px) scale(1.02);
@@ -627,7 +372,6 @@ section.visible {
     color: #111;
     border: 2px solid #111;
 }
-
 .btn-dark-outline:hover {
     background: #111;
     color: #fff;
@@ -693,41 +437,55 @@ h2 .accent {
     font-weight: 600;
 }
 
-/* ===== GRID ===== */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 18px;
-}
-
-.card {
+/* ===== SKILL CARDS ===== */
+.skill-card {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(0, 0, 0, 0.04);
-    padding: 22px 20px;
+    padding: 28px 20px;
     border-radius: 16px;
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: default;
-    font-weight: 700;
-    color: #111;
+    text-align: center;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-size: 13px;
 }
 
-.card:hover {
+.skill-card:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 20px 50px rgba(124, 58, 237, 0.08);
     border-color: rgba(124, 58, 237, 0.2);
     background: rgba(255, 255, 255, 0.9);
 }
 
-.card .icon {
-    font-size: 26px;
-    margin-bottom: 10px;
+.skill-card .skill-icon {
+    font-size: 52px;
+    margin-bottom: 12px;
     display: block;
+}
+
+.skill-card .skill-name {
+    font-weight: 700;
+    color: #111;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}
+
+.skill-card .skill-desc {
+    color: #666;
+    font-size: 12px;
+    margin-top: 6px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* ===== GRID ===== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
 }
 
 /* ===== PROJECT CARDS ===== */
@@ -775,6 +533,150 @@ h2 .accent {
     margin-top: 10px;
     text-transform: uppercase;
     letter-spacing: 0.8px;
+}
+
+/* ===== CERTIFICATION CARD - BIG SQUARE ===== */
+.cert-card {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 4px solid #7c3aed;
+    padding: 30px 35px;
+    border-radius: 20px;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 8px 40px rgba(124, 58, 237, 0.15);
+    grid-column: 1 / -1;
+    cursor: pointer;
+}
+
+.cert-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 20px 60px rgba(124, 58, 237, 0.25);
+    background: rgba(255, 255, 255, 1);
+}
+
+.cert-card .cert-image {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid rgba(124, 58, 237, 0.3);
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.1);
+}
+
+.cert-card .cert-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cert-card .cert-info {
+    flex: 1;
+}
+
+.cert-card .cert-info h4 {
+    font-size: 24px;
+    font-weight: 900;
+    color: #7c3aed;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cert-card .cert-info p {
+    color: #111;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 6px 0;
+}
+
+.cert-card .cert-info .cert-desc {
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cert-card .cert-info .cert-tag {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 50px;
+    background: #7c3aed;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.cert-card .click-hint {
+    color: #999;
+    font-size: 13px;
+    margin-top: 10px;
+    font-weight: 500;
+    animation: pulse-hint 2s ease-in-out infinite;
+}
+
+@keyframes pulse-hint {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* ===== FULL SCREEN OVERLAY ===== */
+#fullscreen-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    animation: fadeIn 0.4s ease;
+}
+
+#fullscreen-overlay.show {
+    display: flex;
+}
+
+#fullscreen-overlay .close-btn {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    font-size: 50px;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    font-weight: 300;
+    font-family: Arial, sans-serif;
+}
+
+#fullscreen-overlay .close-btn:hover {
+    transform: rotate(90deg) scale(1.2);
+}
+
+#fullscreen-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+    animation: zoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 /* ===== CONTACT ===== */
@@ -901,76 +803,35 @@ footer {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    nav {
-        padding: 12px 5%;
-    }
-    nav a {
-        margin-left: 14px;
-        font-size: 10px;
-        letter-spacing: 0.5px;
-    }
-    .hero h1 {
-        font-size: 34px;
-    }
-    section {
-        padding: 80px 5%;
-    }
-    h2 {
-        font-size: 28px;
-    }
-    .contact-box {
-        padding: 28px 20px;
-    }
-    .contact-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-        padding: 14px 0;
-    }
-    .btn-group {
-        flex-direction: column;
-    }
-    .btn {
-        justify-content: center;
-        font-size: 12px;
-        padding: 11px 22px;
-    }
-    .contact-header h2 {
-        font-size: 30px;
-    }
-    .typewriter {
-        font-size: 16px;
-    }
-    .grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-    }
-    .section-btn-group {
-        flex-direction: column;
-        align-items: center;
-    }
+    nav { padding: 12px 5%; }
+    nav a { margin-left: 14px; font-size: 10px; letter-spacing: 0.5px; }
+    .hero h1 { font-size: 34px; }
+    section { padding: 80px 5%; }
+    h2 { font-size: 28px; }
+    .contact-box { padding: 28px 20px; }
+    .contact-row { flex-direction: column; align-items: flex-start; gap: 6px; padding: 14px 0; }
+    .btn-group { flex-direction: column; }
+    .btn { justify-content: center; font-size: 12px; padding: 11px 22px; }
+    .contact-header h2 { font-size: 30px; }
+    .typewriter { font-size: 16px; }
+    .grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .section-btn-group { flex-direction: column; align-items: center; }
+    .cert-card { flex-direction: column; text-align: center; padding: 20px; }
+    .cert-card .cert-image { width: 150px; height: 150px; }
+    .cert-card .cert-info h4 { font-size: 20px; }
 }
 
 @media (max-width: 480px) {
-    .hero h1 {
-        font-size: 28px;
-    }
-    .logo {
-        font-size: 14px;
-    }
-    nav a {
-        margin-left: 10px;
-        font-size: 9px;
-    }
-    .contact-box {
-        padding: 20px 14px;
-    }
-    .grid {
-        grid-template-columns: 1fr;
-    }
-    .typewriter {
-        font-size: 14px;
-    }
+    .hero h1 { font-size: 28px; }
+    .logo { font-size: 14px; }
+    nav a { margin-left: 10px; font-size: 9px; }
+    .contact-box { padding: 20px 14px; }
+    .grid { grid-template-columns: 1fr; }
+    .typewriter { font-size: 14px; }
+    .skill-card .skill-icon { font-size: 40px; }
+    .cert-card .cert-image { width: 120px; height: 120px; }
+    .cert-card .cert-info h4 { font-size: 17px; }
+    #fullscreen-overlay .close-btn { font-size: 35px; top: 20px; right: 25px; }
 }
 </style>
 </head>
@@ -986,28 +847,15 @@ footer {
 <!-- ===== CANVAS PARTICLES ===== -->
 <canvas id="particleCanvas"></canvas>
 
-<!-- ===== FLOATING BUBBLES - 20 BUBBLES ===== -->
+<!-- ===== FLOATING BUBBLES ===== -->
 <div class="bubbles-container">
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div>
 </div>
 
 <!-- ===== CURSOR ===== -->
@@ -1028,7 +876,7 @@ footer {
 <!-- ===== HERO ===== -->
 <section class="hero" id="hero">
     <div class="hero-content">
-        <div class="badge">🔒 CYBERSECURITY ENTHUSIAST</div>
+        <div class="badge">🏆 CISCO CERTIFIED DEFENSE ANALYST</div>
         <h1>
             HELLO, I'M<br>
             <span class="highlight">LIKITH RAJ</span>
@@ -1037,8 +885,9 @@ footer {
             <span id="typed-text"></span><span class="cursor-blink"></span>
         </div>
         <p>
-            FINAL-YEAR CSE STUDENT PASSIONATE ABOUT SIEM, THREAT DETECTION,
-            AND CYBERSECURITY OPERATIONS. LOVE BUILDING DASHBOARDS AND HUNTING DOWN THREATS.
+            CISCO CERTIFIED CYBERSECURITY DEFENSE ANALYST | FINAL-YEAR CSE STUDENT 
+            PASSIONATE ABOUT SIEM, THREAT DETECTION, AND SECURITY OPERATIONS.
+            LOVE BUILDING SPLUNK DASHBOARDS AND HUNTING DOWN THREATS.
         </p>
         <div class="btn-group">
             <a href="resume.pdf.pdf" download class="btn btn-primary">
@@ -1063,13 +912,14 @@ footer {
 <section id="about">
     <h2>GET TO <span class="accent">KNOW ME</span></h2>
     <p class="section-sub">
-        I'M A PASSIONATE SOC ANALYST FOCUSED ON SIEM TOOLS, WINDOWS SECURITY,
-        SPLUNK DASHBOARDS, AND INCIDENT RESPONSE.
+        I'M A CISCO CERTIFIED CYBERSECURITY DEFENSE ANALYST AND SOC ENTHUSIAST 
+        FOCUSED ON SIEM TOOLS, SPLUNK DASHBOARDS, AND INCIDENT RESPONSE.
     </p>
     <p style="color:#111;max-width:680px;line-height:1.9;font-size:15px;text-transform:uppercase;letter-spacing:0.3px;font-weight:500;">
-        CURRENTLY IN MY FINAL YEAR OF CSE, I'VE DEVELOPED A DEEP INTEREST IN
-        CYBERSECURITY OPERATIONS. I LOVE ANALYZING LOGS, BUILDING DETECTION RULES,
-        AND FINDING CREATIVE WAYS TO VISUALIZE SECURITY DATA.
+        CURRENTLY IN MY FINAL YEAR OF CSE, I'VE COMPLETED CISCO'S COMPREHENSIVE 
+        CYBERSECURITY DEFENSE ANALYST CAREER PATH (8 COURSES + FINAL EXAM). 
+        I LOVE ANALYZING LOGS, BUILDING DETECTION RULES, AND FINDING CREATIVE 
+        WAYS TO VISUALIZE SECURITY DATA.
     </p>
 </section>
 
@@ -1078,12 +928,26 @@ footer {
     <h2>MY <span class="accent">SKILLS</span></h2>
     <p class="section-sub">TOOLS & TECHNOLOGIES I WORK WITH DAILY</p>
     <div class="grid">
-        <div class="card"><span class="icon">🔍</span>SPLUNK</div>
-        <div class="card"><span class="icon">🛡️</span>SIEM</div>
-        <div class="card"><span class="icon">📡</span>WIRESHARK</div>
-        <div class="card"><span class="icon">🖥️</span>WINDOWS LOGS</div>
-        <div class="card"><span class="icon">👥</span>ACTIVE DIRECTORY</div>
-        <div class="card"><span class="icon">🌐</span>NETWORKING</div>
+        <div class="skill-card">
+            <span class="skill-icon">🔍</span>
+            <div class="skill-name">NMAP</div>
+            <div class="skill-desc">Network Scanning</div>
+        </div>
+        <div class="skill-card">
+            <span class="skill-icon">📊</span>
+            <div class="skill-name">SPLUNK</div>
+            <div class="skill-desc">SIEM & Dashboards</div>
+        </div>
+        <div class="skill-card">
+            <span class="skill-icon">📡</span>
+            <div class="skill-name">WIRESHARK</div>
+            <div class="skill-desc">Packet Analysis</div>
+        </div>
+        <div class="skill-card">
+            <span class="skill-icon">🖥️</span>
+            <div class="skill-name">WINDOWS LOGS</div>
+            <div class="skill-desc">Event Analysis</div>
+        </div>
     </div>
 </section>
 
@@ -1094,12 +958,12 @@ footer {
     <div class="grid">
         <div class="project-card">
             <h4>🔐 FAILED LOGIN DETECTION</h4>
-            <p>SPLUNK DASHBOARD TRACKING FAILED LOGINS ACROSS DOMAIN CONTROLLERS.</p>
+            <p>SPLUNK DASHBOARD TRACKING FAILED LOGINS (EVENT ID 4625) ACROSS DOMAIN CONTROLLERS.</p>
             <span class="project-tag">SPLUNK</span>
         </div>
         <div class="project-card">
             <h4>⚡ BRUTE FORCE DASHBOARD</h4>
-            <p>REAL-TIME BRUTE FORCE ATTACK VISUALIZATION WITH ALERTING.</p>
+            <p>REAL-TIME BRUTE FORCE ATTACK VISUALIZATION WITH AUTOMATED EMAIL ALERTS.</p>
             <span class="project-tag">SIEM</span>
         </div>
         <div class="project-card">
@@ -1115,22 +979,26 @@ footer {
     </div>
 </section>
 
-<!-- ===== CERTIFICATIONS ===== -->
+<!-- ===== CERTIFICATIONS - ONLY CISCO ===== -->
 <section id="certifications">
     <h2>MY <span class="accent">CERTIFICATIONS</span></h2>
     <p class="section-sub">PROFESSIONAL CERTIFICATIONS & ACHIEVEMENTS</p>
     <div class="grid">
-        <div class="card"><span class="icon">📜</span>SPLUNK CERTIFIED</div>
-        <div class="card"><span class="icon">🛡️</span>COMPTIA SECURITY+</div>
-        <div class="card"><span class="icon">🔍</span>CEH V12</div>
-        <div class="card"><span class="icon">☁️</span>AZURE SECURITY</div>
-        <div class="card"><span class="icon">📊</span>SIEM ANALYST</div>
-        <div class="card"><span class="icon">🔐</span>CYBERSECURITY</div>
-    </div>
-    <div class="section-btn-group">
-        <a href="certifications.html" class="btn btn-dark-outline">
-            <i class="fas fa-certificate"></i> MY CERTIFICATIONS
-        </a>
+        
+        <!-- ONLY CISCO CERTIFICATION - BIG SQUARE CARD -->
+        <div class="cert-card" onclick="openFullScreen()">
+            <div class="cert-image">
+                <img src="img.png" alt="Cisco Certification">
+            </div>
+            <div class="cert-info">
+                <h4>🏆 CISCO DEFENSE ANALYST</h4>
+                <p>CISCO NETWORKING ACADEMY - CAREER PATH</p>
+                <div class="cert-desc">8+ Courses Completed • Final Exam Passed • SOC Ready</div>
+                <span class="cert-tag">✅ COMPLETED JUN 2026</span>
+                <div class="click-hint">👆 Click to view full certificate</div>
+            </div>
+        </div>
+
     </div>
 </section>
 
@@ -1167,10 +1035,34 @@ footer {
 
 <!-- ===== FOOTER ===== -->
 <footer>
-    © 2026 LIKITH RAJ &bull; BUILT WITH ❤️
+    © 2026 LIKITH RAJ &bull; CISCO CERTIFIED DEFENSE ANALYST &bull; BUILT WITH ❤️
 </footer>
 
+<!-- ===== FULL SCREEN OVERLAY ===== -->
+<div id="fullscreen-overlay" onclick="closeFullScreen()">
+    <span class="close-btn">&times;</span>
+    <img id="fullscreen-img" src="img.png" alt="Cisco Certificate Full View">
+</div>
+
 <script>
+// ===== FULL SCREEN FUNCTIONS =====
+function openFullScreen() {
+    document.getElementById('fullscreen-overlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeFullScreen() {
+    document.getElementById('fullscreen-overlay').classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+// Close with ESC key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeFullScreen();
+    }
+});
+
 // ===== CANVAS PARTICLES =====
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
@@ -1240,10 +1132,10 @@ window.addEventListener('load', function() {
 
 // ===== TYPING ANIMATION =====
 const roles = [
+    'CISCO CERTIFIED DEFENSE ANALYST',
     'SOC ANALYST',
     'SPLUNK SPECIALIST',
-    'THREAT HUNTER',
-    'CYBERSECURITY ENTHUSIAST'
+    'THREAT HUNTER'
 ];
 
 let roleIndex = 0;
