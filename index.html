@@ -93,52 +93,73 @@ html, body {
 .bubble {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.5;
+    opacity: 0.4;
     animation: floatBubble 30s ease-in-out infinite alternate;
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.08), inset 0 0 30px rgba(255, 255, 255, 0.5);
 }
 
-.bubble:nth-child(1) { width: 140px; height: 140px; background: radial-gradient(circle at 30% 30%, #ff9a56, #ff6b35, #e0552d); top: 5%; left: 2%; animation-duration: 28s; border-color: rgba(255, 107, 53, 0.6); box-shadow: 0 0 50px rgba(255, 107, 53, 0.25); }
-.bubble:nth-child(2) { width: 180px; height: 180px; background: radial-gradient(circle at 30% 30%, #ff8aac, #ff1493, #d4127a); top: 52%; left: 80%; animation-duration: 32s; animation-delay: -3s; border-color: rgba(255, 20, 147, 0.6); box-shadow: 0 0 50px rgba(255, 20, 147, 0.25); }
-.bubble:nth-child(3) { width: 110px; height: 110px; background: radial-gradient(circle at 30% 30%, #4dd0e1, #00bcd4, #0097a7); top: 20%; left: 70%; animation-duration: 26s; animation-delay: -6s; border-color: rgba(0, 188, 212, 0.6); box-shadow: 0 0 50px rgba(0, 188, 212, 0.25); }
-.bubble:nth-child(4) { width: 160px; height: 160px; background: radial-gradient(circle at 30% 30%, #b39ddb, #7c3aed, #5b21b6); top: 70%; left: 5%; animation-duration: 34s; animation-delay: -9s; border-color: rgba(124, 58, 237, 0.6); box-shadow: 0 0 50px rgba(124, 58, 237, 0.25); }
-.bubble:nth-child(5) { width: 120px; height: 120px; background: radial-gradient(circle at 30% 30%, #f8a5c2, #f78fb3, #e84393); top: 40%; left: 40%; animation-duration: 29s; animation-delay: -4s; border-color: rgba(232, 67, 147, 0.6); box-shadow: 0 0 50px rgba(232, 67, 147, 0.25); }
-.bubble:nth-child(6) { width: 200px; height: 200px; background: radial-gradient(circle at 30% 30%, #ffe082, #fdd835, #f9a825); top: 2%; left: 45%; animation-duration: 36s; animation-delay: -7s; border-color: rgba(253, 216, 53, 0.6); box-shadow: 0 0 50px rgba(253, 216, 53, 0.25); }
-.bubble:nth-child(7) { width: 90px; height: 90px; background: radial-gradient(circle at 30% 30%, #81c784, #4caf50, #2e7d32); top: 80%; left: 55%; animation-duration: 24s; animation-delay: -2s; border-color: rgba(76, 175, 80, 0.6); box-shadow: 0 0 50px rgba(76, 175, 80, 0.25); }
-.bubble:nth-child(8) { width: 150px; height: 150px; background: radial-gradient(circle at 30% 30%, #81d4fa, #29b6f6, #0288d1); top: 30%; left: 15%; animation-duration: 30s; animation-delay: -8s; border-color: rgba(41, 182, 246, 0.6); box-shadow: 0 0 50px rgba(41, 182, 246, 0.25); }
-.bubble:nth-child(9) { width: 170px; height: 170px; background: radial-gradient(circle at 30% 30%, #ef9a9a, #ef5350, #c62828); top: 10%; left: 88%; animation-duration: 27s; animation-delay: -5s; border-color: rgba(239, 83, 80, 0.6); box-shadow: 0 0 50px rgba(239, 83, 80, 0.25); }
-.bubble:nth-child(10) { width: 100px; height: 100px; background: radial-gradient(circle at 30% 30%, #80cbc4, #26a69a, #00695c); top: 65%; left: 25%; animation-duration: 31s; animation-delay: -10s; border-color: rgba(38, 166, 154, 0.6); box-shadow: 0 0 50px rgba(38, 166, 154, 0.25); }
-.bubble:nth-child(11) { width: 130px; height: 130px; background: radial-gradient(circle at 30% 30%, #9fa8da, #5c6bc0, #283593); top: 45%; left: 65%; animation-duration: 33s; animation-delay: -1s; border-color: rgba(92, 107, 192, 0.6); box-shadow: 0 0 50px rgba(92, 107, 192, 0.25); }
-.bubble:nth-child(12) { width: 85px; height: 85px; background: radial-gradient(circle at 30% 30%, #ffcc80, #ffa726, #e65100); top: 85%; left: 75%; animation-duration: 25s; animation-delay: -11s; border-color: rgba(255, 167, 38, 0.6); box-shadow: 0 0 50px rgba(255, 167, 38, 0.25); }
-.bubble:nth-child(13) { width: 190px; height: 190px; background: radial-gradient(circle at 30% 30%, #ef9a9a, #e57373, #d32f2f); top: 35%; left: 10%; animation-duration: 35s; animation-delay: -6s; border-color: rgba(229, 115, 115, 0.6); box-shadow: 0 0 50px rgba(229, 115, 115, 0.25); }
-.bubble:nth-child(14) { width: 95px; height: 95px; background: radial-gradient(circle at 30% 30%, #c5e1a5, #8bc34a, #33691e); top: 15%; left: 35%; animation-duration: 29s; animation-delay: -13s; border-color: rgba(139, 195, 74, 0.6); box-shadow: 0 0 50px rgba(139, 195, 74, 0.25); }
-.bubble:nth-child(15) { width: 115px; height: 115px; background: radial-gradient(circle at 30% 30%, #b39ddb, #9575cd, #4527a0); top: 60%; left: 45%; animation-duration: 31s; animation-delay: -8s; border-color: rgba(149, 117, 205, 0.6); box-shadow: 0 0 50px rgba(149, 117, 205, 0.25); }
-.bubble:nth-child(16) { width: 155px; height: 155px; background: radial-gradient(circle at 30% 30%, #a5d6a7, #66bb6a, #1b5e20); top: 75%; left: 62%; animation-duration: 28s; animation-delay: -4s; border-color: rgba(102, 187, 106, 0.6); box-shadow: 0 0 50px rgba(102, 187, 106, 0.25); }
-.bubble:nth-child(17) { width: 135px; height: 135px; background: radial-gradient(circle at 30% 30%, #80deea, #00acc1, #006064); top: 8%; left: 55%; animation-duration: 32s; animation-delay: -9s; border-color: rgba(0, 172, 193, 0.6); box-shadow: 0 0 50px rgba(0, 172, 193, 0.25); }
-.bubble:nth-child(18) { width: 105px; height: 105px; background: radial-gradient(circle at 30% 30%, #ffab91, #ff7043, #bf360c); top: 50%; left: 8%; animation-duration: 30s; animation-delay: -12s; border-color: rgba(255, 112, 67, 0.6); box-shadow: 0 0 50px rgba(255, 112, 67, 0.25); }
-.bubble:nth-child(19) { width: 125px; height: 125px; background: radial-gradient(circle at 30% 30%, #90a4ae, #607d8b, #263238); top: 28%; left: 82%; animation-duration: 34s; animation-delay: -3s; border-color: rgba(96, 125, 139, 0.6); box-shadow: 0 0 50px rgba(96, 125, 139, 0.25); }
-.bubble:nth-child(20) { width: 145px; height: 145px; background: radial-gradient(circle at 30% 30%, #f48fb1, #ec407a, #880e4f); top: 90%; left: 35%; animation-duration: 26s; animation-delay: -7s; border-color: rgba(236, 64, 122, 0.6); box-shadow: 0 0 50px rgba(236, 64, 122, 0.25); }
+.bubble:nth-child(1) { width: 140px; height: 140px; background: radial-gradient(circle at 30% 30%, #ff9a56, #ff6b35, #e0552d); top: 5%; left: 2%; animation-duration: 28s; }
+.bubble:nth-child(2) { width: 180px; height: 180px; background: radial-gradient(circle at 30% 30%, #ff8aac, #ff1493, #d4127a); top: 52%; left: 80%; animation-duration: 32s; animation-delay: -3s; }
+.bubble:nth-child(3) { width: 110px; height: 110px; background: radial-gradient(circle at 30% 30%, #4dd0e1, #00bcd4, #0097a7); top: 20%; left: 70%; animation-duration: 26s; animation-delay: -6s; }
+.bubble:nth-child(4) { width: 160px; height: 160px; background: radial-gradient(circle at 30% 30%, #b39ddb, #7c3aed, #5b21b6); top: 70%; left: 5%; animation-duration: 34s; animation-delay: -9s; }
+.bubble:nth-child(5) { width: 120px; height: 120px; background: radial-gradient(circle at 30% 30%, #f8a5c2, #f78fb3, #e84393); top: 40%; left: 40%; animation-duration: 29s; animation-delay: -4s; }
+.bubble:nth-child(6) { width: 200px; height: 200px; background: radial-gradient(circle at 30% 30%, #ffe082, #fdd835, #f9a825); top: 2%; left: 45%; animation-duration: 36s; animation-delay: -7s; }
+.bubble:nth-child(7) { width: 90px; height: 90px; background: radial-gradient(circle at 30% 30%, #81c784, #4caf50, #2e7d32); top: 80%; left: 55%; animation-duration: 24s; animation-delay: -2s; }
+.bubble:nth-child(8) { width: 150px; height: 150px; background: radial-gradient(circle at 30% 30%, #81d4fa, #29b6f6, #0288d1); top: 30%; left: 15%; animation-duration: 30s; animation-delay: -8s; }
+.bubble:nth-child(9) { width: 170px; height: 170px; background: radial-gradient(circle at 30% 30%, #ef9a9a, #ef5350, #c62828); top: 10%; left: 88%; animation-duration: 27s; animation-delay: -5s; }
+.bubble:nth-child(10) { width: 100px; height: 100px; background: radial-gradient(circle at 30% 30%, #80cbc4, #26a69a, #00695c); top: 65%; left: 25%; animation-duration: 31s; animation-delay: -10s; }
+.bubble:nth-child(11) { width: 130px; height: 130px; background: radial-gradient(circle at 30% 30%, #9fa8da, #5c6bc0, #283593); top: 45%; left: 65%; animation-duration: 33s; animation-delay: -1s; }
+.bubble:nth-child(12) { width: 85px; height: 85px; background: radial-gradient(circle at 30% 30%, #ffcc80, #ffa726, #e65100); top: 85%; left: 75%; animation-duration: 25s; animation-delay: -11s; }
+.bubble:nth-child(13) { width: 190px; height: 190px; background: radial-gradient(circle at 30% 30%, #ef9a9a, #e57373, #d32f2f); top: 35%; left: 10%; animation-duration: 35s; animation-delay: -6s; }
+.bubble:nth-child(14) { width: 95px; height: 95px; background: radial-gradient(circle at 30% 30%, #c5e1a5, #8bc34a, #33691e); top: 15%; left: 35%; animation-duration: 29s; animation-delay: -13s; }
+.bubble:nth-child(15) { width: 115px; height: 115px; background: radial-gradient(circle at 30% 30%, #b39ddb, #9575cd, #4527a0); top: 60%; left: 45%; animation-duration: 31s; animation-delay: -8s; }
+.bubble:nth-child(16) { width: 155px; height: 155px; background: radial-gradient(circle at 30% 30%, #a5d6a7, #66bb6a, #1b5e20); top: 75%; left: 62%; animation-duration: 28s; animation-delay: -4s; }
+.bubble:nth-child(17) { width: 135px; height: 135px; background: radial-gradient(circle at 30% 30%, #80deea, #00acc1, #006064); top: 8%; left: 55%; animation-duration: 32s; animation-delay: -9s; }
+.bubble:nth-child(18) { width: 105px; height: 105px; background: radial-gradient(circle at 30% 30%, #ffab91, #ff7043, #bf360c); top: 50%; left: 8%; animation-duration: 30s; animation-delay: -12s; }
+.bubble:nth-child(19) { width: 125px; height: 125px; background: radial-gradient(circle at 30% 30%, #90a4ae, #607d8b, #263238); top: 28%; left: 82%; animation-duration: 34s; animation-delay: -3s; }
+.bubble:nth-child(20) { width: 145px; height: 145px; background: radial-gradient(circle at 30% 30%, #f48fb1, #ec407a, #880e4f); top: 90%; left: 35%; animation-duration: 26s; animation-delay: -7s; }
 
 @keyframes floatBubble {
-    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-    25% { transform: translate(60px, -80px) scale(1.15) rotate(45deg); }
-    50% { transform: translate(-40px, 60px) scale(0.85) rotate(90deg); }
-    75% { transform: translate(80px, 40px) scale(1.08) rotate(135deg); }
-    100% { transform: translate(-60px, -60px) scale(1) rotate(180deg); }
+    0% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(60px, -80px) scale(1.15); }
+    50% { transform: translate(-40px, 60px) scale(0.85); }
+    75% { transform: translate(80px, 40px) scale(1.08); }
+    100% { transform: translate(-60px, -60px) scale(1); }
 }
 
 /* ===== CURSOR ===== */
-#cursor {
+#cursor-dot {
     position: fixed;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+    width: 8px;
+    height: 8px;
     background: #7c3aed;
-    filter: blur(12px);
-    opacity: 0.2;
+    border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
+    transition: width 0.15s ease, height 0.15s ease;
+}
+
+#cursor-glow {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.3), transparent 70%);
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.cursor-hover #cursor-dot {
+    width: 14px;
+    height: 14px;
+    background: #06b6d4;
+}
+
+.cursor-hover #cursor-glow {
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.25), transparent 70%);
 }
 
 /* ===== NAV ===== */
@@ -147,8 +168,7 @@ nav {
     top: 0;
     width: 100%;
     background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -292,7 +312,7 @@ section.visible {
     margin-top: 18px;
     max-width: 580px;
     line-height: 1.9;
-    color: #111;
+    color: #555;
     font-size: 16px;
     font-weight: 500;
 }
@@ -337,7 +357,6 @@ section.visible {
     background: #7c3aed;
     color: #fff;
     border-color: #7c3aed;
-    box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
 }
 
 .btn-primary {
@@ -353,30 +372,6 @@ section.visible {
     background: #7c3aed;
     color: #fff;
     border-color: #7c3aed;
-    box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
-}
-
-.btn-dark {
-    background: #111;
-    color: #fff;
-    border: none;
-}
-.btn-dark:hover {
-    background: #7c3aed;
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(124, 58, 237, 0.25);
-}
-
-.btn-dark-outline {
-    background: transparent;
-    color: #111;
-    border: 2px solid #111;
-}
-.btn-dark-outline:hover {
-    background: #111;
-    color: #fff;
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* ===== SOCIAL ===== */
@@ -406,7 +401,6 @@ section.visible {
     color: #fff;
     transform: translateY(-4px) scale(1.08);
     box-shadow: 0 12px 28px rgba(124, 58, 237, 0.25);
-    border-color: #7c3aed;
 }
 
 /* ===== SECTION HEADERS ===== */
@@ -427,7 +421,7 @@ h2 .accent {
 }
 
 .section-sub {
-    color: #111;
+    color: #555;
     font-size: 15px;
     margin-bottom: 32px;
     max-width: 580px;
@@ -441,7 +435,6 @@ h2 .accent {
 .skill-card {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(0, 0, 0, 0.04);
     padding: 28px 20px;
     border-radius: 16px;
@@ -492,7 +485,6 @@ h2 .accent {
 .project-card {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(0, 0, 0, 0.04);
     padding: 24px 22px;
     border-radius: 16px;
@@ -516,7 +508,7 @@ h2 .accent {
 }
 
 .project-card p {
-    color: #111;
+    color: #555;
     font-size: 13px;
     line-height: 1.7;
     font-weight: 500;
@@ -535,37 +527,56 @@ h2 .accent {
     letter-spacing: 0.8px;
 }
 
-/* ===== CERTIFICATION CARD - BIG SQUARE ===== */
+/* ============================================
+   🌟 CERTIFICATION CARDS - SIDE BY SIDE
+   ============================================ */
+.cert-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
 .cert-card {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 4px solid #7c3aed;
-    padding: 30px 35px;
+    background: #ffffff;
     border-radius: 20px;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 8px 40px rgba(124, 58, 237, 0.15);
-    grid-column: 1 / -1;
+    padding: 25px 20px;
+    text-align: center;
     cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .cert-card:hover {
-    transform: translateY(-6px) scale(1.01);
-    box-shadow: 0 20px 60px rgba(124, 58, 237, 0.25);
-    background: rgba(255, 255, 255, 1);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(124, 58, 237, 0.08);
+}
+
+.cert-card.cisco {
+    border-top: 4px solid #7c3aed;
+}
+
+.cert-card.jsoc {
+    border-top: 4px solid #06b6d4;
 }
 
 .cert-card .cert-image {
-    flex-shrink: 0;
-    width: 120px;
-    height: 120px;
-    border-radius: 16px;
+    width: 90px;
+    height: 90px;
+    border-radius: 14px;
     overflow: hidden;
-    border: 3px solid rgba(124, 58, 237, 0.3);
-    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.1);
+    border: 2px solid rgba(0, 0, 0, 0.06);
+    margin-bottom: 12px;
+    transition: transform 0.5s ease;
+}
+
+.cert-card:hover .cert-image {
+    transform: scale(1.05);
 }
 
 .cert-card .cert-image img {
@@ -574,109 +585,245 @@ h2 .accent {
     object-fit: cover;
 }
 
-.cert-card .cert-info {
-    flex: 1;
+.cert-card .cert-badge {
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 50px;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
 }
 
-.cert-card .cert-info h4 {
-    font-size: 24px;
-    font-weight: 900;
+.cert-card.cisco .cert-badge {
+    background: rgba(124, 58, 237, 0.08);
     color: #7c3aed;
+}
+
+.cert-card.jsoc .cert-badge {
+    background: rgba(6, 182, 212, 0.08);
+    color: #06b6d4;
+}
+
+.cert-card .cert-title {
+    font-size: 18px;
+    font-weight: 900;
+    color: #111;
+    text-transform: uppercase;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+}
+
+.cert-card .cert-title span {
+    background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cert-card .cert-sub {
+    color: #444;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 2px 0;
+}
+
+.cert-card .cert-desc {
+    color: #666;
+    font-size: 11px;
+    font-weight: 500;
+    margin: 2px 0 6px;
+}
+
+.cert-card .cert-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 14px;
+    border-radius: 50px;
+    font-size: 10px;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-.cert-card .cert-info p {
-    color: #111;
-    font-size: 16px;
-    font-weight: 600;
-    margin: 6px 0;
-}
-
-.cert-card .cert-info .cert-desc {
-    color: #555;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.cert-card .cert-info .cert-tag {
-    display: inline-block;
-    padding: 6px 18px;
-    border-radius: 50px;
-    background: #7c3aed;
+.cert-card.cisco .cert-status {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
     color: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    margin-top: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
 }
 
-.cert-card .click-hint {
-    color: #999;
-    font-size: 13px;
-    margin-top: 10px;
+.cert-card.jsoc .cert-status {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: #fff;
+}
+
+.cert-card .cert-hint {
+    margin-top: 8px;
+    color: #bbb;
+    font-size: 11px;
     font-weight: 500;
-    animation: pulse-hint 2s ease-in-out infinite;
 }
 
-@keyframes pulse-hint {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.05); }
+.cert-card .cert-hint .arrow {
+    display: inline-block;
+    animation: arrowMove 2s ease-in-out infinite;
 }
 
-/* ===== FULL SCREEN OVERLAY ===== */
+@keyframes arrowMove {
+    0%, 100% { transform: translateX(0); opacity: 0.5; }
+    50% { transform: translateX(6px); opacity: 1; }
+}
+
+/* ===== CERT STATS ===== */
+.cert-stats {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 12px 24px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 14px;
+    border: 1px solid rgba(124,58,237,0.06);
+    min-width: 80px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 28px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.stat-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================
+   FULL SCREEN OVERLAY - NO DOWNLOAD
+   ============================================ */
 #fullscreen-overlay {
     display: none;
     position: fixed;
     inset: 0;
     z-index: 99999;
-    background: rgba(0, 0, 0, 0.92);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(20px);
     justify-content: center;
     align-items: center;
     padding: 40px;
-    animation: fadeIn 0.4s ease;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
 #fullscreen-overlay.show {
     display: flex;
+    opacity: 1;
 }
 
 #fullscreen-overlay .close-btn {
     position: absolute;
     top: 30px;
     right: 50px;
-    font-size: 50px;
+    font-size: 40px;
     color: #fff;
     cursor: pointer;
-    transition: transform 0.3s ease;
-    font-weight: 300;
-    font-family: Arial, sans-serif;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
 #fullscreen-overlay .close-btn:hover {
-    transform: rotate(90deg) scale(1.2);
+    transform: rotate(90deg) scale(1.1);
+    background: rgba(255,255,255,0.1);
+}
+
+#fullscreen-overlay .fullscreen-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    max-width: 90%;
+    max-height: 90%;
 }
 
 #fullscreen-overlay img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 12px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 16px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
     object-fit: contain;
-    animation: zoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: scale(0.85) translateY(30px);
+    opacity: 0;
+    transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+#fullscreen-overlay.show img {
+    transform: scale(1) translateY(0);
+    opacity: 1;
 }
 
-@keyframes zoomIn {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+#fullscreen-overlay .cert-info-popup {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 18px 30px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.08);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.6s ease 0.3s;
+}
+
+#fullscreen-overlay.show .cert-info-popup {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+#fullscreen-overlay .cert-info-popup h3 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#fullscreen-overlay .cert-info-popup p {
+    color: rgba(255,255,255,0.6);
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+#fullscreen-overlay .cert-info-popup .popup-badge {
+    display: inline-block;
+    padding: 4px 16px;
+    border-radius: 50px;
+    background: rgba(124,58,237,0.15);
+    color: #a78bfa;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 6px;
 }
 
 /* ===== CONTACT ===== */
@@ -698,7 +845,7 @@ h2 .accent {
 }
 
 .contact-header p {
-    color: #111;
+    color: #555;
     font-size: 16px;
     margin-top: 8px;
     text-transform: uppercase;
@@ -711,12 +858,11 @@ h2 .accent {
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border-radius: 20px;
     padding: 40px 50px;
     border: 1px solid rgba(0, 0, 0, 0.04);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.02);
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.5s ease;
 }
 
 .contact-box:hover {
@@ -753,7 +899,7 @@ h2 .accent {
 
 .contact-value a {
     text-decoration: none;
-    color: #111;
+    color: #555;
     font-weight: 600;
     transition: all 0.3s ease;
     font-size: 14px;
@@ -780,15 +926,6 @@ h2 .accent {
     font-size: 16px;
 }
 
-/* ===== SECTION BUTTONS ===== */
-.section-btn-group {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-top: 32px;
-    justify-content: center;
-}
-
 /* ===== FOOTER ===== */
 footer {
     text-align: center;
@@ -812,13 +949,13 @@ footer {
     .contact-row { flex-direction: column; align-items: flex-start; gap: 6px; padding: 14px 0; }
     .btn-group { flex-direction: column; }
     .btn { justify-content: center; font-size: 12px; padding: 11px 22px; }
-    .contact-header h2 { font-size: 30px; }
-    .typewriter { font-size: 16px; }
-    .grid { grid-template-columns: 1fr 1fr; gap: 14px; }
-    .section-btn-group { flex-direction: column; align-items: center; }
-    .cert-card { flex-direction: column; text-align: center; padding: 20px; }
-    .cert-card .cert-image { width: 150px; height: 150px; }
-    .cert-card .cert-info h4 { font-size: 20px; }
+    .cert-grid { grid-template-columns: 1fr; gap: 20px; max-width: 400px; }
+    .cert-stats { gap: 15px; }
+    .stat-item { padding: 10px 16px; min-width: 70px; }
+    .stat-number { font-size: 24px; }
+    #fullscreen-overlay .close-btn { font-size: 30px; top: 20px; right: 20px; width: 50px; height: 50px; }
+    #fullscreen-overlay .cert-info-popup { padding: 14px 20px; }
+    #fullscreen-overlay .cert-info-popup h3 { font-size: 17px; }
 }
 
 @media (max-width: 480px) {
@@ -829,9 +966,8 @@ footer {
     .grid { grid-template-columns: 1fr; }
     .typewriter { font-size: 14px; }
     .skill-card .skill-icon { font-size: 40px; }
-    .cert-card .cert-image { width: 120px; height: 120px; }
-    .cert-card .cert-info h4 { font-size: 17px; }
-    #fullscreen-overlay .close-btn { font-size: 35px; top: 20px; right: 25px; }
+    .cert-card .cert-image { width: 80px; height: 80px; }
+    .cert-card .cert-title { font-size: 16px; }
 }
 </style>
 </head>
@@ -859,7 +995,8 @@ footer {
 </div>
 
 <!-- ===== CURSOR ===== -->
-<div id="cursor"></div>
+<div id="cursor-dot"></div>
+<div id="cursor-glow"></div>
 
 <!-- ===== NAV ===== -->
 <nav id="navbar">
@@ -876,7 +1013,7 @@ footer {
 <!-- ===== HERO ===== -->
 <section class="hero" id="hero">
     <div class="hero-content">
-        <div class="badge">🏆 CISCO CERTIFIED DEFENSE ANALYST</div>
+        <div class="badge">🏆 CISCO CERTIFIED | JSOC CERTIFIED</div>
         <h1>
             HELLO, I'M<br>
             <span class="highlight">LIKITH RAJ</span>
@@ -885,7 +1022,7 @@ footer {
             <span id="typed-text"></span><span class="cursor-blink"></span>
         </div>
         <p>
-            CISCO CERTIFIED CYBERSECURITY DEFENSE ANALYST | FINAL-YEAR CSE STUDENT 
+            CISCO CERTIFIED DEFENSE ANALYST | JSOC CERTIFIED | FINAL-YEAR CSE STUDENT 
             PASSIONATE ABOUT SIEM, THREAT DETECTION, AND SECURITY OPERATIONS.
             LOVE BUILDING SPLUNK DASHBOARDS AND HUNTING DOWN THREATS.
         </p>
@@ -912,14 +1049,14 @@ footer {
 <section id="about">
     <h2>GET TO <span class="accent">KNOW ME</span></h2>
     <p class="section-sub">
-        I'M A CISCO CERTIFIED CYBERSECURITY DEFENSE ANALYST AND SOC ENTHUSIAST 
+        I'M A CISCO CERTIFIED DEFENSE ANALYST AND JSOC CERTIFIED SOC ENTHUSIAST 
         FOCUSED ON SIEM TOOLS, SPLUNK DASHBOARDS, AND INCIDENT RESPONSE.
     </p>
-    <p style="color:#111;max-width:680px;line-height:1.9;font-size:15px;text-transform:uppercase;letter-spacing:0.3px;font-weight:500;">
+    <p style="color:#555;max-width:680px;line-height:1.9;font-size:15px;text-transform:uppercase;letter-spacing:0.3px;font-weight:500;">
         CURRENTLY IN MY FINAL YEAR OF CSE, I'VE COMPLETED CISCO'S COMPREHENSIVE 
-        CYBERSECURITY DEFENSE ANALYST CAREER PATH (8 COURSES + FINAL EXAM). 
-        I LOVE ANALYZING LOGS, BUILDING DETECTION RULES, AND FINDING CREATIVE 
-        WAYS TO VISUALIZE SECURITY DATA.
+        CYBERSECURITY DEFENSE ANALYST CAREER PATH (8 COURSES + FINAL EXAM) AND
+        JSOC CERTIFICATION FROM VIBE SECURITY. I LOVE ANALYZING LOGS, BUILDING 
+        DETECTION RULES, AND FINDING CREATIVE WAYS TO VISUALIZE SECURITY DATA.
     </p>
 </section>
 
@@ -958,47 +1095,69 @@ footer {
     <div class="grid">
         <div class="project-card">
             <h4>🔐 FAILED LOGIN DETECTION</h4>
-            <p>SPLUNK DASHBOARD TRACKING FAILED LOGINS (EVENT ID 4625) ACROSS DOMAIN CONTROLLERS.</p>
+            <p>SPLUNK DASHBOARD TRACKING FAILED LOGINS (EVENT ID 4625).</p>
             <span class="project-tag">SPLUNK</span>
         </div>
         <div class="project-card">
             <h4>⚡ BRUTE FORCE DASHBOARD</h4>
-            <p>REAL-TIME BRUTE FORCE ATTACK VISUALIZATION WITH AUTOMATED EMAIL ALERTS.</p>
+            <p>REAL-TIME ATTACK VISUALIZATION WITH EMAIL ALERTS.</p>
             <span class="project-tag">SIEM</span>
         </div>
         <div class="project-card">
             <h4>🚨 ACCOUNT LOCKOUT TRACKER</h4>
-            <p>MONITOR AND CORRELATE ACCOUNT LOCKOUT EVENTS FOR INCIDENT RESPONSE.</p>
+            <p>MONITOR ACCOUNT LOCKOUT EVENTS FOR INCIDENT RESPONSE.</p>
             <span class="project-tag">WINDOWS</span>
         </div>
     </div>
-    <div class="section-btn-group">
-        <a href="projects.html" class="btn btn-dark">
-            <i class="fas fa-folder-open"></i> MY PROJECTS
-        </a>
-    </div>
 </section>
 
-<!-- ===== CERTIFICATIONS - ONLY CISCO ===== -->
+<!-- ===== CERTIFICATIONS ===== -->
 <section id="certifications">
     <h2>MY <span class="accent">CERTIFICATIONS</span></h2>
     <p class="section-sub">PROFESSIONAL CERTIFICATIONS & ACHIEVEMENTS</p>
-    <div class="grid">
-        
-        <!-- ONLY CISCO CERTIFICATION - BIG SQUARE CARD -->
-        <div class="cert-card" onclick="openFullScreen()">
+    
+    <div class="cert-grid">
+        <!-- CISCO CERTIFICATION -->
+        <div class="cert-card cisco" onclick="openFullScreen('img.png', 'Cisco Certified Defense Analyst', 'Cisco Networking Academy - Career Path', '8 Courses • Final Exam • SOC Ready')">
             <div class="cert-image">
                 <img src="img.png" alt="Cisco Certification">
             </div>
-            <div class="cert-info">
-                <h4>🏆 CISCO DEFENSE ANALYST</h4>
-                <p>CISCO NETWORKING ACADEMY - CAREER PATH</p>
-                <div class="cert-desc">8+ Courses Completed • Final Exam Passed • SOC Ready</div>
-                <span class="cert-tag">✅ COMPLETED JUN 2026</span>
-                <div class="click-hint">👆 Click to view full certificate</div>
-            </div>
+            <div class="cert-badge">🏆 Cisco Networking Academy</div>
+            <div class="cert-title">CISCO <span>DEFENSE ANALYST</span></div>
+            <div class="cert-sub">Career Path • 8 Courses</div>
+            <div class="cert-desc">Security Operations • Splunk • Threat Detection</div>
+            <div class="cert-status">✅ Completed Jun 2026</div>
+            <div class="cert-hint">Click to view <span class="arrow">→</span></div>
         </div>
 
+        <!-- JSOC CERTIFICATION - UPDATED IMAGE NAME -->
+        <div class="cert-card jsoc" onclick="openFullScreen('img2.png', 'JSOC Certified', 'Vibe Security - Junior Security Operations Center', 'SOC Methodologies • Incident Response • Security Analysis')">
+            <div class="cert-image">
+                <img src="img2.png" alt="JSOC Certification">
+            </div>
+            <div class="cert-badge">🛡️ Vibe Security</div>
+            <div class="cert-title">JSOC <span>CERTIFIED</span></div>
+            <div class="cert-sub">Junior Security Operations Center</div>
+            <div class="cert-desc">SOC Methodologies • Incident Response</div>
+            <div class="cert-status">✅ Completed Jun 2026</div>
+            <div class="cert-hint">Click to view <span class="arrow">→</span></div>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="cert-stats">
+        <div class="stat-item">
+            <span class="stat-number" id="stat1">0</span>
+            <span class="stat-label">Certifications</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number" id="stat2">0</span>
+            <span class="stat-label">Courses</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number" id="stat3">0</span>
+            <span class="stat-label">Year</span>
+        </div>
     </div>
 </section>
 
@@ -1035,19 +1194,62 @@ footer {
 
 <!-- ===== FOOTER ===== -->
 <footer>
-    © 2026 LIKITH RAJ &bull; CISCO CERTIFIED DEFENSE ANALYST &bull; BUILT WITH ❤️
+    © 2026 LIKITH RAJ &bull; CISCO CERTIFIED &bull; JSOC CERTIFIED &bull; BUILT WITH ❤️
 </footer>
 
-<!-- ===== FULL SCREEN OVERLAY ===== -->
+<!-- ===== FULL SCREEN OVERLAY - NO DOWNLOAD ===== -->
 <div id="fullscreen-overlay" onclick="closeFullScreen()">
     <span class="close-btn">&times;</span>
-    <img id="fullscreen-img" src="img.png" alt="Cisco Certificate Full View">
+    <div class="fullscreen-content">
+        <img id="fullscreen-img" src="" alt="Certificate">
+        <div class="cert-info-popup">
+            <h3 id="popup-title">Certificate</h3>
+            <p id="popup-sub">Issued By</p>
+            <div class="popup-badge" id="popup-badge">✅ Completed Jun 2026</div>
+        </div>
+    </div>
 </div>
 
 <script>
-// ===== FULL SCREEN FUNCTIONS =====
-function openFullScreen() {
-    document.getElementById('fullscreen-overlay').classList.add('show');
+// =============================================
+// CURSOR
+// =============================================
+const cursorDot = document.getElementById('cursor-dot');
+const cursorGlow = document.getElementById('cursor-glow');
+
+document.addEventListener('mousemove', function(e) {
+    cursorDot.style.left = e.clientX - 4 + 'px';
+    cursorDot.style.top = e.clientY - 4 + 'px';
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top = e.clientY + 'px';
+});
+
+document.querySelectorAll('a, .btn, .cert-card, .project-card, .skill-card, .social a, nav a').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+
+if ('ontouchstart' in window) {
+    cursorDot.style.display = 'none';
+    cursorGlow.style.display = 'none';
+}
+
+// =============================================
+// FULL SCREEN FUNCTIONS - NO CONFETTI
+// =============================================
+function openFullScreen(imageSrc, title, sub, badge) {
+    const overlay = document.getElementById('fullscreen-overlay');
+    const img = document.getElementById('fullscreen-img');
+    const titleEl = document.getElementById('popup-title');
+    const subEl = document.getElementById('popup-sub');
+    const badgeEl = document.getElementById('popup-badge');
+    
+    img.src = imageSrc;
+    titleEl.textContent = title;
+    subEl.textContent = sub;
+    badgeEl.textContent = badge;
+    
+    overlay.classList.add('show');
     document.body.style.overflow = 'hidden';
 }
 
@@ -1056,14 +1258,28 @@ function closeFullScreen() {
     document.body.style.overflow = '';
 }
 
-// Close with ESC key
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeFullScreen();
-    }
+    if (e.key === 'Escape') closeFullScreen();
 });
 
-// ===== CANVAS PARTICLES =====
+// =============================================
+// COUNTER ANIMATION
+// =============================================
+function animateCounter(elementId, target, duration = 1200) {
+    const el = document.getElementById(elementId);
+    let start = 0;
+    const step = Math.max(1, Math.floor(target / 50));
+    const interval = duration / 50;
+    const timer = setInterval(() => {
+        start += step;
+        if (start >= target) { start = target; clearInterval(timer); }
+        el.textContent = start;
+    }, interval);
+}
+
+// =============================================
+// CANVAS PARTICLES
+// =============================================
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -1075,42 +1291,40 @@ resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 const particles = [];
-const colors = ['#7c3aed', '#ff6b35', '#ff1493', '#00b894', '#fdcb6e', '#0984e3', '#6c5ce7', '#fd79a8', '#55efc4'];
+const colors = ['#7c3aed', '#ff6b35', '#ff1493', '#00b894', '#fdcb6e', '#0984e3', '#6c5ce7'];
 
-for (let i = 0; i < 80; i++) {
+for (let i = 0; i < 60; i++) {
     particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         radius: Math.random() * 3 + 1.5,
-        dx: (Math.random() - 0.5) * 0.6,
-        dy: (Math.random() - 0.5) * 0.6,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5,
         color: colors[Math.floor(Math.random() * colors.length)],
-        opacity: Math.random() * 0.15 + 0.05
+        opacity: Math.random() * 0.12 + 0.04
     });
 }
 
 function drawParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     particles.forEach(p => {
         p.x += p.dx;
         p.y += p.dy;
-
         if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.globalAlpha = p.opacity;
         ctx.fill();
     });
-
     requestAnimationFrame(drawParticles);
 }
 drawParticles();
 
-// ===== LOADER =====
+// =============================================
+// LOADER
+// =============================================
 window.addEventListener('load', function() {
     const loader = document.getElementById('loader');
     
@@ -1121,31 +1335,29 @@ window.addEventListener('load', function() {
         document.querySelectorAll('section').forEach(function(el, i) {
             setTimeout(function() {
                 el.classList.add('visible', 'boom-reveal');
-            }, i * 120);
+            }, i * 100);
         });
         
         setTimeout(function() {
             startTyping();
+            setTimeout(() => {
+                animateCounter('stat1', 2);
+                animateCounter('stat2', 11);
+                animateCounter('stat3', 2026);
+            }, 400);
         }, 300);
     }, 1000);
 });
 
-// ===== TYPING ANIMATION =====
-const roles = [
-    'CISCO CERTIFIED DEFENSE ANALYST',
-    'SOC ANALYST',
-    'SPLUNK SPECIALIST',
-    'THREAT HUNTER'
-];
-
-let roleIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-let typedText = document.getElementById('typed-text');
+// =============================================
+// TYPING ANIMATION
+// =============================================
+const roles = ['CISCO CERTIFIED | JSOC CERTIFIED', 'SOC ANALYST', 'SPLUNK SPECIALIST', 'THREAT HUNTER'];
+let roleIndex = 0, charIndex = 0, isDeleting = false;
+const typedText = document.getElementById('typed-text');
 
 function startTyping() {
     const currentRole = roles[roleIndex];
-
     if (isDeleting) {
         typedText.textContent = currentRole.substring(0, charIndex - 1);
         charIndex--;
@@ -1153,40 +1365,26 @@ function startTyping() {
         typedText.textContent = currentRole.substring(0, charIndex + 1);
         charIndex++;
     }
-
     let speed = isDeleting ? 60 : 120;
-
-    if (!isDeleting && charIndex === currentRole.length) {
-        speed = 2000;
-        isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
-        speed = 500;
-    }
-
+    if (!isDeleting && charIndex === currentRole.length) { speed = 1800; isDeleting = true; }
+    else if (isDeleting && charIndex === 0) { isDeleting = false; roleIndex = (roleIndex + 1) % roles.length; speed = 400; }
     setTimeout(startTyping, speed);
 }
 
-// ===== CURSOR =====
-const cursor = document.getElementById('cursor');
-document.addEventListener('mousemove', function(e) {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
-
-// ===== NAV SCROLL =====
+// =============================================
+// NAV SCROLL
+// =============================================
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', function() {
     navbar.classList.toggle('scrolled', window.scrollY > 40);
 });
 
-// ===== SECTION OBSERVER =====
+// =============================================
+// SECTION OBSERVER
+// =============================================
 const observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
     });
 }, { threshold: 0.12 });
 
