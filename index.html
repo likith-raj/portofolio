@@ -490,6 +490,8 @@ h2 .accent {
     border-radius: 16px;
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card:hover {
@@ -512,6 +514,7 @@ h2 .accent {
     font-size: 13px;
     line-height: 1.7;
     font-weight: 500;
+    flex: 1;
 }
 
 .project-tag {
@@ -525,6 +528,30 @@ h2 .accent {
     margin-top: 10px;
     text-transform: uppercase;
     letter-spacing: 0.8px;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 8px 18px;
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    align-self: flex-start;
+}
+
+.project-link:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(124, 58, 237, 0.3);
+    background: linear-gradient(135deg, #6d28d9, #5b21b6);
 }
 
 /* ============================================
@@ -1091,22 +1118,25 @@ footer {
 <!-- ===== PROJECTS ===== -->
 <section id="projects">
     <h2>MY <span class="accent">PROJECTS</span></h2>
-    <p class="section-sub">REAL-WORLD SECURITY PROJECTS I'VE BUILT</p>
+    <p class="section-sub">REAL-WORLD SECURITY INVESTIGATIONS & CASE STUDIES</p>
     <div class="grid">
         <div class="project-card">
+            <h4>🛡️ SOC PRIVILEGE ESCALATION</h4>
+            <p>COMPREHENSIVE SOC INVESTIGATION OF PRIVILEGE ESCALATION ATTACK ON WINDOWS SERVER. SPLUNK LOG COLLECTION, MITRE ATT&CK MAPPING, AND INCIDENT RESPONSE.</p>
+            <span class="project-tag">SPLUNK • MITRE • SOC</span>
+            <a href="https://likith-raj.github.io/SOC-Privilege-Escalation-Investigation/" target="_blank" class="project-link">
+                🔗 VIEW PROJECT <i class="fas fa-external-link-alt"></i>
+            </a>
+        </div>
+        <div class="project-card">
             <h4>🔐 FAILED LOGIN DETECTION</h4>
-            <p>SPLUNK DASHBOARD TRACKING FAILED LOGINS (EVENT ID 4625).</p>
-            <span class="project-tag">SPLUNK</span>
+            <p>SPLUNK DASHBOARD TRACKING FAILED LOGINS (EVENT ID 4625) WITH REAL-TIME VISUALIZATION AND ALERTING.</p>
+            <span class="project-tag">SPLUNK • WINDOWS LOGS</span>
         </div>
         <div class="project-card">
             <h4>⚡ BRUTE FORCE DASHBOARD</h4>
-            <p>REAL-TIME ATTACK VISUALIZATION WITH EMAIL ALERTS.</p>
-            <span class="project-tag">SIEM</span>
-        </div>
-        <div class="project-card">
-            <h4>🚨 ACCOUNT LOCKOUT TRACKER</h4>
-            <p>MONITOR ACCOUNT LOCKOUT EVENTS FOR INCIDENT RESPONSE.</p>
-            <span class="project-tag">WINDOWS</span>
+            <p>REAL-TIME ATTACK VISUALIZATION WITH EMAIL ALERTS VIA GMAIL SMTP FOR IMMEDIATE SOC RESPONSE.</p>
+            <span class="project-tag">SIEM • EMAIL ALERTS</span>
         </div>
     </div>
 </section>
