@@ -192,6 +192,15 @@ nav.scrolled {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo i {
+    background: none;
+    -webkit-text-fill-color: #7c3aed;
+    font-size: 1.2em;
 }
 
 nav a {
@@ -204,6 +213,14 @@ nav a {
     transition: color 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+nav a i {
+    font-size: 13px;
+    color: #7c3aed;
 }
 
 nav a::after {
@@ -555,13 +572,13 @@ h2 .accent {
 }
 
 /* ============================================
-   🌟 CERTIFICATION CARDS - SIDE BY SIDE
+   🌟 CERTIFICATION CARDS - THREE COLUMNS
    ============================================ */
 .cert-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
@@ -590,6 +607,10 @@ h2 .accent {
 
 .cert-card.jsoc {
     border-top: 4px solid #06b6d4;
+}
+
+.cert-card.ccna {
+    border-top: 4px solid #f59e0b;
 }
 
 .cert-card .cert-image {
@@ -631,6 +652,11 @@ h2 .accent {
 .cert-card.jsoc .cert-badge {
     background: rgba(6, 182, 212, 0.08);
     color: #06b6d4;
+}
+
+.cert-card.ccna .cert-badge {
+    background: rgba(245, 158, 11, 0.1);
+    color: #d97706;
 }
 
 .cert-card .cert-title {
@@ -682,6 +708,11 @@ h2 .accent {
 
 .cert-card.jsoc .cert-status {
     background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: #fff;
+}
+
+.cert-card.ccna .cert-status {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
     color: #fff;
 }
 
@@ -740,7 +771,7 @@ h2 .accent {
 }
 
 /* ============================================
-   FULL SCREEN OVERLAY - NO DOWNLOAD
+   FULL SCREEN OVERLAY
    ============================================ */
 #fullscreen-overlay {
     display: none;
@@ -966,6 +997,13 @@ footer {
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .cert-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 700px;
+    }
+}
+
 @media (max-width: 768px) {
     nav { padding: 12px 5%; }
     nav a { margin-left: 14px; font-size: 10px; letter-spacing: 0.5px; }
@@ -1027,20 +1065,22 @@ footer {
 
 <!-- ===== NAV ===== -->
 <nav id="navbar">
-    <div class="logo">LIKITH RAJ</div>
+    <div class="logo">
+        <i class="fas fa-shield-haltered"></i> LIKITH RAJ
+    </div>
     <div>
-        <a href="#about">ABOUT</a>
-        <a href="#skills">SKILLS</a>
-        <a href="#projects">PROJECTS</a>
-        <a href="#certifications">CERTIFICATIONS</a>
-        <a href="#contact">CONTACT</a>
+        <a href="#about"><i class="fas fa-user"></i> ABOUT</a>
+        <a href="#skills"><i class="fas fa-cogs"></i> SKILLS</a>
+        <a href="#projects"><i class="fas fa-code"></i> PROJECTS</a>
+        <a href="#certifications"><i class="fas fa-certificate"></i> CERTIFICATIONS</a>
+        <a href="#contact"><i class="fas fa-envelope"></i> CONTACT</a>
     </div>
 </nav>
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="hero">
     <div class="hero-content">
-        <div class="badge">🏆 CISCO CERTIFIED | JSOC CERTIFIED</div>
+        <div class="badge">🏆 CISCO CERTIFIED | JSOC CERTIFIED | CCNA</div>
         <h1>
             HELLO, I'M<br>
             <span class="highlight">LIKITH RAJ</span>
@@ -1049,7 +1089,7 @@ footer {
             <span id="typed-text"></span><span class="cursor-blink"></span>
         </div>
         <p>
-            CISCO CERTIFIED DEFENSE ANALYST | JSOC CERTIFIED | FINAL-YEAR CSE STUDENT 
+            CISCO CERTIFIED DEFENSE ANALYST | JSOC CERTIFIED | CCNA | FINAL-YEAR CSE STUDENT 
             PASSIONATE ABOUT SIEM, THREAT DETECTION, AND SECURITY OPERATIONS.
             LOVE BUILDING SPLUNK DASHBOARDS AND HUNTING DOWN THREATS.
         </p>
@@ -1172,6 +1212,19 @@ footer {
             <div class="cert-status">✅ Completed Jun 2026</div>
             <div class="cert-hint">Click to view <span class="arrow">→</span></div>
         </div>
+
+        <!-- CCNA CERTIFICATION (UPDATED DATE) -->
+        <div class="cert-card ccna" onclick="openFullScreen('ccna.png', 'CCNA Certified', 'Cisco - Certified Network Associate', 'Routing & Switching • Network Fundamentals')">
+            <div class="cert-image">
+                <img src="ccna.png" alt="CCNA Certification">
+            </div>
+            <div class="cert-badge">🌐 Cisco</div>
+            <div class="cert-title">CCNA <span>CERTIFIED</span></div>
+            <div class="cert-sub">Routing & Switching</div>
+            <div class="cert-desc">Network Fundamentals • IP Connectivity</div>
+            <div class="cert-status">✅ Completed Aug 2024</div>
+            <div class="cert-hint">Click to view <span class="arrow">→</span></div>
+        </div>
     </div>
 
     <!-- STATS -->
@@ -1224,10 +1277,10 @@ footer {
 
 <!-- ===== FOOTER ===== -->
 <footer>
-    © 2026 LIKITH RAJ &bull; CISCO CERTIFIED &bull; JSOC CERTIFIED &bull; BUILT WITH ❤️
+    © 2026 LIKITH RAJ &bull; CISCO CERTIFIED &bull; JSOC CERTIFIED &bull; CCNA &bull; BUILT WITH ❤️
 </footer>
 
-<!-- ===== FULL SCREEN OVERLAY - NO DOWNLOAD ===== -->
+<!-- ===== FULL SCREEN OVERLAY ===== -->
 <div id="fullscreen-overlay" onclick="closeFullScreen()">
     <span class="close-btn">&times;</span>
     <div class="fullscreen-content">
@@ -1235,7 +1288,7 @@ footer {
         <div class="cert-info-popup">
             <h3 id="popup-title">Certificate</h3>
             <p id="popup-sub">Issued By</p>
-            <div class="popup-badge" id="popup-badge">✅ Completed Jun 2026</div>
+            <div class="popup-badge" id="popup-badge">✅ Completed</div>
         </div>
     </div>
 </div>
@@ -1265,7 +1318,7 @@ if ('ontouchstart' in window) {
 }
 
 // =============================================
-// FULL SCREEN FUNCTIONS - NO CONFETTI
+// FULL SCREEN FUNCTIONS
 // =============================================
 function openFullScreen(imageSrc, title, sub, badge) {
     const overlay = document.getElementById('fullscreen-overlay');
@@ -1371,7 +1424,7 @@ window.addEventListener('load', function() {
         setTimeout(function() {
             startTyping();
             setTimeout(() => {
-                animateCounter('stat1', 2);
+                animateCounter('stat1', 3);   // 3 certifications
                 animateCounter('stat2', 11);
                 animateCounter('stat3', 2026);
             }, 400);
@@ -1382,7 +1435,7 @@ window.addEventListener('load', function() {
 // =============================================
 // TYPING ANIMATION
 // =============================================
-const roles = ['CISCO CERTIFIED | JSOC CERTIFIED', 'SOC ANALYST', 'SPLUNK SPECIALIST', 'THREAT HUNTER'];
+const roles = ['CISCO CERTIFIED | JSOC CERTIFIED | CCNA', 'SOC ANALYST', 'SPLUNK SPECIALIST', 'THREAT HUNTER'];
 let roleIndex = 0, charIndex = 0, isDeleting = false;
 const typedText = document.getElementById('typed-text');
 
