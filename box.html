@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Work Station | SOC Learning</title>
+    <title>MY WORK STATION | SOC LEARNING</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -13,7 +13,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
             background: #0a0a0f;
             color: #e0e0e0;
             min-height: 100vh;
@@ -40,11 +40,39 @@
             background: #0a0a0f;
         }
 
+        /* ===== FLOATING BUBBLES ===== */
+        .bubbles-container {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            animation: floatBubble 30s ease-in-out infinite alternate;
+        }
+
+        .bubble:nth-child(1) { width: 250px; height: 250px; background: radial-gradient(circle at 30% 30%, #7c3aed, #5b21b6); top: -10%; left: -10%; animation-duration: 35s; }
+        .bubble:nth-child(2) { width: 300px; height: 300px; background: radial-gradient(circle at 30% 30%, #06b6d4, #0891b2); bottom: -15%; right: -15%; animation-duration: 40s; animation-delay: -5s; }
+        .bubble:nth-child(3) { width: 180px; height: 180px; background: radial-gradient(circle at 30% 30%, #f59e0b, #d97706); top: 50%; left: 50%; transform: translate(-50%, -50%); animation-duration: 30s; animation-delay: -10s; }
+        .bubble:nth-child(4) { width: 150px; height: 150px; background: radial-gradient(circle at 30% 30%, #ec4899, #db2777); top: 20%; right: 10%; animation-duration: 28s; animation-delay: -7s; }
+        .bubble:nth-child(5) { width: 200px; height: 200px; background: radial-gradient(circle at 30% 30%, #22c55e, #16a34a); bottom: 20%; left: 10%; animation-duration: 32s; animation-delay: -12s; }
+
+        @keyframes floatBubble {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(80px, -60px) scale(1.15); }
+            100% { transform: translate(-60px, 80px) scale(0.85); }
+        }
+
         /* ===== MAIN CONTAINER ===== */
         .container {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 850px;
             width: 100%;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -53,67 +81,199 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
             transition: all 0.4s ease;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .container:hover {
             border-color: rgba(124, 58, 237, 0.2);
-            box-shadow: 0 20px 80px rgba(124, 58, 237, 0.05);
+            box-shadow: 0 20px 80px rgba(124, 58, 237, 0.06);
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* ===== HEADER ===== */
         .header {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 18px;
             margin-bottom: 30px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.04);
+            animation: slideInLeft 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .header-icon {
-            font-size: 28px;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 16px;
+            font-size: 26px;
             color: #7c3aed;
+            border: 1px solid rgba(124, 58, 237, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .header-icon:hover {
+            background: rgba(124, 58, 237, 0.2);
+            transform: scale(1.05) rotate(-5deg);
         }
 
         .header h1 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 900;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
             background: linear-gradient(135deg, #7c3aed, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-family: 'Segoe UI', sans-serif;
         }
 
-        /* ===== ITEM ===== */
+        .header .sub {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-left: auto;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .header .sub i {
+            color: #7c3aed;
+            margin-right: 6px;
+        }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .stats-bar .stat {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 0;
+            transition: all 0.3s ease;
+        }
+
+        .stats-bar .stat:hover {
+            transform: translateY(-2px);
+        }
+
+        .stats-bar .stat i {
+            color: #7c3aed;
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stats-bar .stat:hover i {
+            transform: scale(1.2);
+        }
+
+        .stats-bar .stat .number {
+            font-size: 20px;
+            font-weight: 900;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .stats-bar .stat .label {
+            font-size: 10px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 600;
+        }
+
+        /* ===== ITEMS ===== */
+        .items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
         .item {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 18px;
-            padding: 20px 24px;
+            padding: 18px 22px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 16px;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: default;
+            animation: slideInRight 0.8s ease-out both;
+        }
+
+        .item:nth-child(1) { animation-delay: 0.6s; }
+        .item:nth-child(2) { animation-delay: 0.8s; }
+        .item:nth-child(3) { animation-delay: 1.0s; }
+        .item:nth-child(4) { animation-delay: 1.2s; }
+        .item:nth-child(5) { animation-delay: 1.4s; }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .item:hover {
             background: rgba(124, 58, 237, 0.04);
             border-color: rgba(124, 58, 237, 0.15);
-            transform: translateX(4px);
+            transform: translateX(6px) scale(1.01);
         }
 
         .item .number {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 900;
             color: #7c3aed;
-            min-width: 40px;
-            font-family: 'Courier New', monospace;
+            min-width: 36px;
+            font-family: 'Segoe UI', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .item:hover .number {
+            transform: scale(1.1);
         }
 
         .item .content {
@@ -121,11 +281,12 @@
         }
 
         .item .content .title {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 700;
             color: #e0e0e0;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
+            font-family: 'Segoe UI', sans-serif;
+            text-transform: uppercase;
         }
 
         .item .content .title span {
@@ -136,9 +297,12 @@
         }
 
         .item .content .desc {
-            font-size: 14px;
+            font-size: 12px;
             color: #888;
-            margin-top: 4px;
+            margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         .item .content .desc i {
@@ -146,40 +310,128 @@
             margin-right: 6px;
         }
 
-        .item .status {
+        .item .badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 4px 16px;
+            padding: 5px 18px;
             border-radius: 50px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             background: rgba(34, 197, 94, 0.1);
             color: #22c55e;
             border: 1px solid rgba(34, 197, 94, 0.1);
             white-space: nowrap;
+            font-family: 'Segoe UI', sans-serif;
+            transition: all 0.3s ease;
         }
 
-        .item .status i {
-            font-size: 11px;
+        .item:hover .badge {
+            background: rgba(34, 197, 94, 0.15);
+            transform: scale(1.05);
+        }
+
+        .item .badge i {
+            font-size: 10px;
+        }
+
+        /* ===== EMPTY SLOT ===== */
+        .empty-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 14px 22px;
+            border: 1px dashed rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            opacity: 0.3;
+            transition: all 0.4s ease;
+        }
+
+        .empty-item:hover {
+            opacity: 0.6;
+            border-color: rgba(124, 58, 237, 0.1);
+            transform: translateX(4px);
+        }
+
+        .empty-item .number {
+            font-size: 16px;
+            font-weight: 900;
+            color: #333;
+            min-width: 36px;
+            font-family: 'Segoe UI', monospace;
+        }
+
+        .empty-item .content .title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #444;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .empty-item .content .title i {
+            color: #333;
+            margin-right: 8px;
         }
 
         /* ===== FOOTER ===== */
         .footer-text {
-            margin-top: 25px;
-            padding-top: 18px;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
-            font-size: 12px;
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 255, 255, 0.04);
+            font-size: 11px;
             color: #444;
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-family: 'Segoe UI', sans-serif;
+            animation: fadeInUp 0.8s ease-out 1.6s both;
         }
 
         .footer-text i {
             color: #7c3aed;
-            margin: 0 4px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-text i:hover {
+            transform: rotate(360deg);
+        }
+
+        .footer-text .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 22px;
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.1);
+            border-radius: 50px;
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .footer-text .back-btn:hover {
+            background: rgba(124, 58, 237, 0.2);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.15);
+        }
+
+        .footer-text .status-text {
+            color: #666;
+            font-weight: 600;
         }
 
         /* ===== COPY PROTECTION ===== */
@@ -188,9 +440,9 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 10px;
-            color: #222;
-            letter-spacing: 2px;
+            font-size: 9px;
+            color: #1a1a1a;
+            letter-spacing: 3px;
             text-transform: uppercase;
             user-select: none;
             -webkit-user-select: none;
@@ -198,6 +450,7 @@
             -ms-user-select: none;
             pointer-events: none;
             z-index: 999;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         .copy-protection i {
@@ -214,52 +467,123 @@
                 padding: 30px 24px;
             }
             .header h1 {
-                font-size: 18px;
+                font-size: 16px;
+            }
+            .header .sub {
+                display: none;
+            }
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .stats-bar .stat .number {
+                font-size: 16px;
+            }
+            .stats-bar .stat .label {
+                font-size: 8px;
             }
             .item {
-                padding: 16px 18px;
+                padding: 14px 16px;
                 flex-wrap: wrap;
             }
             .item .number {
-                font-size: 18px;
-                min-width: 30px;
+                font-size: 15px;
+                min-width: 28px;
             }
             .item .content .title {
-                font-size: 16px;
+                font-size: 13px;
             }
-            .item .status {
-                font-size: 10px;
+            .item .badge {
+                font-size: 8px;
                 padding: 3px 12px;
                 margin-left: auto;
+            }
+            .empty-item {
+                padding: 12px 16px;
+            }
+            .empty-item .number {
+                font-size: 14px;
+                min-width: 28px;
+            }
+            .empty-item .content .title {
+                font-size: 12px;
+            }
+            .footer-text {
+                font-size: 9px;
+                gap: 10px;
+            }
+            .footer-text .back-btn {
+                font-size: 9px;
+                padding: 6px 16px;
             }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 20px 16px;
+                padding: 20px 14px;
             }
             .header h1 {
-                font-size: 15px;
+                font-size: 14px;
             }
             .header-icon {
-                font-size: 22px;
+                width: 42px;
+                height: 42px;
+                font-size: 18px;
             }
-            .item {
-                padding: 14px 14px;
-                flex-direction: column;
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 12px 14px;
+            }
+            .stats-bar .stat {
                 gap: 6px;
             }
+            .stats-bar .stat i {
+                font-size: 13px;
+                width: 16px;
+            }
+            .stats-bar .stat .number {
+                font-size: 14px;
+            }
+            .stats-bar .stat .label {
+                font-size: 7px;
+                letter-spacing: 0.5px;
+            }
+            .item {
+                padding: 12px 14px;
+                flex-direction: column;
+                gap: 4px;
+            }
             .item .number {
-                font-size: 16px;
+                font-size: 13px;
                 min-width: auto;
             }
             .item .content .title {
-                font-size: 14px;
+                font-size: 12px;
             }
-            .item .status {
-                font-size: 9px;
+            .item .badge {
+                font-size: 7px;
                 padding: 2px 10px;
                 align-self: flex-start;
+            }
+            .empty-item {
+                padding: 10px 14px;
+                flex-direction: column;
+                gap: 4px;
+            }
+            .empty-item .number {
+                font-size: 12px;
+                min-width: auto;
+            }
+            .empty-item .content .title {
+                font-size: 11px;
+            }
+            .footer-text {
+                font-size: 8px;
+                gap: 8px;
+            }
+            .footer-text .back-btn {
+                font-size: 8px;
+                padding: 4px 14px;
             }
         }
     </style>
@@ -269,6 +593,15 @@
     <!-- ===== CANVAS PARTICLES ===== -->
     <canvas id="particleCanvas"></canvas>
 
+    <!-- ===== FLOATING BUBBLES ===== -->
+    <div class="bubbles-container">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
     <!-- ===== MAIN CONTAINER ===== -->
     <div class="container">
 
@@ -277,35 +610,113 @@
             <div class="header-icon">
                 <i class="fas fa-laptop-code"></i>
             </div>
-            <h1>My Work Station</h1>
+            <h1>MY WORK STATION</h1>
+            <span class="sub">
+                <i class="fas fa-shield-haltered"></i> SOC ANALYST
+            </span>
         </div>
 
-        <!-- SINGLE ITEM -->
-        <div class="item">
-            <span class="number">1.</span>
-            <div class="content">
-                <div class="title">
-                    <span>JavaScript-Based Credential Stealer</span> Analysis
+        <!-- STATS BAR -->
+        <div class="stats-bar">
+            <div class="stat">
+                <i class="fas fa-check-circle"></i>
+                <span class="number">01</span>
+                <span class="label">COMPLETED</span>
+            </div>
+            <div class="stat">
+                <i class="fas fa-clock"></i>
+                <span class="number">04</span>
+                <span class="label">IN PROGRESS</span>
+            </div>
+            <div class="stat">
+                <i class="fas fa-bullseye"></i>
+                <span class="number">06</span>
+                <span class="label">MITRE TECHNIQUES</span>
+            </div>
+            <div class="stat">
+                <i class="fas fa-file-alt"></i>
+                <span class="number">01</span>
+                <span class="label">CASE STUDIES</span>
+            </div>
+        </div>
+
+        <!-- ITEMS -->
+        <div class="items">
+
+            <!-- ===== ITEM 1 ===== -->
+            <div class="item">
+                <span class="number">01.</span>
+                <div class="content">
+                    <div class="title">
+                        <span>JAVASCRIPT-BASED CREDENTIAL STEALER</span> ANALYSIS
+                    </div>
+                    <div class="desc">
+                        <i class="fas fa-bolt"></i> AGENT TESLA MALWARE INVESTIGATION
+                    </div>
                 </div>
-                <div class="desc">
-                    <i class="fas fa-bolt"></i> Agent Tesla Malware Investigation
+                <span class="badge">
+                    <i class="fas fa-check-circle"></i> DONE
+                </span>
+            </div>
+
+            <!-- ===== EMPTY SLOT 2 ===== -->
+            <div class="empty-item">
+                <span class="number">02.</span>
+                <div class="content">
+                    <div class="title">
+                        <i class="fas fa-plus-circle"></i> PHISHING URL INVESTIGATION
+                    </div>
                 </div>
             </div>
-            <span class="status">
-                <i class="fas fa-check-circle"></i> Done
-            </span>
+
+            <!-- ===== EMPTY SLOT 3 ===== -->
+            <div class="empty-item">
+                <span class="number">03.</span>
+                <div class="content">
+                    <div class="title">
+                        <i class="fas fa-plus-circle"></i> POWERSHELL MALWARE ANALYSIS
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== EMPTY SLOT 4 ===== -->
+            <div class="empty-item">
+                <span class="number">04.</span>
+                <div class="content">
+                    <div class="title">
+                        <i class="fas fa-plus-circle"></i> RANSOMWARE INVESTIGATION
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== EMPTY SLOT 5 ===== -->
+            <div class="empty-item">
+                <span class="number">05.</span>
+                <div class="content">
+                    <div class="title">
+                        <i class="fas fa-plus-circle"></i> C2 TRAFFIC INVESTIGATION
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- FOOTER -->
         <div class="footer-text">
-            <i class="fas fa-shield-alt"></i> SOC Investigation &bull; <i class="fas fa-arrow-right"></i> More Coming Soon
+            <i class="fas fa-shield-alt"></i>
+            <span class="status-text">SOC INVESTIGATIONS</span>
+            <i class="fas fa-arrow-right"></i>
+            <span class="status-text">MORE COMING SOON</span>
+            <a href="https://likith-raj.github.io/portofolio/" class="back-btn">
+                <i class="fas fa-arrow-left"></i> BACK
+            </a>
         </div>
 
     </div>
 
     <!-- ===== COPY PROTECTION ===== -->
     <div class="copy-protection">
-        <i class="fas fa-copyright"></i> Copy Protected &bull; SOC Work Station
+        <i class="fas fa-copyright"></i> COPY PROTECTED &bull; SOC WORK STATION
     </div>
 
     <script>
@@ -323,17 +734,17 @@
         window.addEventListener('resize', resizeCanvas);
 
         var particles = [];
-        var colors = ['#7c3aed', '#ff6b35', '#ff1493', '#00b894', '#fdcb6e', '#0984e3', '#6c5ce7'];
+        var colors = ['#7c3aed', '#06b6d4', '#f59e0b', '#22c55e', '#ec4899', '#8b5cf6', '#f43f5e'];
 
-        for (var i = 0; i < 50; i++) {
+        for (var i = 0; i < 60; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                radius: Math.random() * 2.5 + 1.5,
-                dx: (Math.random() - 0.5) * 0.5,
-                dy: (Math.random() - 0.5) * 0.5,
+                radius: Math.random() * 3 + 1.5,
+                dx: (Math.random() - 0.5) * 0.6,
+                dy: (Math.random() - 0.5) * 0.6,
                 color: colors[Math.floor(Math.random() * colors.length)],
-                opacity: Math.random() * 0.12 + 0.04
+                opacity: Math.random() * 0.12 + 0.03
             });
         }
 
@@ -359,7 +770,7 @@
         // =============================================
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
-            alert('🔒 Copying is disabled. This is a SOC work station.');
+            alert('🔒 COPYING IS DISABLED. THIS IS A SOC WORK STATION.');
         });
 
         // =============================================
@@ -371,7 +782,7 @@
                 e.key === 'F12'
             ) {
                 e.preventDefault();
-                alert('🔒 Copying is disabled. This is a SOC work station.');
+                alert('🔒 COPYING IS DISABLED. THIS IS A SOC WORK STATION.');
                 return false;
             }
         });
