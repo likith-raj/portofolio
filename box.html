@@ -236,8 +236,9 @@
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 16px;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: default;
+            cursor: pointer;
             animation: slideInRight 0.8s ease-out both;
+            text-decoration: none;
         }
 
         .item:nth-child(1) { animation-delay: 0.6s; }
@@ -347,6 +348,7 @@
             border-radius: 16px;
             opacity: 0.3;
             transition: all 0.4s ease;
+            cursor: default;
         }
 
         .empty-item:hover {
@@ -643,8 +645,8 @@
         <!-- ITEMS -->
         <div class="items">
 
-            <!-- ===== ITEM 1 ===== -->
-            <div class="item">
+            <!-- ===== ITEM 1 - CLICKABLE ===== -->
+            <a href="https://likith-raj.github.io/SOC-Malware-Investigation-Case-Study-01/" target="_blank" class="item">
                 <span class="number">01.</span>
                 <div class="content">
                     <div class="title">
@@ -657,7 +659,7 @@
                 <span class="badge">
                     <i class="fas fa-check-circle"></i> DONE
                 </span>
-            </div>
+            </a>
 
             <!-- ===== EMPTY SLOT 2 ===== -->
             <div class="empty-item">
@@ -707,7 +709,7 @@
             <span class="status-text">SOC INVESTIGATIONS</span>
             <i class="fas fa-arrow-right"></i>
             <span class="status-text">MORE COMING SOON</span>
-            <a href="https://likith-raj.github.io/portofolio/" class="back-btn">
+            <a href="index.html" class="back-btn">
                 <i class="fas fa-arrow-left"></i> BACK
             </a>
         </div>
