@@ -90,14 +90,8 @@
         }
 
         @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         /* ===== HEADER ===== */
@@ -112,14 +106,8 @@
         }
 
         @keyframes slideInLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            0% { opacity: 0; transform: translateX(-30px); }
+            100% { opacity: 1; transform: translateX(0); }
         }
 
         .header-icon {
@@ -248,14 +236,8 @@
         .item:nth-child(5) { animation-delay: 1.4s; }
 
         @keyframes slideInRight {
-            0% {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            0% { opacity: 0; transform: translateX(30px); }
+            100% { opacity: 1; transform: translateX(0); }
         }
 
         .item:hover {
@@ -447,9 +429,6 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
             pointer-events: none;
             z-index: 999;
             font-family: 'Segoe UI', sans-serif;
@@ -462,131 +441,42 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            body {
-                padding: 20px;
-            }
-            .container {
-                padding: 30px 24px;
-            }
-            .header h1 {
-                font-size: 16px;
-            }
-            .header .sub {
-                display: none;
-            }
-            .stats-bar {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-            }
-            .stats-bar .stat .number {
-                font-size: 16px;
-            }
-            .stats-bar .stat .label {
-                font-size: 8px;
-            }
-            .item {
-                padding: 14px 16px;
-                flex-wrap: wrap;
-            }
-            .item .number {
-                font-size: 15px;
-                min-width: 28px;
-            }
-            .item .content .title {
-                font-size: 13px;
-            }
-            .item .badge {
-                font-size: 8px;
-                padding: 3px 12px;
-                margin-left: auto;
-            }
-            .empty-item {
-                padding: 12px 16px;
-            }
-            .empty-item .number {
-                font-size: 14px;
-                min-width: 28px;
-            }
-            .empty-item .content .title {
-                font-size: 12px;
-            }
-            .footer-text {
-                font-size: 9px;
-                gap: 10px;
-            }
-            .footer-text .back-btn {
-                font-size: 9px;
-                padding: 6px 16px;
-            }
+            body { padding: 20px; }
+            .container { padding: 30px 24px; }
+            .header h1 { font-size: 16px; }
+            .header .sub { display: none; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .stats-bar .stat .number { font-size: 16px; }
+            .stats-bar .stat .label { font-size: 8px; }
+            .item { padding: 14px 16px; flex-wrap: wrap; }
+            .item .number { font-size: 15px; min-width: 28px; }
+            .item .content .title { font-size: 13px; }
+            .item .badge { font-size: 8px; padding: 3px 12px; margin-left: auto; }
+            .empty-item { padding: 12px 16px; }
+            .empty-item .number { font-size: 14px; min-width: 28px; }
+            .empty-item .content .title { font-size: 12px; }
+            .footer-text { font-size: 9px; gap: 10px; }
+            .footer-text .back-btn { font-size: 9px; padding: 6px 16px; }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 20px 14px;
-            }
-            .header h1 {
-                font-size: 14px;
-            }
-            .header-icon {
-                width: 42px;
-                height: 42px;
-                font-size: 18px;
-            }
-            .stats-bar {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 12px 14px;
-            }
-            .stats-bar .stat {
-                gap: 6px;
-            }
-            .stats-bar .stat i {
-                font-size: 13px;
-                width: 16px;
-            }
-            .stats-bar .stat .number {
-                font-size: 14px;
-            }
-            .stats-bar .stat .label {
-                font-size: 7px;
-                letter-spacing: 0.5px;
-            }
-            .item {
-                padding: 12px 14px;
-                flex-direction: column;
-                gap: 4px;
-            }
-            .item .number {
-                font-size: 13px;
-                min-width: auto;
-            }
-            .item .content .title {
-                font-size: 12px;
-            }
-            .item .badge {
-                font-size: 7px;
-                padding: 2px 10px;
-                align-self: flex-start;
-            }
-            .empty-item {
-                padding: 10px 14px;
-                flex-direction: column;
-                gap: 4px;
-            }
-            .empty-item .number {
-                font-size: 12px;
-                min-width: auto;
-            }
-            .empty-item .content .title {
-                font-size: 11px;
-            }
-            .footer-text {
-                font-size: 8px;
-                gap: 8px;
-            }
-            .footer-text .back-btn {
-                font-size: 8px;
-                padding: 4px 14px;
-            }
+            .container { padding: 20px 14px; }
+            .header h1 { font-size: 14px; }
+            .header-icon { width: 42px; height: 42px; font-size: 18px; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 12px 14px; }
+            .stats-bar .stat { gap: 6px; }
+            .stats-bar .stat i { font-size: 13px; width: 16px; }
+            .stats-bar .stat .number { font-size: 14px; }
+            .stats-bar .stat .label { font-size: 7px; letter-spacing: 0.5px; }
+            .item { padding: 12px 14px; flex-direction: column; gap: 4px; }
+            .item .number { font-size: 13px; min-width: auto; }
+            .item .content .title { font-size: 12px; }
+            .item .badge { font-size: 7px; padding: 2px 10px; align-self: flex-start; }
+            .empty-item { padding: 10px 14px; flex-direction: column; gap: 4px; }
+            .empty-item .number { font-size: 12px; min-width: auto; }
+            .empty-item .content .title { font-size: 11px; }
+            .footer-text { font-size: 8px; gap: 8px; }
+            .footer-text .back-btn { font-size: 8px; padding: 4px 14px; }
         }
     </style>
 </head>
@@ -645,8 +535,8 @@
         <!-- ITEMS -->
         <div class="items">
 
-            <!-- ===== ITEM 1 - CLICKABLE ===== -->
-            <a href="https://likith-raj.github.io/SOC-Malware-Investigation-Case-Study-01/" target="_blank" class="item">
+            <!-- ===== ITEM 1 - CLICKABLE (SAME TAB) ===== -->
+            <a href="soc malware investigation/malwae.html" class="item">
                 <span class="number">01.</span>
                 <div class="content">
                     <div class="title">
@@ -792,13 +682,8 @@
         // =============================================
         // DISABLE SELECTION
         // =============================================
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-        });
-
-        document.addEventListener('dragstart', function(e) {
-            e.preventDefault();
-        });
+        document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+        document.addEventListener('dragstart', function(e) { e.preventDefault(); });
     </script>
 
 </body>
