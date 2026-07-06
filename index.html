@@ -572,6 +572,20 @@
             border-color: #7c3aed;
         }
 
+        .btn-workstation {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            color: #fff;
+            padding: 14px 40px;
+            font-size: 14px;
+            border-radius: 50px;
+        }
+
+        .btn-workstation:hover {
+            background: linear-gradient(135deg, #0891b2, #0e7490);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.35);
+        }
+
         /* ===== SOCIAL ===== */
         .social {
             margin-top: 28px;
@@ -750,6 +764,15 @@
             transform: translateY(-3px) scale(1.03);
             box-shadow: 0 12px 30px rgba(124, 58, 237, 0.3);
             background: linear-gradient(135deg, #6d28d9, #5b21b6);
+        }
+
+        /* ===== PROJECTS BOTTOM CTA ===== */
+        .projects-cta {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         /* ============================================
@@ -1255,6 +1278,10 @@
             #fullscreen-overlay .cert-info-popup h3 {
                 font-size: 17px;
             }
+            .projects-cta .btn {
+                padding: 12px 28px;
+                font-size: 12px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1286,6 +1313,12 @@
             }
             .cert-card .cert-title {
                 font-size: 16px;
+            }
+            .projects-cta .btn {
+                padding: 10px 22px;
+                font-size: 11px;
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -1436,6 +1469,13 @@
                 <p>REAL-TIME ATTACK VISUALIZATION WITH EMAIL ALERTS VIA GMAIL SMTP FOR IMMEDIATE SOC RESPONSE.</p>
                 <span class="project-tag">SIEM • EMAIL ALERTS</span>
             </div>
+        </div>
+
+        <!-- ===== MY WORK STATION BUTTON ===== -->
+        <div class="projects-cta">
+            <a href="https://likith-raj.github.io/SOC-Malware-Investigation-Case-Study-01/#overview" target="_blank" class="btn btn-workstation">
+                <i class="fas fa-laptop-code"></i> MY WORK STATION
+            </a>
         </div>
     </section>
 
