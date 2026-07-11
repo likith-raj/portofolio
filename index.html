@@ -1097,17 +1097,17 @@
 
         /* ===== CONTACT ===== */
         .contact-section {
-            padding: 100px 6%;
+            padding: 80px 6%;
             min-height: 60vh;
         }
 
         .contact-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .contact-header h2 {
-            font-size: 42px;
+            font-size: 36px;
             font-weight: 900;
             letter-spacing: -0.5px;
             text-transform: uppercase;
@@ -1115,84 +1115,223 @@
 
         .contact-header p {
             color: #555;
-            font-size: 16px;
-            margin-top: 8px;
+            font-size: 14px;
+            margin-top: 6px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-weight: 600;
         }
 
-        .contact-box {
-            max-width: 680px;
+        .contact-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 900px;
             margin: 0 auto;
+        }
+
+        .contact-box {
+            flex: 1;
+            min-width: 320px;
+            max-width: 450px;
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 40px 50px;
+            border-radius: 16px;
+            padding: 28px 30px;
             border: 1px solid rgba(0, 0, 0, 0.04);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.02);
-            transition: all 0.5s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .contact-box:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 30px 80px rgba(124, 58, 237, 0.06);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.06);
         }
 
-        .contact-row {
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-box .form-group {
+            margin-bottom: 14px;
+        }
+
+        .contact-box label {
+            display: block;
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #444;
+            margin-bottom: 4px;
+        }
+
+        .contact-box label i {
+            color: #7c3aed;
+            margin-right: 4px;
+        }
+
+        .contact-box input,
+        .contact-box textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 13px;
+            font-family: 'Segoe UI', sans-serif;
+            transition: all 0.3s ease;
+            background: #fff;
+            color: #111;
+        }
+
+        .contact-box input:focus,
+        .contact-box textarea:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+        }
+
+        .contact-box textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .contact-box .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 28px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            color: #fff;
+            font-weight: 700;
+            font-size: 12px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            width: 100%;
+            justify-content: center;
+        }
+
+        .contact-box .btn-submit:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 12px 30px rgba(124, 58, 237, 0.2);
+        }
+
+        .contact-box .btn-submit i {
+            color: #fff;
+        }
+
+        .contact-box .form-status {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .contact-info {
+            flex: 0 0 260px;
+            min-width: 240px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 28px 24px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .contact-info:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.06);
+        }
+
+        .contact-info h3 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #111;
+            margin-bottom: 16px;
+            border-bottom: 2px solid rgba(124, 58, 237, 0.08);
+            padding-bottom: 10px;
+        }
+
+        .contact-info h3 i {
+            color: #7c3aed;
+            margin-right: 8px;
+        }
+
+        .contact-info .info-item {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
 
-        .contact-row:last-child {
+        .contact-info .info-item:last-child {
             border-bottom: none;
         }
 
-        .contact-label {
-            font-weight: 700;
-            color: #111;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
+        .contact-info .info-item i {
+            color: #7c3aed;
+            font-size: 16px;
+            width: 22px;
+            text-align: center;
         }
 
-        .contact-value {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .contact-value a {
+        .contact-info .info-item a {
             text-decoration: none;
             color: #555;
             font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-size: 12px;
+            transition: color 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
 
-        .contact-value a:hover {
+        .contact-info .info-item a:hover {
             color: #7c3aed;
-            transform: translateX(4px);
         }
 
-        .contact-value a i {
-            color: #7c3aed;
-            font-size: 16px;
+        .contact-info .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
         }
 
-        .contact-divider {
-            color: #ddd;
-            font-weight: 300;
+        .contact-info .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(124, 58, 237, 0.06);
+            color: #7c3aed;
             font-size: 16px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .contact-info .social-links a:hover {
+            background: #7c3aed;
+            color: #fff;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.15);
         }
 
         /* ===== FOOTER ===== */
@@ -1212,6 +1351,19 @@
             .cert-grid {
                 grid-template-columns: repeat(2, 1fr);
                 max-width: 700px;
+            }
+            .contact-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            .contact-box {
+                max-width: 500px;
+                width: 100%;
+            }
+            .contact-info {
+                flex: 1;
+                max-width: 500px;
+                width: 100%;
             }
         }
 
@@ -1234,13 +1386,12 @@
                 font-size: 28px;
             }
             .contact-box {
-                padding: 28px 20px;
+                padding: 20px 18px;
+                min-width: auto;
             }
-            .contact-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 6px;
-                padding: 14px 0;
+            .contact-info {
+                padding: 20px 18px;
+                min-width: auto;
             }
             .btn-group {
                 flex-direction: column;
@@ -1296,7 +1447,10 @@
                 font-size: 9px;
             }
             .contact-box {
-                padding: 20px 14px;
+                padding: 16px 14px;
+            }
+            .contact-info {
+                padding: 16px 14px;
             }
             .grid {
                 grid-template-columns: 1fr;
@@ -1376,7 +1530,7 @@
                 <span id="typed-text"></span><span class="cursor-blink"></span>
             </div>
             <p>
-                CSE GRADUATE PASSIONATE ABOUT CYBERSECURITY, SIEM AND SECURITY OPERATIONS.
+                CSE GRADUATE PASSIONATE ABOUT CYBERSECURITY, SIEM, THREAT DETECTION, AND SECURITY OPERATIONS.
                 LOVE BUILDING SPLUNK DASHBOARDS AND CREATING SECURITY DETECTIONS.
             </p>
             <div class="btn-group">
@@ -1548,27 +1702,58 @@
             <p>CONTACT ME</p>
         </div>
 
-        <div class="contact-box">
-            <div class="contact-row">
-                <span class="contact-label">📧 EMAIL</span>
-                <div class="contact-value">
-                    <a href="mailto:snkth123@gmail.com?subject=Inquiry%20from%20Portfolio">
-                        <i class="fas fa-envelope"></i> SNKTH123@GMAIL.COM
-                    </a>
+        <div class="contact-wrapper">
+
+            <!-- ===== CONTACT FORM ===== -->
+            <div class="contact-box">
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="name"><i class="fas fa-user"></i> YOUR NAME</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> YOUR EMAIL</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message"><i class="fas fa-comment"></i> YOUR MESSAGE</label>
+                        <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="submit-btn">
+                        <i class="fas fa-paper-plane"></i> SEND MESSAGE
+                    </button>
+
+                    <div class="form-status" id="form-status"></div>
+                </form>
+            </div>
+
+            <!-- ===== SIDE INFO ===== -->
+            <div class="contact-info">
+                <h3><i class="fas fa-info-circle"></i> CONTACT INFO</h3>
+
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:snkth123@gmail.com?subject=Inquiry%20from%20Portfolio">SNKTH123@GMAIL.COM</a>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span style="color:#555;font-size:12px;font-weight:600;">Chennai, India</span>
+                </div>
+
+                <div style="margin-top:12px;">
+                    <p style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.8px;font-weight:600;margin-bottom:8px;">Connect with me</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/likith-raj-267213318/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/likith-raj" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="mailto:snkth123@gmail.com?subject=Inquiry%20from%20Portfolio"><i class="fas fa-envelope"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="contact-row">
-                <span class="contact-label">🔗 SOCIAL</span>
-                <div class="contact-value">
-                    <a href="https://www.linkedin.com/in/likith-raj-267213318/" target="_blank">
-                        <i class="fab fa-linkedin-in"></i> LINKEDIN
-                    </a>
-                    <span class="contact-divider">|</span>
-                    <a href="https://github.com/likith-raj" target="_blank">
-                        <i class="fab fa-github"></i> GITHUB
-                    </a>
-                </div>
-            </div>
+
         </div>
     </section>
 
@@ -1589,6 +1774,9 @@
             </div>
         </div>
     </div>
+
+    <!-- ===== EMAILJS SCRIPT ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <script>
         // =============================================
@@ -1722,7 +1910,7 @@
                 setTimeout(function() {
                     startTyping();
                     setTimeout(() => {
-                        animateCounter('stat1', 3); // 3 certifications
+                        animateCounter('stat1', 3);
                         animateCounter('stat2', 11);
                         animateCounter('stat3', 2026);
                     }, 400);
@@ -1731,7 +1919,7 @@
         });
 
         // =============================================
-        // TYPING ANIMATION (FIXED - Only professional roles)
+        // TYPING ANIMATION
         // =============================================
         const roles = ['SOC ANALYST', 'SPLUNK SPECIALIST', 'DEFENSE ANALYST'];
         let roleIndex = 0,
@@ -1776,6 +1964,58 @@
         document.querySelectorAll('section:not(.hero)').forEach(function(el) {
             observer.observe(el);
         });
+
+        // =============================================
+        // EMAILJS CONTACT FORM (FIXED)
+        // =============================================
+
+        const EMAILJS_SERVICE_ID = "service_92y99vl";
+        const EMAILJS_TEMPLATE_ID = "g2k3pc8";
+        const EMAILJS_PUBLIC_KEY = "JW7nSg_rk-iJmgDx7";
+
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const submitBtn = document.getElementById('submit-btn');
+            const statusDiv = document.getElementById('form-status');
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SENDING...';
+            statusDiv.innerHTML = '';
+            statusDiv.style.color = '#7c3aed';
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const templateParams = {
+                name: name,
+                email: email,
+                message: message
+            };
+
+            console.log('Sending:', templateParams);
+
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response);
+                    statusDiv.innerHTML = '✅ Message sent successfully! I\'ll get back to you soon.';
+                    statusDiv.style.color = '#22c55e';
+                    document.getElementById('contact-form').reset();
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> SEND MESSAGE';
+                })
+                .catch(function(error) {
+                    console.error('FAILED!', error);
+                    statusDiv.innerHTML = '❌ Failed to send. Please email me directly.';
+                    statusDiv.style.color = '#ef4444';
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> SEND MESSAGE';
+                });
+        });
     </script>
+
 </body>
 </html>
