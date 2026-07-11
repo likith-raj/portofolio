@@ -1966,55 +1966,61 @@
         });
 
         // =============================================
-        // EMAILJS CONTACT FORM (FIXED)
-        // =============================================
+       // =============================================
+// EMAILJS CONTACT FORM - DEBUG VERSION
+// =============================================
 
-        const EMAILJS_SERVICE_ID = "service_92y99vl";
-        const EMAILJS_TEMPLATE_ID = "g2k3pc8";
-        const EMAILJS_PUBLIC_KEY = "JW7nSg_rk-iJmgDx7";
+const EMAILJS_SERVICE_ID = "service_92y99vl";
+const EMAILJS_TEMPLATE_ID = "g2k3pc8";
+const EMAILJS_PUBLIC_KEY = "JW7nSg_rk-iJmgDx7";
 
-        emailjs.init(EMAILJS_PUBLIC_KEY);
+// Initialize EmailJS
+emailjs.init(EMAILJS_PUBLIC_KEY);
 
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-            const submitBtn = document.getElementById('submit-btn');
-            const statusDiv = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+    const statusDiv = document.getElementById('form-status');
 
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SENDING...';
-            statusDiv.innerHTML = '';
-            statusDiv.style.color = '#7c3aed';
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SENDING...';
+    statusDiv.innerHTML = 'Sending...';
+    statusDiv.style.color = '#7c3aed';
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
 
-            const templateParams = {
-                name: name,
-                email: email,
-                message: message
-            };
+    const templateParams = {
+        name: name,
+        email: email,
+        message: message
+    };
 
-            console.log('Sending:', templateParams);
+    console.log('🔹 Service ID:', EMAILJS_SERVICE_ID);
+    console.log('🔹 Template ID:', EMAILJS_TEMPLATE_ID);
+    console.log('🔹 Public Key:', EMAILJS_PUBLIC_KEY);
+    console.log('🔹 Params:', templateParams);
 
-            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-                .then(function(response) {
-                    console.log('SUCCESS!', response);
-                    statusDiv.innerHTML = '✅ Message sent successfully! I\'ll get back to you soon.';
-                    statusDiv.style.color = '#22c55e';
-                    document.getElementById('contact-form').reset();
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> SEND MESSAGE';
-                })
-                .catch(function(error) {
-                    console.error('FAILED!', error);
-                    statusDiv.innerHTML = '❌ Failed to send. Please email me directly.';
-                    statusDiv.style.color = '#ef4444';
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> SEND MESSAGE';
-                });
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+        .then(function(response) {
+            console.log('✅ SUCCESS!', response);
+            statusDiv.innerHTML = '✅ Message sent successfully! I\'ll get back to you soon.';
+            statusDiv.style.color = '#22c55e';
+            document.getElementById('contact-form').reset();
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> SEND MESSAGE';
+        })
+        .catch(function(error) {
+            console.error('❌ FAILED!', error);
+            console.log('Error details:', error.text, error.status);
+            statusDiv.innerHTML = '❌ Error: ' + (error.text || 'Unknown error');
+            statusDiv.style.color = '#ef4444';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> SEND MESSAGE';
         });
+});
     </script>
 
 </body>
