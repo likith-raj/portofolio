@@ -1537,7 +1537,7 @@
                 <a href="resume.pdf" download class="btn btn-primary">
                     <i class="fas fa-file-pdf"></i> DOWNLOAD RESUME
                 </a>
-                <a href="resume.pdf" target="_blank" class="btn btn-secondary">
+                <a href="resume.pdf?v=2" target="_blank" class="btn btn-secondary">
                     <i class="fas fa-eye"></i> VIEW RESUME
                 </a>
                 <a href="#contact" class="btn btn-outline">
@@ -1966,7 +1966,7 @@
         });
 
         // =============================================
-        // EMAILJS CONTACT FORM (FIXED)
+        // EMAILJS CONTACT FORM
         // =============================================
 
         const EMAILJS_SERVICE_ID = "service_92y99vl";
@@ -1996,11 +1996,8 @@
                 message: message
             };
 
-            console.log('Sending:', templateParams);
-
             emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
                 .then(function(response) {
-                    console.log('SUCCESS!', response);
                     statusDiv.innerHTML = '✅ Message sent successfully! I\'ll get back to you soon.';
                     statusDiv.style.color = '#22c55e';
                     document.getElementById('contact-form').reset();
@@ -2008,8 +2005,7 @@
                     submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> SEND MESSAGE';
                 })
                 .catch(function(error) {
-                    console.error('FAILED!', error);
-                    statusDiv.innerHTML = '❌ Failed to send. Please contact through linkedin or github.';
+                    statusDiv.innerHTML = '❌ Failed to send. Please email me directly.';
                     statusDiv.style.color = '#ef4444';
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> SEND MESSAGE';
