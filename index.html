@@ -26,7 +26,6 @@
             padding: 0;
         }
 
-        /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -38,7 +37,6 @@
             border-radius: 10px;
         }
 
-        /* ===== LOADING SCREEN ===== */
         #loader {
             position: fixed;
             inset: 0;
@@ -88,7 +86,6 @@
             }
         }
 
-        /* ===== CANVAS PARTICLES ===== */
         #particleCanvas {
             position: fixed;
             top: 0;
@@ -100,7 +97,6 @@
             background: #0a0a0f;
         }
 
-        /* ===== FLOATING BUBBLES ===== */
         .bubbles-container {
             position: fixed;
             inset: 0;
@@ -174,7 +170,6 @@
             }
         }
 
-        /* ===== CURSOR ===== */
         #cursor-dot {
             position: fixed;
             width: 6px;
@@ -210,7 +205,6 @@
             background: radial-gradient(circle, rgba(124, 58, 237, 0.12), transparent 70%);
         }
 
-        /* ===== NAV ===== */
         nav {
             position: fixed;
             top: 0;
@@ -286,7 +280,6 @@
             width: 100%;
         }
 
-        /* ===== SECTIONS ===== */
         section {
             padding: 100px 6%;
             min-height: 100vh;
@@ -302,7 +295,6 @@
             transform: translateY(0);
         }
 
-        /* ===== HERO ===== */
         .hero {
             display: flex;
             align-items: center;
@@ -390,7 +382,6 @@
             margin-top: 28px;
         }
 
-        /* ===== BUTTONS ===== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -457,7 +448,6 @@
             box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2);
         }
 
-        /* ===== SOCIAL ===== */
         .social {
             margin-top: 28px;
             display: flex;
@@ -486,7 +476,6 @@
             box-shadow: 0 12px 28px rgba(124, 58, 237, 0.2);
         }
 
-        /* ===== SECTION HEADERS ===== */
         h2 {
             font-size: 36px;
             font-weight: 900;
@@ -514,7 +503,12 @@
             font-weight: 600;
         }
 
-        /* ===== SKILL CARDS ===== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+        }
+
         .skill-card {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(8px);
@@ -556,14 +550,6 @@
             letter-spacing: 0.3px;
         }
 
-        /* ===== GRID ===== */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 18px;
-        }
-
-        /* ===== PROJECT CARDS ===== */
         .project-card {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(8px);
@@ -634,7 +620,6 @@
             box-shadow: 0 12px 30px rgba(124, 58, 237, 0.2);
         }
 
-        /* ===== PROJECTS BOTTOM CTA ===== */
         .projects-cta {
             margin-top: 40px;
             display: flex;
@@ -643,7 +628,6 @@
             flex-wrap: wrap;
         }
 
-        /* ===== CERTIFICATION CARDS ===== */
         .cert-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -675,11 +659,9 @@
         .cert-card.cisco {
             border-top: 4px solid #7c3aed;
         }
-
         .cert-card.jsoc {
             border-top: 4px solid #06b6d4;
         }
-
         .cert-card.ccna {
             border-top: 4px solid #f59e0b;
         }
@@ -719,12 +701,10 @@
             background: rgba(124, 58, 237, 0.08);
             color: #a78bfa;
         }
-
         .cert-card.jsoc .cert-badge {
             background: rgba(6, 182, 212, 0.08);
             color: #67e8f9;
         }
-
         .cert-card.ccna .cert-badge {
             background: rgba(245, 158, 11, 0.08);
             color: #fbbf24;
@@ -799,7 +779,6 @@
             }
         }
 
-        /* ===== CERT STATS ===== */
         .cert-stats {
             display: flex;
             gap: 30px;
@@ -836,7 +815,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* ===== FULL SCREEN OVERLAY ===== */
         #fullscreen-overlay {
             display: none;
             position: fixed;
@@ -948,7 +926,6 @@
             margin-top: 6px;
         }
 
-        /* ===== CONTACT ===== */
         .contact-section {
             padding: 80px 6%;
             min-height: 60vh;
@@ -1200,7 +1177,6 @@
             box-shadow: 0 8px 20px rgba(124, 58, 237, 0.15);
         }
 
-        /* ===== FOOTER ===== */
         footer {
             text-align: center;
             padding: 32px 6%;
@@ -1216,7 +1192,6 @@
             color: #7c3aed;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .cert-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1302,6 +1277,9 @@
             .projects-cta .btn {
                 padding: 12px 28px;
                 font-size: 12px;
+            }
+            .grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             }
         }
 
@@ -1460,6 +1438,11 @@
                 <div class="skill-name">WINDOWS LOGS</div>
                 <div class="skill-desc">Event Analysis</div>
             </div>
+            <div class="skill-card">
+                <span class="skill-icon">🔎</span>
+                <div class="skill-name">KQL</div>
+                <div class="skill-desc">Kusto Query Language</div>
+            </div>
         </div>
     </section>
 
@@ -1506,7 +1489,6 @@
         <p class="section-sub">PROFESSIONAL CERTIFICATIONS & ACHIEVEMENTS</p>
 
         <div class="cert-grid">
-            <!-- CISCO CERTIFICATION -->
             <div class="cert-card cisco" onclick="openFullScreen('img.png', 'Cisco Certified Defense Analyst', 'Cisco Networking Academy - Career Path', '8 Courses • Final Exam • SOC Ready')">
                 <div class="cert-image">
                     <img src="img.png" alt="Cisco Certification">
@@ -1519,7 +1501,6 @@
                 <div class="cert-hint">Click to view <span class="arrow">→</span></div>
             </div>
 
-            <!-- JSOC CERTIFICATION -->
             <div class="cert-card jsoc" onclick="openFullScreen('img2.png', 'JSOC Certified', 'Vibe Security - Junior Security Operations Center', 'SOC Methodologies • Incident Response • Security Analysis')">
                 <div class="cert-image">
                     <img src="img2.png" alt="JSOC Certification">
@@ -1532,7 +1513,6 @@
                 <div class="cert-hint">Click to view <span class="arrow">→</span></div>
             </div>
 
-            <!-- CCNA CERTIFICATION -->
             <div class="cert-card ccna" onclick="openFullScreen('ccna.png', 'CCNA Certified', 'Cisco - Certified Network Associate', 'Routing & Switching • Network Fundamentals')">
                 <div class="cert-image">
                     <img src="ccna.png" alt="CCNA Certification">
@@ -1546,7 +1526,6 @@
             </div>
         </div>
 
-        <!-- STATS -->
         <div class="cert-stats">
             <div class="stat-item">
                 <span class="stat-number" id="stat1">0</span>
@@ -1571,8 +1550,6 @@
         </div>
 
         <div class="contact-wrapper">
-
-            <!-- ===== CONTACT FORM ===== -->
             <div class="contact-box">
                 <form class="contact-form" id="contact-form">
                     <div class="form-group">
@@ -1598,7 +1575,6 @@
                 </form>
             </div>
 
-            <!-- ===== SIDE INFO ===== -->
             <div class="contact-info">
                 <h3><i class="fas fa-info-circle"></i> CONTACT INFO</h3>
 
@@ -1621,16 +1597,13 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
     <footer>
         © 2026 <strong>LIKITH RAJ</strong> &bull; SOC ANALYST &bull; BUILT WITH ❤️
     </footer>
 
-    <!-- ===== FULL SCREEN OVERLAY ===== -->
     <div id="fullscreen-overlay" onclick="closeFullScreen()">
         <span class="close-btn">&times;</span>
         <div class="fullscreen-content">
@@ -1643,13 +1616,10 @@
         </div>
     </div>
 
-    <!-- ===== EMAILJS SCRIPT ===== -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <script>
-        // =============================================
         // CURSOR
-        // =============================================
         const cursorDot = document.getElementById('cursor-dot');
         const cursorGlow = document.getElementById('cursor-glow');
 
@@ -1670,9 +1640,6 @@
             cursorGlow.style.display = 'none';
         }
 
-        // =============================================
-        // FULL SCREEN FUNCTIONS
-        // =============================================
         function openFullScreen(imageSrc, title, sub, badge) {
             const overlay = document.getElementById('fullscreen-overlay');
             const img = document.getElementById('fullscreen-img');
@@ -1698,9 +1665,6 @@
             if (e.key === 'Escape') closeFullScreen();
         });
 
-        // =============================================
-        // COUNTER ANIMATION
-        // =============================================
         function animateCounter(elementId, target, duration = 1200) {
             const el = document.getElementById(elementId);
             let start = 0;
@@ -1714,9 +1678,6 @@
             }, interval);
         }
 
-        // =============================================
-        // CANVAS PARTICLES
-        // =============================================
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -1759,9 +1720,6 @@
         }
         drawParticles();
 
-        // =============================================
-        // LOADER
-        // =============================================
         window.addEventListener('load', function() {
             const loader = document.getElementById('loader');
 
@@ -1786,9 +1744,6 @@
             }, 1000);
         });
 
-        // =============================================
-        // TYPING ANIMATION
-        // =============================================
         const roles = ['SOC ANALYST', 'SPLUNK SPECIALIST', 'DEFENSE ANALYST'];
         let roleIndex = 0,
             charIndex = 0,
@@ -1812,17 +1767,11 @@
             setTimeout(startTyping, speed);
         }
 
-        // =============================================
-        // NAV SCROLL
-        // =============================================
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', function() {
             navbar.classList.toggle('scrolled', window.scrollY > 40);
         });
 
-        // =============================================
-        // SECTION OBSERVER
-        // =============================================
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -1832,10 +1781,6 @@
         document.querySelectorAll('section:not(.hero)').forEach(function(el) {
             observer.observe(el);
         });
-
-        // =============================================
-        // EMAILJS CONTACT FORM
-        // =============================================
 
         const EMAILJS_SERVICE_ID = "service_92y99vl";
         const EMAILJS_TEMPLATE_ID = "g2k3pc8";
@@ -1880,6 +1825,5 @@
                 });
         });
     </script>
-
 </body>
 </html>
