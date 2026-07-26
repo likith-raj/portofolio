@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetRecon Pro - Real Terminal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            user-select: none;
+        }
+
+        /* ===== MAIN TERMINAL ===== */
+        .terminal-container {
+            width: 100%;
+            max-width: 900px;
+            background: #0d0d12;
+            border-radius: 16px;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            box-shadow: 0 20px 80px rgba(124, 58, 237, 0.1);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* ===== TERMINAL HEADER ===== */
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .terminal-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .terminal-dot:hover { transform: scale(1.2); }
+
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27c93f; }
+
+        .terminal-title {
+            flex: 1;
+            text-align: center;
+            font-size: 13px;
+            color: #556;
+            letter-spacing: 2px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .terminal-title i {
+            color: #7c3aed;
+            margin-right: 8px;
+        }
+
+        /* ===== TERMINAL BODY ===== */
+        .terminal-body {
+            padding: 24px 28px 20px;
+            min-height: 420px;
+        }
+
+        .terminal-output {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #c8c8d4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+            min-height: 280px;
+            max-height: 450px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #7c3aed transparent;
+        }
+
+        .terminal-output::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .terminal-output::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .terminal-output::-webkit-scrollbar-thumb {
+            background: #7c3aed;
+            border-radius: 10px;
+        }
+
+        .terminal-output .prompt {
+            color: #7c3aed;
+            font-weight: 700;
+        }
+
+        .terminal-output .command {
+            color: #06b6d4;
+        }
+
+        .terminal-output .output {
+            color: #a8b8c8;
+            margin-left: 4px;
+        }
+
+        .terminal-output .success {
+            color: #22c55e;
+        }
+
+        .terminal-output .error {
+            color: #ef4444;
+        }
+
+        .terminal-output .warning {
+            color: #f59e0b;
+        }
+
+        .terminal-output .highlight {
+            color: #a78bfa;
+            font-weight: 700;
+        }
+
+        .terminal-output .dim {
+            color: #556;
+        }
+
+        /* ===== INPUT LINE ===== */
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .terminal-input-line .prompt-symbol {
+            color: #7c3aed;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .terminal-input-line input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #e0e0e0;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            padding: 4px 0;
+        }
+
+        .terminal-input-line input::placeholder {
+            color: #334;
+            font-style: italic;
+        }
+
+        /* ===== BUTTONS ===== */
+        .terminal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .terminal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 10px;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            background: rgba(124, 58, 237, 0.05);
+            color: #a78bfa;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .terminal-btn:hover {
+            background: rgba(124, 58, 237, 0.15);
+            border-color: rgba(124, 58, 237, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.1);
+        }
+
+        .terminal-btn i { font-size: 14px; }
+
+        .terminal-btn.primary {
+            background: rgba(124, 58, 237, 0.15);
+            border-color: rgba(124, 58, 237, 0.3);
+            color: #7c3aed;
+        }
+
+        .terminal-btn.primary:hover {
+            background: rgba(124, 58, 237, 0.25);
+        }
+
+        .terminal-btn.success {
+            border-color: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .terminal-btn.success:hover {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .terminal-btn.danger {
+            border-color: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .terminal-btn.danger:hover {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .terminal-btn.github-btn {
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #c8c8d4;
+        }
+
+        .terminal-btn.github-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== FOOTER ===== */
+        .terminal-footer {
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            text-align: center;
+            font-size: 10px;
+            color: #334;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .terminal-footer i {
+            color: #7c3aed;
+            margin: 0 4px;
+        }
+
+        /* ===== BACK BUTTON ===== */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            margin-top: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(124, 58, 237, 0.1);
+            background: rgba(124, 58, 237, 0.03);
+            color: #7c3aed;
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(124, 58, 237, 0.1);
+            border-color: rgba(124, 58, 237, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .back-link i { font-size: 12px; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .terminal-body { padding: 16px; }
+            .terminal-output { font-size: 12px; min-height: 200px; max-height: 300px; }
+            .terminal-btn { padding: 8px 14px; font-size: 10px; }
+            .terminal-input-line input { font-size: 12px; }
+        }
+
+        @media (max-width: 480px) {
+            .terminal-body { padding: 12px; }
+            .terminal-output { font-size: 11px; min-height: 160px; max-height: 220px; }
+            .terminal-actions { gap: 6px; }
+            .terminal-btn { padding: 6px 10px; font-size: 9px; }
+            .terminal-title { font-size: 10px; }
+            .back-link { font-size: 9px; padding: 6px 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="terminal-container">
+
+        <!-- ===== HEADER ===== -->
+        <div class="terminal-header">
+            <div class="terminal-dots">
+                <div class="terminal-dot red"></div>
+                <div class="terminal-dot yellow"></div>
+                <div class="terminal-dot green"></div>
+            </div>
+            <div class="terminal-title">
+                <i class="fas fa-terminal"></i> NETRECON PRO v2.0 — REAL TERMINAL
+            </div>
+            <div style="width: 70px;"></div>
+        </div>
+
+        <!-- ===== BODY ===== -->
+        <div class="terminal-body">
+
+            <div class="terminal-output" id="terminalOutput">
+                <div><span class="prompt">╔══════════════════════════════════════════════════════════════════╗</span></div>
+                <div><span class="prompt">║</span>  <span class="highlight">🔍 NETRECON PRO v2.0</span></div>
+                <div><span class="prompt">║</span>  <span class="dim">Professional Network Reconnaissance Tool</span></div>
+                <div><span class="prompt">╚══════════════════════════════════════════════════════════════════╝</span></div>
+                <div><br></div>
+                <div><span class="output">📋 <span class="highlight">MAIN MENU</span></span></div>
+                <div><span class="output">  1. Perform Network Scan</span></div>
+                <div><span class="output">  2. View Previous Scan Results</span></div>
+                <div><span class="output">  3. View Generated Reports</span></div>
+                <div><span class="output">  4. Vulnerability Scanner</span></div>
+                <div><span class="output">  5. Multi-Target Scanner</span></div>
+                <div><span class="output">  6. Scan History</span></div>
+                <div><span class="output">  7. Settings</span></div>
+                <div><span class="output">  8. Help & Documentation</span></div>
+                <div><span class="output">  0. Exit Application</span></div>
+                <div><br></div>
+                <div><span class="prompt">❯</span> <span class="dim">Ready for command...</span></div>
+            </div>
+
+            <!-- ===== INPUT LINE ===== -->
+            <div class="terminal-input-line">
+                <span class="prompt-symbol">❯</span>
+                <input type="text" id="terminalInput" placeholder="Type a command or option..." autofocus>
+            </div>
+
+            <!-- ===== ACTION BUTTONS ===== -->
+            <div class="terminal-actions">
+                <button class="terminal-btn primary" onclick="runCommand()">
+                    <i class="fas fa-play"></i> RUN
+                </button>
+                <button class="terminal-btn success" onclick="clearOutput()">
+                    <i class="fas fa-eraser"></i> CLEAR
+                </button>
+                <button class="terminal-btn" onclick="runDemoScan()">
+                    <i class="fas fa-scan"></i> DEMO SCAN
+                </button>
+                <button class="terminal-btn danger" onclick="resetTerminal()">
+                    <i class="fas fa-undo"></i> RESET
+                </button>
+                <button class="terminal-btn github-btn" onclick="window.open('https://github.com/likith-raj/NetRecon-Pro', '_blank')">
+                    <i class="fab fa-github"></i> GITHUB
+                </button>
+            </div>
+
+            <!-- ===== BACK LINK ===== -->
+            <div style="text-align: center; margin-top: 12px;">
+                <a href="box.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> BACK TO WORK STATION
+                </a>
+            </div>
+
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="terminal-footer">
+            <i class="fas fa-shield-alt"></i> REAL TERMINAL • SOC WORK STATION <i class="fas fa-lock"></i>
+        </div>
+
+    </div>
+
+    <script>
+        // =============================================
+        // DOM REFERENCES
+        // =============================================
+        const output = document.getElementById('terminalOutput');
+        const input = document.getElementById('terminalInput');
+
+        // =============================================
+        // COMMAND HANDLER
+        // =============================================
+        function runCommand() {
+            const cmd = input.value.trim();
+            if (!cmd) return;
+
+            // Show the command
+            appendLine(`<span class="prompt">❯</span> <span class="command">${cmd}</span>`);
+
+            // Process command
+            processCommand(cmd);
+
+            // Clear input
+            input.value = '';
+            input.focus();
+
+            // Auto-scroll
+            output.scrollTop = output.scrollHeight;
+        }
+
+        // =============================================
+        // COMMAND PROCESSOR
+        // =============================================
+        function processCommand(cmd) {
+            const lower = cmd.toLowerCase();
+
+            // ==== MENU OPTIONS ====
+            if (lower === '1' || lower === 'scan' || lower === 'perform scan') {
+                appendLine(`<span class="output">🔍 Starting network scan...</span>`);
+                appendLine(`<span class="output">📡 Target: <span class="highlight">scanme.nmap.org</span></span>`);
+                appendLine(`<span class="output">⏱️  Scanning... <span class="dim">(simulated)</span></span>`);
+
+                setTimeout(() => {
+                    appendLine(`<span class="success">✅ Scan completed!</span>`);
+                    appendLine(`<span class="output">📊 Results:</span>`);
+                    appendLine(`<span class="output">   Host: <span class="highlight">45.33.22.11</span></span>`);
+                    appendLine(`<span class="output">   Status: <span class="success">UP</span></span>`);
+                    appendLine(`<span class="output">   Open Ports: <span class="highlight">4</span></span>`);
+                    appendLine(`<span class="output">   OS: <span class="highlight">Linux (Ubuntu)</span></span>`);
+                    appendLine(`<span class="output">   ──────────────────────────────</span>`);
+                    appendLine(`<span class="output">   Port 22  → SSH (OpenSSH 7.9)</span>`);
+                    appendLine(`<span class="output">   Port 80  → HTTP (Apache 2.4.46)</span>`);
+                    appendLine(`<span class="output">   Port 443 → HTTPS (nginx 1.18.0)</span>`);
+                    appendLine(`<span class="output">   Port 31337 → Elite (Nmap Test)</span>`);
+                    appendLine(`<span class="dim">   💡 Use 'report' to generate HTML report</span>`);
+                    output.scrollTop = output.scrollHeight;
+                }, 800);
+            }
+
+            else if (lower === '2' || lower === 'results' || lower === 'view results') {
+                appendLine(`<span class="output">📊 Previous Scan Results:</span>`);
+                appendLine(`<span class="output">   1. scan_20260726_144426.xml (34.2 KB)</span>`);
+                appendLine(`<span class="output">   2. scan_20260726_143941.xml (12.8 KB)</span>`);
+                appendLine(`<span class="output">   3. scan_20260726_133138.xml (8.4 KB)</span>`);
+                appendLine(`<span class="dim">   Use 'view 1' to see details</span>`);
+            }
+
+            else if (lower === '3' || lower === 'reports' || lower === 'view reports') {
+                appendLine(`<span class="output">📁 Generated Reports:</span>`);
+                appendLine(`<span class="output">   ✅ report_20260726_134950.html</span>`);
+                appendLine(`<span class="output">   ✅ report_20260726_134950.txt</span>`);
+                appendLine(`<span class="output">   ✅ report_20260726_133149.html</span>`);
+                appendLine(`<span class="output">   ✅ report_20260726_133149.txt</span>`);
+                appendLine(`<span class="dim">   💡 Use 'open' to view in browser</span>`);
+            }
+
+            else if (lower === '4' || lower === 'vuln' || lower === 'vulnerability') {
+                appendLine(`<span class="output">🚨 Running Vulnerability Scanner...</span>`);
+                setTimeout(() => {
+                    appendLine(`<span class="warning">⚠️  Found 2 potential vulnerabilities:</span>`);
+                    appendLine(`<span class="output">   • CVE-2017-0143 (EternalBlue) - HIGH</span>`);
+                    appendLine(`<span class="output">   • CVE-2019-0708 (BlueKeep) - HIGH</span>`);
+                    appendLine(`<span class="dim">   💡 Check reports for mitigation steps</span>`);
+                    output.scrollTop = output.scrollHeight;
+                }, 600);
+            }
+
+            else if (lower === '5' || lower === 'multi' || lower === 'multi-target') {
+                appendLine(`<span class="output">🎯 Multi-Target Scanner</span>`);
+                appendLine(`<span class="output">📡 Scanning: <span class="highlight">8.8.8.8, 1.1.1.1, scanme.nmap.org</span></span>`);
+                setTimeout(() => {
+                    appendLine(`<span class="success">✅ All 3 targets scanned!</span>`);
+                    appendLine(`<span class="output">   • 8.8.8.8 → 1 open port (DNS)</span>`);
+                    appendLine(`<span class="output">   • 1.1.1.1 → 1 open port (DNS)</span>`);
+                    appendLine(`<span class="output">   • scanme.nmap.org → 4 open ports</span>`);
+                    output.scrollTop = output.scrollHeight;
+                }, 700);
+            }
+
+            else if (lower === '6' || lower === 'history') {
+                appendLine(`<span class="output">📜 Scan History:</span>`);
+                appendLine(`<span class="output">   [1] 2026-07-26 14:44 → 106.215.171.119 (QUICK)</span>`);
+                appendLine(`<span class="output">   [2] 2026-07-26 13:45 → 127.0.0.1 (COMPREHENSIVE)</span>`);
+                appendLine(`<span class="output">   [3] 2026-07-26 13:31 → 198.168.10.1 (UDP)</span>`);
+                appendLine(`<span class="dim">   Total scans: 5</span>`);
+            }
+
+            else if (lower === '7' || lower === 'settings') {
+                appendLine(`<span class="output">⚙️  Settings:</span>`);
+                appendLine(`<span class="output">   • Report Directory: <span class="highlight">Reports/</span></span>`);
+                appendLine(`<span class="output">   • Default Scan Type: <span class="highlight">comprehensive</span></span>`);
+                appendLine(`<span class="output">   • Vulnerability Scan: <span class="success">Enabled</span></span>`);
+                appendLine(`<span class="output">   • Scan History: <span class="success">Enabled</span></span>`);
+                appendLine(`<span class="dim">   💡 Settings saved in config.json</span>`);
+            }
+
+            else if (lower === '8' || lower === 'help') {
+                appendLine(`<span class="output">📖 NetRecon Pro Help:</span>`);
+                appendLine(`<span class="output">   Commands: 1-8, scan, results, reports, vuln, multi, history, settings, help, clear, reset, about</span>`);
+                appendLine(`<span class="output">   Features: OS detection, vulnerability scanning, multi-target, reports (HTML/TXT/CSV/JSON)</span>`);
+                appendLine(`<span class="output">   Tips: Use 'scanme.nmap.org' for testing, '-Pn' for firewalled hosts</span>`);
+            }
+
+            else if (lower === '0' || lower === 'exit' || lower === 'quit') {
+                appendLine(`<span class="warning">⚠️  Exiting NetRecon Pro...</span>`);
+                setTimeout(() => {
+                    appendLine(`<span class="dim">👋 Thank you for using NetRecon Pro!</span>`);
+                    appendLine(`<span class="dim">🔒 Stay secure!</span>`);
+                    output.scrollTop = output.scrollHeight;
+                }, 400);
+            }
+
+            else if (lower === 'clear') {
+                clearOutput();
+            }
+
+            else if (lower === 'reset') {
+                resetTerminal();
+            }
+
+            else if (lower === 'about') {
+                appendLine(`<span class="highlight">🔍 NetRecon Pro v2.0</span>`);
+                appendLine(`<span class="output">   Professional Network Reconnaissance Tool</span>`);
+                appendLine(`<span class="output">   Author: <span class="highlight">Likith Raj</span></span>`);
+                appendLine(`<span class="output">   GitHub: <span class="highlight">github.com/likith-raj/NetRecon-Pro</span></span>`);
+                appendLine(`<span class="output">   Features: 2000+ lines of Python code</span>`);
+                appendLine(`<span class="dim">   ⭐ Star on GitHub if you like it!</span>`);
+            }
+
+            else if (lower === 'open' || lower === 'view 1' || lower === 'view1') {
+                appendLine(`<span class="success">📂 Opening report in browser... (simulated)</span>`);
+                appendLine(`<span class="dim">   💡 Real version would open: report_20260726_134950.html</span>`);
+            }
+
+            else if (lower.startsWith('view ')) {
+                const num = lower.split(' ')[1];
+                if (num === '1' || num === '2' || num === '3') {
+                    appendLine(`<span class="output">📄 Showing details for scan ${num}...</span>`);
+                    appendLine(`<span class="dim">   (Real scan data would be displayed here)</span>`);
+                } else {
+                    appendLine(`<span class="error">❌ Invalid selection! Use 'view 1', 'view 2', etc.</span>`);
+                }
+            }
+
+            else if (lower === 'scanme.nmap.org' || lower === 'demo') {
+                runDemoScan();
+            }
+
+            else {
+                appendLine(`<span class="error">❌ Unknown command: '${cmd}'</span>`);
+                appendLine(`<span class="dim">   Type 'help' for available commands</span>`);
+            }
+
+            // Auto-scroll
+            output.scrollTop = output.scrollHeight;
+        }
+
+        // =============================================
+        // HELPER FUNCTIONS
+        // =============================================
+
+        function appendLine(html) {
+            output.innerHTML += `<div>${html}</div>`;
+        }
+
+        function clearOutput() {
+            output.innerHTML = `
+                <div><span class="prompt">╔══════════════════════════════════════════════════════════════════╗</span></div>
+                <div><span class="prompt">║</span>  <span class="highlight">🔍 NETRECON PRO v2.0</span></div>
+                <div><span class="prompt">║</span>  <span class="dim">Professional Network Reconnaissance Tool</span></div>
+                <div><span class="prompt">╚══════════════════════════════════════════════════════════════════╝</span></div>
+                <div><br></div>
+                <div><span class="output">📋 <span class="highlight">MAIN MENU</span></span></div>
+                <div><span class="output">  1. Perform Network Scan</span></div>
+                <div><span class="output">  2. View Previous Scan Results</span></div>
+                <div><span class="output">  3. View Generated Reports</span></div>
+                <div><span class="output">  4. Vulnerability Scanner</span></div>
+                <div><span class="output">  5. Multi-Target Scanner</span></div>
+                <div><span class="output">  6. Scan History</span></div>
+                <div><span class="output">  7. Settings</span></div>
+                <div><span class="output">  8. Help & Documentation</span></div>
+                <div><span class="output">  0. Exit Application</span></div>
+                <div><br></div>
+                <div><span class="prompt">❯</span> <span class="dim">Ready for command...</span></div>
+            `;
+        }
+
+        function resetTerminal() {
+            clearOutput();
+            input.value = '';
+            input.focus();
+            output.scrollTop = 0;
+        }
+
+        function runDemoScan() {
+            appendLine(`<span class="output">🔍 Running demo scan on <span class="highlight">scanme.nmap.org</span>...</span>`);
+            appendLine(`<span class="output">📡 Nmap command: nmap -sV -O scanme.nmap.org</span>`);
+
+            setTimeout(() => {
+                appendLine(`<span class="success">✅ Scan completed!</span>`);
+                appendLine(`<span class="output">📊 Results:</span>`);
+                appendLine(`<span class="output">   Host: <span class="highlight">45.33.22.11</span></span>`);
+                appendLine(`<span class="output">   Status: <span class="success">UP</span></span>`);
+                appendLine(`<span class="output">   Open Ports: <span class="highlight">4</span></span>`);
+                appendLine(`<span class="output">   OS: <span class="highlight">Linux (Ubuntu)</span></span>`);
+                appendLine(`<span class="output">   ──────────────────────────────</span>`);
+                appendLine(`<span class="output">   Port 22  → SSH (OpenSSH 7.9)</span>`);
+                appendLine(`<span class="output">   Port 80  → HTTP (Apache 2.4.46)</span>`);
+                appendLine(`<span class="output">   Port 443 → HTTPS (nginx 1.18.0)</span>`);
+                appendLine(`<span class="output">   Port 31337 → Elite (Nmap Test)</span>`);
+                appendLine(`<span class="dim">   💡 Generate report: type 'reports'</span>`);
+                output.scrollTop = output.scrollHeight;
+            }, 1000);
+        }
+
+        // =============================================
+        // ENTER KEY HANDLER
+        // =============================================
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                runCommand();
+            }
+        });
+
+        // =============================================
+        // FOCUS ON LOAD
+        // =============================================
+        window.addEventListener('load', function() {
+            input.focus();
+        });
+
+        // =============================================
+        // DISABLE RIGHT CLICK
+        // =============================================
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert('🔒 Copying is disabled. This is a SOC Work Station.');
+        });
+
+        // =============================================
+        // DISABLE KEYBOARD SHORTCUTS
+        // =============================================
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'p')) || e.key === 'F12') {
+                e.preventDefault();
+                alert('🔒 Copying is disabled. This is a SOC Work Station.');
+                return false;
+            }
+        });
+
+        // =============================================
+        // DISABLE SELECTION
+        // =============================================
+        document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+        document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+    </script>
+
+</body>
+</html>

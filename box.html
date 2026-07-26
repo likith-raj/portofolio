@@ -20,15 +20,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px;
+            padding: 20px;
             user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            overflow-x: hidden;
         }
 
-        /* ===== CANVAS PARTICLES ===== */
+        /* ===== PARTICLES ===== */
         #particleCanvas {
             position: fixed;
             top: 0;
@@ -40,7 +36,6 @@
             background: #0a0a0f;
         }
 
-        /* ===== FLOATING BUBBLES ===== */
         .bubbles-container {
             position: fixed;
             inset: 0;
@@ -68,7 +63,7 @@
             100% { transform: translate(-60px, 80px) scale(0.85); }
         }
 
-        /* ===== MAIN CONTAINER ===== */
+        /* ===== CONTAINER ===== */
         .container {
             position: relative;
             z-index: 2;
@@ -77,16 +72,10 @@
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 24px;
-            padding: 50px 45px;
+            padding: 40px 35px;
             backdrop-filter: blur(10px);
             box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
-            transition: all 0.4s ease;
             animation: fadeInUp 0.8s ease-out;
-        }
-
-        .container:hover {
-            border-color: rgba(124, 58, 237, 0.2);
-            box-shadow: 0 20px 80px rgba(124, 58, 237, 0.06);
         }
 
         @keyframes fadeInUp {
@@ -99,7 +88,7 @@
             display: flex;
             align-items: center;
             gap: 18px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             padding-bottom: 20px;
             border-bottom: 2px solid rgba(255, 255, 255, 0.04);
             animation: slideInLeft 0.8s ease-out 0.2s both;
@@ -111,14 +100,14 @@
         }
 
         .header-icon {
-            width: 56px;
-            height: 56px;
+            width: 52px;
+            height: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: rgba(124, 58, 237, 0.1);
-            border-radius: 16px;
-            font-size: 26px;
+            border-radius: 14px;
+            font-size: 24px;
             color: #7c3aed;
             border: 1px solid rgba(124, 58, 237, 0.1);
             transition: all 0.4s ease;
@@ -130,7 +119,7 @@
         }
 
         .header h1 {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -138,16 +127,14 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-family: 'Segoe UI', sans-serif;
         }
 
         .header .sub {
-            font-size: 11px;
+            font-size: 10px;
             color: #666;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             margin-left: auto;
-            font-family: 'Segoe UI', sans-serif;
         }
 
         .header .sub i {
@@ -155,15 +142,15 @@
             margin-right: 6px;
         }
 
-        /* ===== STATS BAR ===== */
+        /* ===== STATS ===== */
         .stats-bar {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin-bottom: 30px;
-            padding: 16px 20px;
+            gap: 10px;
+            margin-bottom: 25px;
+            padding: 14px 16px;
             background: rgba(255, 255, 255, 0.02);
-            border-radius: 14px;
+            border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.04);
             animation: fadeInUp 0.8s ease-out 0.4s both;
         }
@@ -171,8 +158,8 @@
         .stats-bar .stat {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 4px 0;
+            gap: 8px;
+            padding: 2px 0;
             transition: all 0.3s ease;
         }
 
@@ -182,29 +169,22 @@
 
         .stats-bar .stat i {
             color: #7c3aed;
-            font-size: 16px;
-            width: 20px;
+            font-size: 14px;
+            width: 18px;
             text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stats-bar .stat:hover i {
-            transform: scale(1.2);
         }
 
         .stats-bar .stat .number {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 900;
             color: #fff;
-            font-family: 'Segoe UI', sans-serif;
         }
 
         .stats-bar .stat .label {
-            font-size: 10px;
+            font-size: 9px;
             color: #666;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-family: 'Segoe UI', sans-serif;
             font-weight: 600;
         }
 
@@ -212,29 +192,24 @@
         .items {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .item {
             display: flex;
             align-items: center;
-            gap: 18px;
-            padding: 18px 22px;
+            gap: 14px;
+            padding: 16px 18px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
+            border-radius: 14px;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: pointer;
             animation: slideInRight 0.8s ease-out both;
             text-decoration: none;
         }
 
         .item:nth-child(1) { animation-delay: 0.6s; }
         .item:nth-child(2) { animation-delay: 0.8s; }
-        .item:nth-child(3) { animation-delay: 1.0s; }
-        .item:nth-child(4) { animation-delay: 1.2s; }
-        .item:nth-child(5) { animation-delay: 1.4s; }
-        .item:nth-child(6) { animation-delay: 1.6s; }
 
         @keyframes slideInRight {
             0% { opacity: 0; transform: translateX(30px); }
@@ -244,20 +219,14 @@
         .item:hover {
             background: rgba(124, 58, 237, 0.04);
             border-color: rgba(124, 58, 237, 0.15);
-            transform: translateX(6px) scale(1.01);
+            transform: translateX(5px) scale(1.01);
         }
 
         .item .number {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 900;
             color: #7c3aed;
-            min-width: 36px;
-            font-family: 'Segoe UI', monospace;
-            transition: all 0.3s ease;
-        }
-
-        .item:hover .number {
-            transform: scale(1.1);
+            min-width: 32px;
         }
 
         .item .content {
@@ -265,11 +234,10 @@
         }
 
         .item .content .title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             color: #e0e0e0;
             letter-spacing: 0.5px;
-            font-family: 'Segoe UI', sans-serif;
             text-transform: uppercase;
         }
 
@@ -281,12 +249,11 @@
         }
 
         .item .content .desc {
-            font-size: 12px;
+            font-size: 11px;
             color: #888;
             margin-top: 2px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            font-family: 'Segoe UI', sans-serif;
         }
 
         .item .content .desc i {
@@ -294,90 +261,79 @@
             margin-right: 6px;
         }
 
-        .item .badge {
+        /* ===== BADGES ===== */
+        .badge-group {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 5px 18px;
+            gap: 5px;
+            padding: 4px 14px;
             border-radius: 50px;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            background: rgba(34, 197, 94, 0.1);
-            color: #22c55e;
-            border: 1px solid rgba(34, 197, 94, 0.1);
             white-space: nowrap;
-            font-family: 'Segoe UI', sans-serif;
             transition: all 0.3s ease;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid transparent;
         }
 
-        .item:hover .badge {
+        .badge i {
+            font-size: 9px;
+        }
+
+        .badge-success {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border-color: rgba(34, 197, 94, 0.1);
+        }
+
+        .badge-success:hover {
             background: rgba(34, 197, 94, 0.15);
             transform: scale(1.05);
         }
 
-        .item .badge i {
-            font-size: 10px;
-        }
-
-        .item .badge-github {
+        .badge-github {
             background: rgba(124, 58, 237, 0.1);
             color: #a78bfa;
-            border: 1px solid rgba(124, 58, 237, 0.1);
-        }
-
-        .item:hover .badge-github {
-            background: rgba(124, 58, 237, 0.2);
-        }
-
-        /* ===== EMPTY SLOT ===== */
-        .empty-item {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            padding: 14px 22px;
-            border: 1px dashed rgba(255, 255, 255, 0.04);
-            border-radius: 16px;
-            opacity: 0.3;
-            transition: all 0.4s ease;
-            cursor: default;
-        }
-
-        .empty-item:hover {
-            opacity: 0.6;
             border-color: rgba(124, 58, 237, 0.1);
-            transform: translateX(4px);
         }
 
-        .empty-item .number {
-            font-size: 16px;
-            font-weight: 900;
-            color: #333;
-            min-width: 36px;
-            font-family: 'Segoe UI', monospace;
+        .badge-github:hover {
+            background: rgba(124, 58, 237, 0.2);
+            transform: scale(1.05);
         }
 
-        .empty-item .content .title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #444;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-family: 'Segoe UI', sans-serif;
+        .badge-cmd {
+            background: rgba(0, 255, 65, 0.05);
+            color: #00ff41;
+            border-color: rgba(0, 255, 65, 0.15);
         }
 
-        .empty-item .content .title i {
-            color: #333;
-            margin-right: 8px;
+        .badge-cmd:hover {
+            background: rgba(0, 255, 65, 0.1);
+            transform: scale(1.05);
+            border-color: #00ff41;
+        }
+
+        .empty-item {
+            display: none;
         }
 
         /* ===== FOOTER ===== */
         .footer-text {
-            margin-top: 28px;
-            padding-top: 20px;
+            margin-top: 24px;
+            padding-top: 16px;
             border-top: 2px solid rgba(255, 255, 255, 0.04);
-            font-size: 11px;
+            font-size: 10px;
             color: #444;
             text-align: center;
             letter-spacing: 2px;
@@ -385,10 +341,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
             flex-wrap: wrap;
-            font-family: 'Segoe UI', sans-serif;
-            animation: fadeInUp 0.8s ease-out 1.8s both;
+            animation: fadeInUp 0.8s ease-out 1.0s both;
         }
 
         .footer-text i {
@@ -403,24 +358,23 @@
         .footer-text .back-btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 22px;
+            gap: 6px;
+            padding: 6px 18px;
             background: rgba(124, 58, 237, 0.1);
             border: 1px solid rgba(124, 58, 237, 0.1);
             border-radius: 50px;
             color: #a78bfa;
             text-decoration: none;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
-            font-family: 'Segoe UI', sans-serif;
         }
 
         .footer-text .back-btn:hover {
             background: rgba(124, 58, 237, 0.2);
-            transform: translateY(-3px) scale(1.05);
+            transform: translateY(-2px) scale(1.05);
             box-shadow: 0 8px 30px rgba(124, 58, 237, 0.15);
         }
 
@@ -432,17 +386,16 @@
         /* ===== COPY PROTECTION ===== */
         .copy-protection {
             position: fixed;
-            bottom: 20px;
+            bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 9px;
+            font-size: 8px;
             color: #1a1a1a;
             letter-spacing: 3px;
             text-transform: uppercase;
             user-select: none;
             pointer-events: none;
             z-index: 999;
-            font-family: 'Segoe UI', sans-serif;
         }
 
         .copy-protection i {
@@ -450,53 +403,203 @@
             margin-right: 6px;
         }
 
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: #0d0d12;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 16px;
+            max-width: 580px;
+            width: 90%;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        .modal h2 {
+            color: #00ff41;
+            font-size: 22px;
+            margin-bottom: 14px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .modal p {
+            color: #a8b8c8;
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 14px;
+        }
+
+        .modal .highlight-text {
+            color: #00ff41;
+            background: rgba(0, 255, 65, 0.05);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .modal .steps {
+            background: #0a0a0f;
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border: 1px solid #1a1a1a;
+        }
+
+        .modal .steps li {
+            color: #c8c8d4;
+            font-size: 12px;
+            line-height: 2.2;
+            list-style: none;
+        }
+
+        .modal .steps li::before {
+            content: "❯ ";
+            color: #00ff41;
+        }
+
+        .modal .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        .modal .btn-group .btn {
+            padding: 8px 20px;
+            border-radius: 8px;
+            border: 1px solid #2a2a2a;
+            background: transparent;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .modal .btn-group .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .modal .btn-group .btn-primary {
+            background: rgba(124, 58, 237, 0.15);
+            border-color: #7c3aed;
+            color: #a78bfa;
+        }
+
+        .modal .btn-group .btn-primary:hover {
+            background: rgba(124, 58, 237, 0.25);
+        }
+
+        .modal .btn-group .btn-success {
+            background: rgba(0, 255, 65, 0.05);
+            border-color: #00ff41;
+            color: #00ff41;
+        }
+
+        .modal .btn-group .btn-success:hover {
+            background: rgba(0, 255, 65, 0.1);
+        }
+
+        .modal .btn-group .btn-close {
+            border-color: #2a2a2a;
+            color: #666;
+        }
+
+        .modal .btn-group .btn-close:hover {
+            border-color: #ff4444;
+            color: #ff4444;
+        }
+
+        .modal .download-note {
+            color: #ffaa00;
+            font-size: 12px;
+            background: rgba(255, 170, 0, 0.05);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 170, 0, 0.1);
+        }
+
+        .modal .download-note a {
+            color: #00ff41;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .modal .download-note a:hover {
+            text-decoration: underline;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            body { padding: 20px; }
-            .container { padding: 30px 24px; }
+            body { padding: 16px; }
+            .container { padding: 25px 20px; }
             .header h1 { font-size: 16px; }
             .header .sub { display: none; }
-            .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 10px 12px; }
             .stats-bar .stat .number { font-size: 16px; }
             .stats-bar .stat .label { font-size: 8px; }
-            .item { padding: 14px 16px; flex-wrap: wrap; }
-            .item .number { font-size: 15px; min-width: 28px; }
-            .item .content .title { font-size: 13px; }
-            .item .badge { font-size: 8px; padding: 3px 12px; margin-left: auto; }
-            .empty-item { padding: 12px 16px; }
-            .empty-item .number { font-size: 14px; min-width: 28px; }
-            .empty-item .content .title { font-size: 12px; }
-            .footer-text { font-size: 9px; gap: 10px; }
-            .footer-text .back-btn { font-size: 9px; padding: 6px 16px; }
+            .item { padding: 12px 14px; flex-wrap: wrap; }
+            .item .number { font-size: 14px; min-width: 26px; }
+            .item .content .title { font-size: 12px; }
+            .badge-group { gap: 4px; }
+            .badge { font-size: 8px; padding: 3px 10px; }
+            .modal { padding: 20px; }
+            .modal h2 { font-size: 18px; }
+            .modal .steps li { font-size: 11px; }
+            .modal .btn-group .btn { font-size: 11px; padding: 6px 14px; }
         }
 
         @media (max-width: 480px) {
-            .container { padding: 20px 14px; }
-            .header h1 { font-size: 14px; }
-            .header-icon { width: 42px; height: 42px; font-size: 18px; }
-            .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 12px 14px; }
-            .stats-bar .stat { gap: 6px; }
-            .stats-bar .stat i { font-size: 13px; width: 16px; }
+            .container { padding: 16px 12px; }
+            .header h1 { font-size: 13px; }
+            .header-icon { width: 40px; height: 40px; font-size: 16px; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 8px 10px; }
+            .stats-bar .stat { gap: 4px; }
+            .stats-bar .stat i { font-size: 12px; width: 14px; }
             .stats-bar .stat .number { font-size: 14px; }
             .stats-bar .stat .label { font-size: 7px; letter-spacing: 0.5px; }
-            .item { padding: 12px 14px; flex-direction: column; gap: 4px; }
-            .item .number { font-size: 13px; min-width: auto; }
-            .item .content .title { font-size: 12px; }
-            .item .badge { font-size: 7px; padding: 2px 10px; align-self: flex-start; }
-            .empty-item { padding: 10px 14px; flex-direction: column; gap: 4px; }
-            .empty-item .number { font-size: 12px; min-width: auto; }
-            .empty-item .content .title { font-size: 11px; }
+            .item { padding: 10px 12px; flex-direction: column; gap: 6px; }
+            .item .number { font-size: 12px; min-width: auto; }
+            .item .content .title { font-size: 11px; }
+            .badge-group { justify-content: flex-start; }
+            .badge { font-size: 7px; padding: 2px 8px; }
+            .modal { padding: 16px; }
+            .modal h2 { font-size: 16px; }
+            .modal .steps li { font-size: 10px; line-height: 2; }
+            .modal .btn-group .btn { font-size: 10px; padding: 5px 12px; }
             .footer-text { font-size: 8px; gap: 8px; }
-            .footer-text .back-btn { font-size: 8px; padding: 4px 14px; }
+            .footer-text .back-btn { font-size: 8px; padding: 4px 12px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== CANVAS PARTICLES ===== -->
+    <!-- ===== PARTICLES ===== -->
     <canvas id="particleCanvas"></canvas>
 
-    <!-- ===== FLOATING BUBBLES ===== -->
     <div class="bubbles-container">
         <div class="bubble"></div>
         <div class="bubble"></div>
@@ -505,10 +608,9 @@
         <div class="bubble"></div>
     </div>
 
-    <!-- ===== MAIN CONTAINER ===== -->
+    <!-- ===== MAIN ===== -->
     <div class="container">
 
-        <!-- HEADER -->
         <div class="header">
             <div class="header-icon">
                 <i class="fas fa-laptop-code"></i>
@@ -519,7 +621,6 @@
             </span>
         </div>
 
-        <!-- STATS BAR -->
         <div class="stats-bar">
             <div class="stat">
                 <i class="fas fa-check-circle"></i>
@@ -528,12 +629,12 @@
             </div>
             <div class="stat">
                 <i class="fas fa-clock"></i>
-                <span class="number">04</span>
+                <span class="number">00</span>
                 <span class="label">IN PROGRESS</span>
             </div>
             <div class="stat">
                 <i class="fas fa-bullseye"></i>
-                <span class="number">06</span>
+                <span class="number">04</span>
                 <span class="label">MITRE TECHNIQUES</span>
             </div>
             <div class="stat">
@@ -543,10 +644,9 @@
             </div>
         </div>
 
-        <!-- ITEMS -->
         <div class="items">
 
-            <!-- ===== ITEM 1 - SOC Malware Investigation ===== -->
+            <!-- ITEM 1 -->
             <a href="soc malware investigation/malwae.html" class="item">
                 <span class="number">01.</span>
                 <div class="content">
@@ -557,13 +657,13 @@
                         <i class="fas fa-bolt"></i> AGENT TESLA MALWARE INVESTIGATION
                     </div>
                 </div>
-                <span class="badge">
+                <span class="badge badge-success">
                     <i class="fas fa-check-circle"></i> DONE
                 </span>
             </a>
 
-            <!-- ===== ITEM 2 - NETRECON PRO (NEW) ===== -->
-            <a href="https://github.com/likith-raj/NetRecon-Pro" target="_blank" class="item">
+            <!-- ITEM 2 - NETRECON PRO -->
+            <div class="item" style="cursor: default;">
                 <span class="number">02.</span>
                 <div class="content">
                     <div class="title">
@@ -573,54 +673,18 @@
                         <i class="fas fa-code"></i> PYTHON • NMAP • VULNERABILITY SCANNER • 2000+ LINES
                     </div>
                 </div>
-                <span class="badge badge-github">
-                    <i class="fab fa-github"></i> VIEW ON GITHUB
-                </span>
-            </a>
-
-            <!-- ===== ITEM 3 - Phishing Investigation ===== -->
-            <div class="empty-item">
-                <span class="number">03.</span>
-                <div class="content">
-                    <div class="title">
-                        <i class="fas fa-plus-circle"></i> PHISHING URL INVESTIGATION
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== ITEM 4 - PowerShell Malware ===== -->
-            <div class="empty-item">
-                <span class="number">04.</span>
-                <div class="content">
-                    <div class="title">
-                        <i class="fas fa-plus-circle"></i> POWERSHELL MALWARE ANALYSIS
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== ITEM 5 - Ransomware Investigation ===== -->
-            <div class="empty-item">
-                <span class="number">05.</span>
-                <div class="content">
-                    <div class="title">
-                        <i class="fas fa-plus-circle"></i> RANSOMWARE INVESTIGATION
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== ITEM 6 - C2 Traffic ===== -->
-            <div class="empty-item">
-                <span class="number">06.</span>
-                <div class="content">
-                    <div class="title">
-                        <i class="fas fa-plus-circle"></i> C2 TRAFFIC INVESTIGATION
-                    </div>
+                <div class="badge-group">
+                    <a href="https://github.com/likith-raj/NetRecon-Pro" target="_blank" class="badge badge-github">
+                        <i class="fab fa-github"></i> VIEW ON GITHUB
+                    </a>
+                    <span class="badge badge-cmd" onclick="openRealCMD()">
+                        <i class="fas fa-window-maximize"></i> OPEN CMD
+                    </span>
                 </div>
             </div>
 
         </div>
 
-        <!-- FOOTER -->
         <div class="footer-text">
             <i class="fas fa-shield-alt"></i>
             <span class="status-text">SOC INVESTIGATIONS</span>
@@ -633,15 +697,49 @@
 
     </div>
 
-    <!-- ===== COPY PROTECTION ===== -->
+    <!-- ===== MODAL ===== -->
+    <div class="modal-overlay" id="cmdModal">
+        <div class="modal">
+            <h2>💻 OPEN CMD</h2>
+            <p>Follow these steps to run NetRecon Pro:</p>
+
+            <div class="steps">
+                <li><span class="highlight-text">Step 1:</span> Download from GitHub (if not downloaded)</li>
+                <li><span class="highlight-text">Step 2:</span> Extract to: <strong>C:\Users\hp\Desktop\NetRecon</strong></li>
+                <li><span class="highlight-text">Step 3:</span> Click <strong>"OPEN CMD"</strong> button below</li>
+                <li><span class="highlight-text">Step 4:</span> Type: <strong>python netrecon.py</strong></li>
+                <li><span class="highlight-text">Step 5:</span> NetRecon Pro runs! 🚀</li>
+            </div>
+
+            <div class="download-note">
+                <i class="fas fa-info-circle"></i>
+                <strong>Files not found?</strong> 
+                <a href="https://github.com/likith-raj/NetRecon-Pro" target="_blank">
+                    Download from GitHub
+                </a>
+                and extract to: <strong>C:\Users\hp\Desktop\NetRecon</strong>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-success" onclick="openCMD()">
+                    <i class="fas fa-window-maximize"></i> OPEN CMD
+                </button>
+                <a href="https://github.com/likith-raj/NetRecon-Pro" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i> DOWNLOAD
+                </a>
+                <button class="btn btn-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i> CLOSE
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div class="copy-protection">
         <i class="fas fa-copyright"></i> COPY PROTECTED &bull; SOC WORK STATION
     </div>
 
     <script>
-        // =============================================
-        // CANVAS PARTICLES
-        // =============================================
+        // ===== PARTICLES =====
         var canvas = document.getElementById('particleCanvas');
         var ctx = canvas.getContext('2d');
 
@@ -655,15 +753,15 @@
         var particles = [];
         var colors = ['#7c3aed', '#06b6d4', '#f59e0b', '#22c55e', '#ec4899', '#8b5cf6', '#f43f5e'];
 
-        for (var i = 0; i < 60; i++) {
+        for (var i = 0; i < 50; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                radius: Math.random() * 3 + 1.5,
-                dx: (Math.random() - 0.5) * 0.6,
-                dy: (Math.random() - 0.5) * 0.6,
+                radius: Math.random() * 2.5 + 1,
+                dx: (Math.random() - 0.5) * 0.5,
+                dy: (Math.random() - 0.5) * 0.5,
                 color: colors[Math.floor(Math.random() * colors.length)],
-                opacity: Math.random() * 0.12 + 0.03
+                opacity: Math.random() * 0.1 + 0.02
             });
         }
 
@@ -684,33 +782,71 @@
         }
         drawParticles();
 
-        // =============================================
-        // DISABLE RIGHT CLICK
-        // =============================================
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            alert('🔒 COPYING IS DISABLED. THIS IS A SOC WORK STATION.');
-        });
+        // ===== MODAL =====
+        function openRealCMD() {
+            document.getElementById('cmdModal').classList.add('active');
+        }
 
-        // =============================================
-        // DISABLE KEYBOARD SHORTCUTS
-        // =============================================
+        function closeModal() {
+            document.getElementById('cmdModal').classList.remove('active');
+        }
+
+        // ===== OPEN CMD =====
+        function openCMD() {
+            closeModal();
+
+            // Method 1: ActiveX (Internet Explorer)
+            try {
+                var shell = new ActiveXObject('WScript.Shell');
+                shell.Run('cmd.exe /k "echo ============================================== && echo  NETRECON PRO READY! && echo ============================================== && echo. && echo  [1] Checking path: C:\\Users\\hp\\Desktop\\NetRecon && echo. && if exist C:\\Users\\hp\\Desktop\\NetRecon (echo  ✅ Folder found! && echo. && cd C:\\Users\\hp\\Desktop\\NetRecon && echo  [2] Current Path: && cd && echo. && echo  [3] Type: python netrecon.py && echo. && echo  [4] Press Enter to start!) else (echo  ❌ Folder not found! && echo. && echo  Please download from: && echo  https://github.com/likith-raj/NetRecon-Pro && echo. && echo  Extract to: C:\\Users\\hp\\Desktop\\NetRecon) && echo."', 1, false);
+                return;
+            } catch(e) {}
+
+            // Method 2: Protocol
+            try {
+                window.location.href = 'cmd://';
+                return;
+            } catch(e) {}
+
+            // Method 3: Instructions
+            alert(
+                '⚠️ CMD cannot be opened directly.\n\n' +
+                'Please open CMD manually:\n' +
+                '1. Press Windows + R\n' +
+                '2. Type: cmd\n' +
+                '3. Press Enter\n\n' +
+                'Then run:\n' +
+                'cd C:\\Users\\hp\\Desktop\\NetRecon\n' +
+                'python netrecon.py\n\n' +
+                'If files not found:\n' +
+                'Download from GitHub:\n' +
+                'https://github.com/likith-raj/NetRecon-Pro'
+            );
+
+            window.open('https://github.com/likith-raj/NetRecon-Pro', '_blank');
+        }
+
+        // ===== ESC KEY =====
         document.addEventListener('keydown', function(e) {
-            if (
-                (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'p')) ||
-                e.key === 'F12'
-            ) {
+            if (e.key === 'Escape') closeModal();
+            if ((e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'p')) || e.key === 'F12') {
                 e.preventDefault();
-                alert('🔒 COPYING IS DISABLED. THIS IS A SOC WORK STATION.');
+                alert('🔒 Copying is disabled.');
                 return false;
             }
         });
 
-        // =============================================
-        // DISABLE SELECTION
-        // =============================================
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert('🔒 Copying is disabled.');
+        });
+
         document.addEventListener('selectstart', function(e) { e.preventDefault(); });
         document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+
+        document.getElementById('cmdModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
     </script>
 
 </body>
