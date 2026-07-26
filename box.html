@@ -234,6 +234,7 @@
         .item:nth-child(3) { animation-delay: 1.0s; }
         .item:nth-child(4) { animation-delay: 1.2s; }
         .item:nth-child(5) { animation-delay: 1.4s; }
+        .item:nth-child(6) { animation-delay: 1.6s; }
 
         @keyframes slideInRight {
             0% { opacity: 0; transform: translateX(30px); }
@@ -320,6 +321,16 @@
             font-size: 10px;
         }
 
+        .item .badge-github {
+            background: rgba(124, 58, 237, 0.1);
+            color: #a78bfa;
+            border: 1px solid rgba(124, 58, 237, 0.1);
+        }
+
+        .item:hover .badge-github {
+            background: rgba(124, 58, 237, 0.2);
+        }
+
         /* ===== EMPTY SLOT ===== */
         .empty-item {
             display: flex;
@@ -377,7 +388,7 @@
             gap: 16px;
             flex-wrap: wrap;
             font-family: 'Segoe UI', sans-serif;
-            animation: fadeInUp 0.8s ease-out 1.6s both;
+            animation: fadeInUp 0.8s ease-out 1.8s both;
         }
 
         .footer-text i {
@@ -512,7 +523,7 @@
         <div class="stats-bar">
             <div class="stat">
                 <i class="fas fa-check-circle"></i>
-                <span class="number">01</span>
+                <span class="number">02</span>
                 <span class="label">COMPLETED</span>
             </div>
             <div class="stat">
@@ -535,7 +546,7 @@
         <!-- ITEMS -->
         <div class="items">
 
-            <!-- ===== ITEM 1 - CLICKABLE (SAME TAB) ===== -->
+            <!-- ===== ITEM 1 - SOC Malware Investigation ===== -->
             <a href="soc malware investigation/malwae.html" class="item">
                 <span class="number">01.</span>
                 <div class="content">
@@ -551,9 +562,25 @@
                 </span>
             </a>
 
-            <!-- ===== EMPTY SLOT 2 ===== -->
-            <div class="empty-item">
+            <!-- ===== ITEM 2 - NETRECON PRO (NEW) ===== -->
+            <a href="https://github.com/likith-raj/NetRecon-Pro" target="_blank" class="item">
                 <span class="number">02.</span>
+                <div class="content">
+                    <div class="title">
+                        <span>🔍 NETRECON PRO</span> NETWORK RECONNAISSANCE TOOL
+                    </div>
+                    <div class="desc">
+                        <i class="fas fa-code"></i> PYTHON • NMAP • VULNERABILITY SCANNER • 2000+ LINES
+                    </div>
+                </div>
+                <span class="badge badge-github">
+                    <i class="fab fa-github"></i> VIEW ON GITHUB
+                </span>
+            </a>
+
+            <!-- ===== ITEM 3 - Phishing Investigation ===== -->
+            <div class="empty-item">
+                <span class="number">03.</span>
                 <div class="content">
                     <div class="title">
                         <i class="fas fa-plus-circle"></i> PHISHING URL INVESTIGATION
@@ -561,9 +588,9 @@
                 </div>
             </div>
 
-            <!-- ===== EMPTY SLOT 3 ===== -->
+            <!-- ===== ITEM 4 - PowerShell Malware ===== -->
             <div class="empty-item">
-                <span class="number">03.</span>
+                <span class="number">04.</span>
                 <div class="content">
                     <div class="title">
                         <i class="fas fa-plus-circle"></i> POWERSHELL MALWARE ANALYSIS
@@ -571,9 +598,9 @@
                 </div>
             </div>
 
-            <!-- ===== EMPTY SLOT 4 ===== -->
+            <!-- ===== ITEM 5 - Ransomware Investigation ===== -->
             <div class="empty-item">
-                <span class="number">04.</span>
+                <span class="number">05.</span>
                 <div class="content">
                     <div class="title">
                         <i class="fas fa-plus-circle"></i> RANSOMWARE INVESTIGATION
@@ -581,9 +608,9 @@
                 </div>
             </div>
 
-            <!-- ===== EMPTY SLOT 5 ===== -->
+            <!-- ===== ITEM 6 - C2 Traffic ===== -->
             <div class="empty-item">
-                <span class="number">05.</span>
+                <span class="number">06.</span>
                 <div class="content">
                     <div class="title">
                         <i class="fas fa-plus-circle"></i> C2 TRAFFIC INVESTIGATION
