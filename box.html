@@ -194,6 +194,7 @@
 
         .item:nth-child(1) { animation-delay: 0.6s; }
         .item:nth-child(2) { animation-delay: 0.8s; }
+        .item:nth-child(3) { animation-delay: 1.0s; }
 
         @keyframes slideInRight {
             0% { opacity: 0; transform: translateX(30px); }
@@ -298,6 +299,17 @@
             background: rgba(0, 255, 65, 0.1);
             transform: scale(1.05);
             border-color: #00ff41;
+        }
+
+        .badge-case-study {
+            background: rgba(255, 165, 2, 0.1);
+            color: #ffa502;
+            border-color: rgba(255, 165, 2, 0.1);
+        }
+
+        .badge-case-study:hover {
+            background: rgba(255, 165, 2, 0.2);
+            transform: scale(1.05);
         }
 
         .empty-item { display: none; }
@@ -613,7 +625,7 @@
         <div class="stats-bar">
             <div class="stat">
                 <i class="fas fa-check-circle"></i>
-                <span class="number">02</span>
+                <span class="number">03</span>
                 <span class="label">COMPLETED</span>
             </div>
             <div class="stat">
@@ -635,6 +647,7 @@
 
         <div class="items">
 
+            <!-- ITEM 1: SOC Malware Investigation -->
             <a href="soc malware investigation/malwae.html" class="item">
                 <span class="number">01.</span>
                 <div class="content">
@@ -650,6 +663,7 @@
                 </span>
             </a>
 
+            <!-- ITEM 2: NetRecon Pro -->
             <div class="item" style="cursor: default;">
                 <span class="number">02.</span>
                 <div class="content">
@@ -669,6 +683,22 @@
                     </span>
                 </div>
             </div>
+
+            <!-- ITEM 3: KURO SCAM INVESTIGATION (NEW) -->
+            <a href="https://likith-raj.github.io/kuro-scam-investigation/" target="_blank" class="item">
+                <span class="number">03.</span>
+                <div class="content">
+                    <div class="title">
+                        <span>🛡️ KURO SCAM</span> MALWARE INVESTIGATION
+                    </div>
+                    <div class="desc">
+                        <i class="fas fa-skull"></i> ELECTRON-BASED CREDENTIAL STEALER • HONEY TRAP • INCIDENT RESPONSE
+                    </div>
+                </div>
+                <span class="badge badge-case-study">
+                    <i class="fas fa-external-link-alt"></i> VIEW CASE STUDY
+                </span>
+            </a>
 
         </div>
 
