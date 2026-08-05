@@ -45,31 +45,31 @@
         }
 
         [data-theme="light"] {
-            --bg: #ffffff;
-            --text: #111111;
-            --text-secondary: #555555;
-            --text-light: #888888;
-            --card-bg: rgba(255, 255, 255, 0.7);
-            --card-border: rgba(0, 0, 0, 0.06);
-            --nav-bg: rgba(255, 255, 255, 0.85);
-            --nav-scroll: rgba(255, 255, 255, 0.95);
-            --shadow: rgba(0, 0, 0, 0.06);
-            --bubble-opacity: 0.15;
-            --particle-bg: #ffffff;
-            --footer-border: rgba(0, 0, 0, 0.06);
-            --loader-bg: #ffffff;
-            --loader-text: rgba(0, 0, 0, 0.2);
-            --input-bg: rgba(0, 0, 0, 0.02);
-            --input-border: rgba(0, 0, 0, 0.06);
-            --input-text: #111;
-            --input-placeholder: #999;
-            --highlight: #7c3aed;
-            --highlight2: #06b6d4;
-            --highlight-text: #7c3aed;
-            --stat-bg: rgba(0, 0, 0, 0.02);
-            --stat-border: rgba(124, 58, 237, 0.08);
-            --toggle-bg: rgba(0, 0, 0, 0.03);
-            --toggle-border: rgba(124, 58, 237, 0.4);
+            --bg: #0d0d14;
+            --text: #e8e8e8;
+            --text-secondary: #aaa;
+            --text-light: #888;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.04);
+            --nav-bg: rgba(13, 13, 20, 0.9);
+            --nav-scroll: rgba(13, 13, 20, 0.95);
+            --shadow: rgba(0, 0, 0, 0.4);
+            --bubble-opacity: 0.08;
+            --particle-bg: #0d0d14;
+            --footer-border: rgba(255, 255, 255, 0.04);
+            --loader-bg: #0d0d14;
+            --loader-text: rgba(255, 255, 255, 0.2);
+            --input-bg: rgba(255, 255, 255, 0.03);
+            --input-border: rgba(255, 255, 255, 0.05);
+            --input-text: #e8e8e8;
+            --input-placeholder: #666;
+            --highlight: #8b5cf6;
+            --highlight2: #22d3ee;
+            --highlight-text: #a78bfa;
+            --stat-bg: rgba(255, 255, 255, 0.02);
+            --stat-border: rgba(139, 92, 246, 0.08);
+            --toggle-bg: rgba(255, 255, 255, 0.05);
+            --toggle-border: rgba(139, 92, 246, 0.3);
         }
 
         html,
@@ -167,6 +167,7 @@
             animation: shadowFade 5s ease-in-out infinite;
         }
 
+        /* EYES - ONLY BLINK, NO MOVEMENT AT ALL */
         .stickman-wave #eyeLeft,
         .stickman-wave #eyeRight {
             animation: blink 5s ease-in-out infinite;
@@ -224,9 +225,10 @@
             100% { opacity: 1; }
         }
 
+        /* EYES - PURE BLINK, STAY IN PLACE */
         @keyframes blink {
-            0%, 34%, 40%, 60%, 66%, 100% { transform: scaleY(1); }
-            37%, 63% { transform: scaleY(0.1); }
+            0%, 34%, 40%, 60%, 66%, 100% { transform: scale(1, 1); }
+            37%, 63% { transform: scale(1, 0.1); }
         }
 
         @keyframes glowPulse {
@@ -1555,7 +1557,7 @@
     </button>
 
     <!-- ============================================================
-         STICKMAN - 4X BIGGER
+         STICKMAN - 4X BIGGER (FIXED EYES - ONLY BLINK)
          ============================================================ -->
     <div id="stickman-container">
         <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
@@ -1680,7 +1682,7 @@
                 <!-- Hat shadow on forehead -->
                 <path d="M183,86 Q200,94 217,86 L217,90 Q200,98 183,90 Z" fill="#000000" opacity="0.22" stroke="none"/>
 
-                <!-- EYES -->
+                <!-- EYES - PERFECTLY FIXED: ONLY BLINK, NO MOVEMENT -->
                 <ellipse id="eyeLeft" cx="192" cy="97" rx="2.6" ry="3.4" fill="#0a0f1a"/>
                 <ellipse id="eyeRight" cx="208" cy="97" rx="2.6" ry="3.4" fill="#0a0f1a"/>
 
