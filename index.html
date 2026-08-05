@@ -17,6 +17,7 @@
 
         /* ===== THEME VARIABLES ===== */
         :root {
+            /* DARK THEME (default) */
             --bg: #0a0a0f;
             --text: #e0e0e0;
             --text-secondary: #999;
@@ -45,33 +46,34 @@
             --stickman-color: #a78bfa;
         }
 
-        [data-theme="light"] {
-            --bg: #f0f0f5;
-            --text: #111111;
-            --text-secondary: #555555;
-            --text-light: #888888;
-            --card-bg: rgba(255, 255, 255, 0.7);
-            --card-border: rgba(0, 0, 0, 0.06);
-            --nav-bg: rgba(255, 255, 255, 0.85);
-            --nav-scroll: rgba(255, 255, 255, 0.95);
-            --shadow: rgba(0, 0, 0, 0.06);
-            --bubble-opacity: 0.15;
-            --particle-bg: #f0f0f5;
-            --footer-border: rgba(0, 0, 0, 0.06);
-            --loader-bg: #f0f0f5;
-            --loader-text: rgba(0, 0, 0, 0.2);
-            --input-bg: rgba(0, 0, 0, 0.02);
-            --input-border: rgba(0, 0, 0, 0.06);
-            --input-text: #111;
-            --input-placeholder: #999;
-            --highlight: #7c3aed;
-            --highlight2: #06b6d4;
-            --highlight-text: #7c3aed;
-            --stat-bg: rgba(0, 0, 0, 0.02);
-            --stat-border: rgba(124, 58, 237, 0.08);
-            --toggle-bg: rgba(0, 0, 0, 0.03);
-            --toggle-border: rgba(124, 58, 237, 0.4);
-            --stickman-color: #7c3aed;
+        /* BROWN / AMBER THEME (warm, cozy) */
+        [data-theme="brown"] {
+            --bg: #1a120e;
+            --text: #f0e6d3;
+            --text-secondary: #b8a690;
+            --text-light: #8a7a66;
+            --card-bg: rgba(255, 245, 230, 0.04);
+            --card-border: rgba(200, 170, 140, 0.08);
+            --nav-bg: rgba(26, 18, 14, 0.88);
+            --nav-scroll: rgba(26, 18, 14, 0.96);
+            --shadow: rgba(0, 0, 0, 0.4);
+            --bubble-opacity: 0.08;
+            --particle-bg: #1a120e;
+            --footer-border: rgba(200, 170, 140, 0.06);
+            --loader-bg: #1a120e;
+            --loader-text: rgba(240, 230, 211, 0.25);
+            --input-bg: rgba(255, 245, 230, 0.03);
+            --input-border: rgba(200, 170, 140, 0.08);
+            --input-text: #f0e6d3;
+            --input-placeholder: #6a5a4a;
+            --highlight: #d97706;
+            --highlight2: #b45309;
+            --highlight-text: #f59e0b;
+            --stat-bg: rgba(255, 245, 230, 0.03);
+            --stat-border: rgba(217, 119, 6, 0.08);
+            --toggle-bg: rgba(255, 245, 230, 0.06);
+            --toggle-border: rgba(217, 119, 6, 0.3);
+            --stickman-color: #f59e0b;
         }
 
         html,
@@ -121,18 +123,18 @@
 
         #themeToggle:hover {
             transform: scale(1.1) rotate(15deg);
-            box-shadow: 0 6px 24px rgba(124, 58, 237, 0.25);
+            box-shadow: 0 6px 24px rgba(217, 119, 6, 0.25);
             border-color: var(--highlight);
         }
 
         #themeToggle .icon-sun { display: none; }
         #themeToggle .icon-moon { display: inline; }
 
-        [data-theme="light"] #themeToggle .icon-sun { display: inline; }
-        [data-theme="light"] #themeToggle .icon-moon { display: none; }
+        [data-theme="brown"] #themeToggle .icon-sun { display: inline; }
+        [data-theme="brown"] #themeToggle .icon-moon { display: none; }
 
         /* ============================================================
-           STICKMAN - 4X BIGGER (Fade in 4 seconds)
+           STICKMAN - 4X BIGGER (Fade in 2.5 seconds)
            ============================================================ */
         #stickman-container {
             position: fixed;
@@ -156,48 +158,48 @@
             width: 100%;
             height: 100%;
             overflow: visible;
-            filter: drop-shadow(0 8px 40px rgba(124, 58, 237, 0.2));
+            filter: drop-shadow(0 8px 40px rgba(217, 119, 6, 0.2));
         }
 
-        /* ===== ANIMATIONS - Fade in 4 seconds ===== */
+        /* ===== ANIMATIONS - Fade in 2.5 seconds ===== */
         .stickman-wave #figure {
-            animation: figureFade 5s ease-in-out infinite,
-                       idleBob 5s ease-in-out infinite;
+            animation: figureFade 3.2s ease-in-out infinite,
+                       idleBob 3.2s ease-in-out infinite;
         }
 
         .stickman-wave #shadow {
-            animation: shadowFade 5s ease-in-out infinite;
+            animation: shadowFade 3.2s ease-in-out infinite;
         }
 
         .stickman-wave #eyeLeft,
         .stickman-wave #eyeRight {
-            animation: blink 5s ease-in-out infinite;
+            animation: blink 3.2s ease-in-out infinite;
         }
 
         .stickman-wave #mouthNeutral {
-            animation: neutralMouth 5s ease-in-out infinite;
+            animation: neutralMouth 3.2s ease-in-out infinite;
         }
 
         .stickman-wave #mouthHappy {
-            animation: happyMouth 5s ease-in-out infinite;
+            animation: happyMouth 3.2s ease-in-out infinite;
         }
 
         .stickman-wave #lampGlowOuter {
             animation: glowPulse 1.8s ease-in-out infinite;
         }
 
-        /* Keyframes - 4 second fade timing */
+        /* Keyframes - 2.5 second fade timing (total 3.2s loop) */
         @keyframes figureFade {
             0%   { opacity: 0; }
-            15%  { opacity: 1; }
-            85%  { opacity: 1; }
+            20%  { opacity: 1; }
+            80%  { opacity: 1; }
             100% { opacity: 0; }
         }
 
         @keyframes shadowFade {
             0%   { opacity: 0; }
-            15%  { opacity: 0.45; }
-            85%  { opacity: 0.45; }
+            20%  { opacity: 0.45; }
+            80%  { opacity: 0.45; }
             100% { opacity: 0; }
         }
 
@@ -274,7 +276,7 @@
         #loader .spinner {
             width: 55px;
             height: 55px;
-            border: 3px solid rgba(124, 58, 237, 0.1);
+            border: 3px solid rgba(217, 119, 6, 0.1);
             border-top: 3px solid var(--highlight);
             border-radius: 50%;
             animation: spin 0.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
@@ -522,13 +524,13 @@
             display: inline-block;
             padding: 5px 16px;
             border-radius: 50px;
-            background: rgba(124, 58, 237, 0.08);
+            background: rgba(217, 119, 6, 0.08);
             color: var(--highlight-text);
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 1px;
             margin-bottom: 18px;
-            border: 1px solid rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(217, 119, 6, 0.1);
             text-transform: uppercase;
         }
 
@@ -605,7 +607,7 @@
         .btn:hover {
             transform: translateY(-4px) scale(1.02);
             border-color: var(--highlight);
-            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.08);
+            box-shadow: 0 20px 40px rgba(217, 119, 6, 0.08);
         }
 
         .btn-outline {
@@ -613,17 +615,17 @@
             border: 1px solid var(--card-border);
         }
         .btn-outline:hover {
-            background: rgba(124, 58, 237, 0.05);
+            background: rgba(217, 119, 6, 0.05);
             border-color: var(--highlight);
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--highlight), #6d28d9);
+            background: linear-gradient(135deg, var(--highlight), #b45309);
             color: #fff;
             border: none;
         }
         .btn-primary:hover {
-            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.25);
+            box-shadow: 0 20px 40px rgba(217, 119, 6, 0.25);
             transform: translateY(-4px) scale(1.02);
         }
 
@@ -662,7 +664,7 @@
             background: var(--highlight);
             color: #fff;
             transform: translateY(-4px) scale(1.08);
-            box-shadow: 0 12px 28px rgba(124, 58, 237, 0.2);
+            box-shadow: 0 12px 28px rgba(217, 119, 6, 0.2);
         }
 
         h2 {
@@ -711,9 +713,9 @@
 
         .skill-card:hover {
             transform: translateY(-8px) scale(1.02);
-            border-color: rgba(124, 58, 237, 0.15);
-            background: rgba(124, 58, 237, 0.03);
-            box-shadow: 0 20px 50px rgba(124, 58, 237, 0.03);
+            border-color: rgba(217, 119, 6, 0.15);
+            background: rgba(217, 119, 6, 0.03);
+            box-shadow: 0 20px 50px rgba(217, 119, 6, 0.03);
         }
 
         .skill-card .skill-icon {
@@ -752,9 +754,9 @@
 
         .project-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(124, 58, 237, 0.15);
-            background: rgba(124, 58, 237, 0.03);
-            box-shadow: 0 20px 50px rgba(124, 58, 237, 0.03);
+            border-color: rgba(217, 119, 6, 0.15);
+            background: rgba(217, 119, 6, 0.03);
+            box-shadow: 0 20px 50px rgba(217, 119, 6, 0.03);
         }
 
         .project-card h4 {
@@ -777,7 +779,7 @@
             display: inline-block;
             padding: 3px 12px;
             border-radius: 50px;
-            background: rgba(124, 58, 237, 0.06);
+            background: rgba(217, 119, 6, 0.06);
             color: var(--highlight-text);
             font-size: 11px;
             font-weight: 700;
@@ -792,7 +794,7 @@
             gap: 8px;
             margin-top: 12px;
             padding: 8px 18px;
-            background: linear-gradient(135deg, var(--highlight), #6d28d9);
+            background: linear-gradient(135deg, var(--highlight), #b45309);
             color: #fff;
             text-decoration: none;
             border-radius: 50px;
@@ -806,7 +808,7 @@
 
         .project-link:hover {
             transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 12px 30px rgba(124, 58, 237, 0.2);
+            box-shadow: 0 12px 30px rgba(217, 119, 6, 0.2);
         }
 
         .cert-grid {
@@ -832,9 +834,9 @@
 
         .cert-card:hover {
             transform: translateY(-8px) scale(1.02);
-            border-color: rgba(124, 58, 237, 0.15);
-            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.03);
-            background: rgba(124, 58, 237, 0.03);
+            border-color: rgba(217, 119, 6, 0.15);
+            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.03);
+            background: rgba(217, 119, 6, 0.03);
         }
 
         .cert-card.cisco { border-top: 4px solid var(--highlight); }
@@ -873,7 +875,7 @@
         }
 
         .cert-card.cisco .cert-badge {
-            background: rgba(124, 58, 237, 0.08);
+            background: rgba(217, 119, 6, 0.08);
             color: var(--highlight-text);
         }
         .cert-card.jsoc .cert-badge {
@@ -925,9 +927,9 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            background: rgba(124, 58, 237, 0.06);
+            background: rgba(217, 119, 6, 0.06);
             color: var(--highlight-text);
-            border: 1px solid rgba(124, 58, 237, 0.06);
+            border: 1px solid rgba(217, 119, 6, 0.06);
         }
 
         .cert-card .cert-hint {
@@ -1034,7 +1036,7 @@
 
         .contact-box:hover {
             transform: translateY(-4px);
-            border-color: rgba(124, 58, 237, 0.15);
+            border-color: rgba(217, 119, 6, 0.15);
         }
 
         @keyframes fadeInUp {
@@ -1078,7 +1080,7 @@
         .contact-box textarea:focus {
             outline: none;
             border-color: var(--highlight);
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.04);
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.04);
         }
 
         .contact-box input::placeholder,
@@ -1097,7 +1099,7 @@
             gap: 8px;
             padding: 11px 28px;
             border-radius: 10px;
-            background: linear-gradient(135deg, var(--highlight), #6d28d9);
+            background: linear-gradient(135deg, var(--highlight), #b45309);
             color: #fff;
             font-weight: 700;
             font-size: 12px;
@@ -1112,7 +1114,7 @@
 
         .contact-box .btn-submit:hover {
             transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 12px 30px rgba(124, 58, 237, 0.2);
+            box-shadow: 0 12px 30px rgba(217, 119, 6, 0.2);
         }
 
         .contact-box .btn-submit i {
@@ -1140,7 +1142,7 @@
 
         .contact-info:hover {
             transform: translateY(-4px);
-            border-color: rgba(124, 58, 237, 0.15);
+            border-color: rgba(217, 119, 6, 0.15);
         }
 
         .contact-info h3 {
@@ -1150,7 +1152,7 @@
             letter-spacing: 1px;
             color: var(--text);
             margin-bottom: 16px;
-            border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+            border-bottom: 1px solid rgba(217, 119, 6, 0.1);
             padding-bottom: 10px;
         }
 
@@ -1213,19 +1215,19 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: rgba(124, 58, 237, 0.04);
+            background: rgba(217, 119, 6, 0.04);
             color: var(--highlight-text);
             font-size: 16px;
             transition: all 0.3s ease;
             text-decoration: none;
-            border: 1px solid rgba(124, 58, 237, 0.04);
+            border: 1px solid rgba(217, 119, 6, 0.04);
         }
 
         .contact-info .social-links a:hover {
             background: var(--highlight);
             color: #fff;
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.15);
+            box-shadow: 0 8px 20px rgba(217, 119, 6, 0.15);
         }
 
         footer {
@@ -1346,8 +1348,8 @@
             display: inline-block;
             padding: 4px 16px;
             border-radius: 50px;
-            background: rgba(124, 58, 237, 0.1);
-            color: #a78bfa;
+            background: rgba(217, 119, 6, 0.1);
+            color: #f59e0b;
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
@@ -1547,7 +1549,7 @@
     </button>
 
     <!-- ============================================================
-         STICKMAN - 4X BIGGER (Fade in 4 seconds)
+         STICKMAN - 4X BIGGER (Fade in 2.5 seconds)
          ============================================================ -->
     <div id="stickman-container">
         <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
@@ -1968,7 +1970,7 @@
 
         function showStickman() {
             // Reset all classes
-            stickmanContainer.classList.remove('show', 'stickman-wave', 'stickman-fadeout');
+            stickmanContainer.classList.remove('show', 'stickman-wave');
 
             // Force reflow
             void stickmanContainer.offsetWidth;
@@ -1981,16 +1983,14 @@
                 stickmanContainer.classList.add('stickman-wave');
             }, 200);
 
-            // Fade out stickman after 5 seconds
+            // Fade out stickman after 3.2 seconds (matches animation loop)
             setTimeout(() => {
                 stickmanContainer.classList.remove('stickman-wave');
-                stickmanContainer.classList.add('stickman-fadeout');
-
                 // Remove completely after fade
                 setTimeout(() => {
-                    stickmanContainer.classList.remove('show', 'stickman-fadeout');
+                    stickmanContainer.classList.remove('show');
                 }, 600);
-            }, 5000);
+            }, 3200);
         }
 
         function setTheme(theme, event) {
@@ -2018,7 +2018,7 @@
 
         themeToggle.addEventListener('click', (e) => {
             const current = getTheme();
-            const next = current === 'dark' ? 'light' : 'dark';
+            const next = current === 'dark' ? 'brown' : 'dark';
             setTheme(next, e);
         });
 
@@ -2095,7 +2095,7 @@
         window.addEventListener('resize', resizeCanvas);
 
         const particles = [];
-        const colors = ['#7c3aed', '#06b6d4', '#f59e0b', '#22c55e', '#ec4899', '#8b5cf6'];
+        const colors = ['#d97706', '#b45309', '#f59e0b', '#92400e', '#78350f'];
 
         for (let i = 0; i < 60; i++) {
             particles.push({
@@ -2208,7 +2208,7 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SENDING...';
             statusDiv.innerHTML = '';
-            statusDiv.style.color = '#a78bfa';
+            statusDiv.style.color = '#f59e0b';
 
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
