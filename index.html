@@ -42,34 +42,36 @@
             --stat-border: rgba(124, 58, 237, 0.04);
             --toggle-bg: rgba(255, 255, 255, 0.05);
             --toggle-border: rgba(124, 58, 237, 0.3);
+            --stickman-color: #a78bfa;
         }
 
         [data-theme="light"] {
-            --bg: #0d0d14;
-            --text: #e8e8e8;
-            --text-secondary: #aaa;
-            --text-light: #888;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.04);
-            --nav-bg: rgba(13, 13, 20, 0.9);
-            --nav-scroll: rgba(13, 13, 20, 0.95);
-            --shadow: rgba(0, 0, 0, 0.4);
-            --bubble-opacity: 0.08;
-            --particle-bg: #0d0d14;
-            --footer-border: rgba(255, 255, 255, 0.04);
-            --loader-bg: #0d0d14;
-            --loader-text: rgba(255, 255, 255, 0.2);
-            --input-bg: rgba(255, 255, 255, 0.03);
-            --input-border: rgba(255, 255, 255, 0.05);
-            --input-text: #e8e8e8;
-            --input-placeholder: #666;
-            --highlight: #8b5cf6;
-            --highlight2: #22d3ee;
-            --highlight-text: #a78bfa;
-            --stat-bg: rgba(255, 255, 255, 0.02);
-            --stat-border: rgba(139, 92, 246, 0.08);
-            --toggle-bg: rgba(255, 255, 255, 0.05);
-            --toggle-border: rgba(139, 92, 246, 0.3);
+            --bg: #f0f0f5;
+            --text: #111111;
+            --text-secondary: #555555;
+            --text-light: #888888;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --card-border: rgba(0, 0, 0, 0.06);
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --nav-scroll: rgba(255, 255, 255, 0.95);
+            --shadow: rgba(0, 0, 0, 0.06);
+            --bubble-opacity: 0.15;
+            --particle-bg: #f0f0f5;
+            --footer-border: rgba(0, 0, 0, 0.06);
+            --loader-bg: #f0f0f5;
+            --loader-text: rgba(0, 0, 0, 0.2);
+            --input-bg: rgba(0, 0, 0, 0.02);
+            --input-border: rgba(0, 0, 0, 0.06);
+            --input-text: #111;
+            --input-placeholder: #999;
+            --highlight: #7c3aed;
+            --highlight2: #06b6d4;
+            --highlight-text: #7c3aed;
+            --stat-bg: rgba(0, 0, 0, 0.02);
+            --stat-border: rgba(124, 58, 237, 0.08);
+            --toggle-bg: rgba(0, 0, 0, 0.03);
+            --toggle-border: rgba(124, 58, 237, 0.4);
+            --stickman-color: #7c3aed;
         }
 
         html,
@@ -81,7 +83,7 @@
             user-select: none;
             margin: 0;
             padding: 0;
-            transition: background 0.5s ease, color 0.5s ease;
+            transition: background 0.6s ease, color 0.6s ease;
         }
 
         ::-webkit-scrollbar {
@@ -130,7 +132,7 @@
         [data-theme="light"] #themeToggle .icon-moon { display: none; }
 
         /* ============================================================
-           STICKMAN - 4X BIGGER (Hidden by default)
+           STICKMAN - 4X BIGGER (Fade in 4 seconds)
            ============================================================ */
         #stickman-container {
             position: fixed;
@@ -142,7 +144,7 @@
             pointer-events: none;
             opacity: 0;
             transform: scale(0.3) translateY(-20px);
-            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         #stickman-container.show {
@@ -157,7 +159,7 @@
             filter: drop-shadow(0 8px 40px rgba(124, 58, 237, 0.2));
         }
 
-        /* ===== ANIMATIONS ===== */
+        /* ===== ANIMATIONS - Fade in 4 seconds ===== */
         .stickman-wave #figure {
             animation: figureFade 5s ease-in-out infinite,
                        idleBob 5s ease-in-out infinite;
@@ -167,7 +169,6 @@
             animation: shadowFade 5s ease-in-out infinite;
         }
 
-        /* EYES - ONLY BLINK, NO MOVEMENT AT ALL */
         .stickman-wave #eyeLeft,
         .stickman-wave #eyeRight {
             animation: blink 5s ease-in-out infinite;
@@ -185,17 +186,17 @@
             animation: glowPulse 1.8s ease-in-out infinite;
         }
 
-        /* Keyframes */
+        /* Keyframes - 4 second fade timing */
         @keyframes figureFade {
             0%   { opacity: 0; }
-            10%  { opacity: 1; }
+            15%  { opacity: 1; }
             85%  { opacity: 1; }
             100% { opacity: 0; }
         }
 
         @keyframes shadowFade {
             0%   { opacity: 0; }
-            10%  { opacity: 0.45; }
+            15%  { opacity: 0.45; }
             85%  { opacity: 0.45; }
             100% { opacity: 0; }
         }
@@ -225,7 +226,6 @@
             100% { opacity: 1; }
         }
 
-        /* EYES - PURE BLINK, STAY IN PLACE */
         @keyframes blink {
             0%, 34%, 40%, 60%, 66%, 100% { transform: scale(1, 1); }
             37%, 63% { transform: scale(1, 0.1); }
@@ -234,16 +234,6 @@
         @keyframes glowPulse {
             0%, 100% { opacity: 0.75; transform: scale(1); }
             50%      { opacity: 1; transform: scale(1.25); }
-        }
-
-        /* Smooth fade out for stickman */
-        .stickman-fadeout {
-            animation: smoothFade 0.6s ease-in forwards;
-        }
-
-        @keyframes smoothFade {
-            0% { opacity: 1; transform: scale(1) translateY(0); }
-            100% { opacity: 0; transform: scale(0.8) translateY(-20px); }
         }
 
         /* ===== THEME BURST ===== */
@@ -315,7 +305,7 @@
             z-index: 0;
             pointer-events: none;
             background: var(--particle-bg);
-            transition: background 0.5s ease;
+            transition: background 0.6s ease;
         }
 
         /* ===== BUBBLES ===== */
@@ -1557,7 +1547,7 @@
     </button>
 
     <!-- ============================================================
-         STICKMAN - 4X BIGGER (FIXED EYES - ONLY BLINK)
+         STICKMAN - 4X BIGGER (Fade in 4 seconds)
          ============================================================ -->
     <div id="stickman-container">
         <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
@@ -1682,7 +1672,7 @@
                 <!-- Hat shadow on forehead -->
                 <path d="M183,86 Q200,94 217,86 L217,90 Q200,98 183,90 Z" fill="#000000" opacity="0.22" stroke="none"/>
 
-                <!-- EYES - PERFECTLY FIXED: ONLY BLINK, NO MOVEMENT -->
+                <!-- EYES - PERFECTLY FIXED: ONLY BLINK -->
                 <ellipse id="eyeLeft" cx="192" cy="97" rx="2.6" ry="3.4" fill="#0a0f1a"/>
                 <ellipse id="eyeRight" cx="208" cy="97" rx="2.6" ry="3.4" fill="#0a0f1a"/>
 
@@ -1991,7 +1981,7 @@
                 stickmanContainer.classList.add('stickman-wave');
             }, 200);
 
-            // Fade out stickman after 4.5 seconds
+            // Fade out stickman after 5 seconds
             setTimeout(() => {
                 stickmanContainer.classList.remove('stickman-wave');
                 stickmanContainer.classList.add('stickman-fadeout');
@@ -2000,7 +1990,7 @@
                 setTimeout(() => {
                     stickmanContainer.classList.remove('show', 'stickman-fadeout');
                 }, 600);
-            }, 4500);
+            }, 5000);
         }
 
         function setTheme(theme, event) {
