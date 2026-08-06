@@ -811,6 +811,41 @@
             box-shadow: 0 12px 30px rgba(217, 119, 6, 0.2);
         }
 
+        /* ===== WORK STATION BUTTON (centered under projects) ===== */
+        .workstation-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .btn-workstation {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 40px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--highlight), #b45309);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(217, 119, 6, 0.15);
+        }
+
+        .btn-workstation:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 16px 50px rgba(217, 119, 6, 0.25);
+        }
+
+        .btn-workstation i {
+            font-size: 20px;
+        }
+
         .cert-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1465,6 +1500,10 @@
             .grid {
                 grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             }
+            .btn-workstation {
+                padding: 14px 30px;
+                font-size: 13px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1513,6 +1552,12 @@
             }
             .cert-card .cert-title {
                 font-size: 16px;
+            }
+            .btn-workstation {
+                padding: 12px 24px;
+                font-size: 12px;
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -1809,6 +1854,13 @@
                 <p>REAL-TIME ATTACK VISUALIZATION WITH EMAIL ALERTS VIA GMAIL SMTP FOR IMMEDIATE SOC RESPONSE.</p>
                 <span class="project-tag">SIEM • EMAIL ALERTS</span>
             </div>
+        </div>
+
+        <!-- ===== WORK STATION BUTTON (Centered under projects) ===== -->
+        <div class="workstation-btn-wrapper">
+            <a href="box.html" class="btn-workstation">
+                <i class="fas fa-desktop"></i> MY WORK STATION
+            </a>
         </div>
     </section>
 
