@@ -284,12 +284,7 @@
         }
 
         #loader p {
-            color: var(--loader-text);
-            margin-top: 18px;
-            font-size: 11px;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            font-weight: 400;
+            display: none;
         }
 
         @keyframes spin {
@@ -1712,6 +1707,137 @@
             width: 100%;
         }
 
+        /* ===== SCROLL GLOW DOT ===== */
+        #scroll-glow-dot {
+            position: fixed;
+            right: 16px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--highlight);
+            box-shadow: 0 0 8px var(--highlight), 0 0 16px var(--highlight);
+            z-index: 9999;
+            transition: top 0.15s ease-out, opacity 0.3s;
+            pointer-events: none;
+            opacity: 0;
+        }
+        #scroll-glow-dot.visible {
+            opacity: 1;
+        }
+
+        /* ===== LOADER NAME ANIMATION ===== */
+        #loader .loader-name {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: 12px;
+            color: var(--highlight);
+            text-transform: uppercase;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        #loader .loader-name span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: loaderNameReveal 0.5s forwards;
+        }
+        @keyframes loaderNameReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        #loader .loader-sub {
+            font-size: 11px;
+            letter-spacing: 6px;
+            color: var(--loader-text);
+            margin-top: 12px;
+            opacity: 0;
+            animation: loaderSubReveal 0.8s 1.5s forwards;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+        @keyframes loaderSubReveal {
+            to { opacity: 1; }
+        }
+
+        /* ===== KONAMI OVERLAY ===== */
+        #konami-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 999999;
+            background: rgba(0,0,0,0.92);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+        #konami-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #konami-overlay .konami-text {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff3366, #00ccff, #ff3366);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: konamiGradient 2s ease infinite;
+            text-align: center;
+        }
+        #konami-overlay .konami-sub {
+            color: #aaa;
+            font-size: 14px;
+            margin-top: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        #konami-overlay .konami-close {
+            margin-top: 30px;
+            padding: 10px 30px;
+            background: var(--highlight);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        @keyframes konamiGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* ===== NEW LOADER STYLES ===== */
+        #loader .loader-bar-container {
+            width: 200px;
+            height: 3px;
+            background: rgba(217,119,6,0.15);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        #loader .loader-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--highlight), #ff6b35);
+            border-radius: 4px;
+            animation: loaderBarFill 2s ease forwards;
+        }
+        @keyframes loaderBarFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        #loader .spinner {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(217,119,6,0.1);
+            border-top: 2px solid var(--highlight);
+            border-radius: 50%;
+            animation: spin 0.8s cubic-bezier(0.65,0,0.35,1) infinite;
+        }
+
         /* ===== HERO CONTENT ANIMATION ===== */
         .hero-content > * {
             opacity: 0;
@@ -2180,7 +2306,20 @@
     <!-- ===== LOADER ===== -->
     <div id="loader">
         <div class="spinner"></div>
-        <p>LOADING</p>
+        <div class="loader-name" id="loaderName"></div>
+        <div class="loader-bar-container"><div class="loader-bar"></div></div>
+        <div class="loader-sub">SOC ANALYST</div>
+    </div>
+
+    <!-- ===== SCROLL GLOW DOT ===== -->
+    <div id="scroll-glow-dot"></div>
+
+    <!-- ===== KONAMI EASTER EGG OVERLAY ===== -->
+    <div id="konami-overlay">
+        <div class="konami-text">🎉 EASTER EGG FOUND! 🎉</div>
+        <div class="konami-sub">YOU KNOW THE CODE!</div>
+        <div style="color:#666;font-size:13px;margin-top:8px;">↑ ↑ ↓ ↓ ← → ← → B A</div>
+        <button class="konami-close" onclick="document.getElementById('konami-overlay').classList.remove('show')">AWESOME!</button>
     </div>
 
     <!-- ===== PARTICLES ===== -->
@@ -3189,137 +3328,106 @@
     <!-- Three.js for 3D Earth -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        (function(){
-            const container = document.getElementById('earth-container');
-            if(!container) return;
-            const w = 300, h = 300;
+    window.addEventListener('DOMContentLoaded', function(){
+        var container = document.getElementById('earth-container');
+        if(!container) return;
+        if(typeof THREE === 'undefined') return;
 
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(45, w/h, 0.1, 1000);
-            camera.position.z = 2.5;
+        var w = 300, h = 300;
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(45, w/h, 0.1, 1000);
+        camera.position.z = 2.5;
 
-            const renderer = new THREE.WebGLRenderer({alpha:true, antialias:true});
-            renderer.setSize(w, h);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            renderer.toneMapping = THREE.ACESFilmicToneMapping;
-            renderer.toneMappingExposure = 1.1;
-            container.appendChild(renderer.domElement);
+        var renderer = new THREE.WebGLRenderer({alpha:true, antialias:true});
+        renderer.setSize(w, h);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.1;
+        container.appendChild(renderer.domElement);
 
-            const texLoader = new THREE.TextureLoader();
+        var texLoader = new THREE.TextureLoader();
 
-            // Earth
-            const earthGeo = new THREE.SphereGeometry(1, 64, 64);
-            const earthMat = new THREE.MeshPhongMaterial({
-                map: texLoader.load('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'),
+        function createEarth(mapUrl, cloudUrl){
+            var earthGeo = new THREE.SphereGeometry(1, 64, 64);
+            var earthMat = new THREE.MeshPhongMaterial({
+                map: texLoader.load(mapUrl),
                 specular: new THREE.Color(0x333333),
                 shininess: 20
             });
-            const earth = new THREE.Mesh(earthGeo, earthMat);
+            var earth = new THREE.Mesh(earthGeo, earthMat);
             scene.add(earth);
 
-            // Clouds
-            const cloudGeo = new THREE.SphereGeometry(1.012, 48, 48);
-            const cloudMat = new THREE.MeshPhongMaterial({
-                map: texLoader.load('https://unpkg.com/three-globe/example/img/earth-clouds.png'),
+            var cloudGeo = new THREE.SphereGeometry(1.012, 48, 48);
+            var cloudMat = new THREE.MeshPhongMaterial({
+                map: texLoader.load(cloudUrl),
                 transparent: true,
                 opacity: 0.35,
                 depthWrite: false
             });
-            const clouds = new THREE.Mesh(cloudGeo, cloudMat);
+            var clouds = new THREE.Mesh(cloudGeo, cloudMat);
             scene.add(clouds);
 
-            // Atmosphere inner
-            const atmosGeo = new THREE.SphereGeometry(1.04, 48, 48);
-            const atmosMat = new THREE.ShaderMaterial({
-                vertexShader: `
-                    varying vec3 vNormal;
-                    void main(){
-                        vNormal = normalize(normalMatrix * normal);
-                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                    }
-                `,
-                fragmentShader: `
-                    varying vec3 vNormal;
-                    void main(){
-                        float intensity = pow(0.65 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.5);
-                        gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity * 1.2;
-                    }
-                `,
+            var atmosGeo = new THREE.SphereGeometry(1.04, 48, 48);
+            var atmosMat = new THREE.ShaderMaterial({
+                vertexShader: 'varying vec3 vNormal; void main(){ vNormal = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+                fragmentShader: 'varying vec3 vNormal; void main(){ float intensity = pow(0.65 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.5); gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity * 1.2; }',
                 blending: THREE.AdditiveBlending,
                 side: THREE.FrontSide,
                 transparent: true,
                 depthWrite: false
             });
-            const atmos = new THREE.Mesh(atmosGeo, atmosMat);
+            var atmos = new THREE.Mesh(atmosGeo, atmosMat);
             scene.add(atmos);
 
-            // Atmosphere outer glow
-            const glowGeo = new THREE.SphereGeometry(1.12, 48, 48);
-            const glowMat = new THREE.ShaderMaterial({
-                vertexShader: `
-                    varying vec3 vNormal;
-                    void main(){
-                        vNormal = normalize(normalMatrix * normal);
-                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                    }
-                `,
-                fragmentShader: `
-                    varying vec3 vNormal;
-                    void main(){
-                        float intensity = pow(0.55 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 3.0);
-                        gl_FragColor = vec4(0.2, 0.5, 1.0, 1.0) * intensity * 0.8;
-                    }
-                `,
+            var glowGeo = new THREE.SphereGeometry(1.12, 48, 48);
+            var glowMat = new THREE.ShaderMaterial({
+                vertexShader: 'varying vec3 vNormal; void main(){ vNormal = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+                fragmentShader: 'varying vec3 vNormal; void main(){ float intensity = pow(0.55 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 3.0); gl_FragColor = vec4(0.2, 0.5, 1.0, 1.0) * intensity * 0.8; }',
                 blending: THREE.AdditiveBlending,
                 side: THREE.BackSide,
                 transparent: true,
                 depthWrite: false
             });
-            const glow = new THREE.Mesh(glowGeo, glowMat);
+            var glow = new THREE.Mesh(glowGeo, glowMat);
             scene.add(glow);
 
-            // Lights
-            const sun = new THREE.DirectionalLight(0xffffff, 1.4);
+            var sun = new THREE.DirectionalLight(0xffffff, 1.4);
             sun.position.set(-5, 3, 5);
             scene.add(sun);
-
             scene.add(new THREE.AmbientLight(0x223355, 0.45));
-
-            const backLight = new THREE.DirectionalLight(0x4488cc, 0.25);
+            var backLight = new THREE.DirectionalLight(0x4488cc, 0.25);
             backLight.position.set(3, -2, -3);
             scene.add(backLight);
 
-            // Stars
-            const starGeo = new THREE.BufferGeometry();
-            const starArr = new Float32Array(1000 * 3);
-            for(let i=0; i<1000*3; i++) starArr[i] = (Math.random()-0.5)*25;
+            var starGeo = new THREE.BufferGeometry();
+            var starArr = new Float32Array(1000 * 3);
+            for(var i=0; i<1000*3; i++) starArr[i] = (Math.random()-0.5)*25;
             starGeo.setAttribute('position', new THREE.BufferAttribute(starArr, 3));
             scene.add(new THREE.Points(starGeo, new THREE.PointsMaterial({
                 color:0xffffff, size:0.012, transparent:true, opacity:0.55
             })));
 
-            // Drag
-            let dragging = false, px = 0, py = 0;
-            let velY = 0.002, velX = 0, tiltX = 0;
+            var dragging = false, px = 0, py = 0;
+            var velY = 0.002, tiltX = 0;
 
-            container.addEventListener('mousedown', e => { dragging=true; px=e.clientX; py=e.clientY; velY=0; velX=0; });
-            container.addEventListener('touchstart', e => { dragging=true; px=e.touches[0].clientX; py=e.touches[0].clientY; velY=0; velX=0; }, {passive:true});
+            container.addEventListener('mousedown', function(e){ dragging=true; px=e.clientX; py=e.clientY; velY=0; });
+            container.addEventListener('touchstart', function(e){ dragging=true; px=e.touches[0].clientX; py=e.touches[0].clientY; velY=0; }, {passive:true});
 
-            window.addEventListener('mousemove', e => {
+            window.addEventListener('mousemove', function(e){
                 if(!dragging) return;
                 velY = (e.clientX - px) * 0.004;
                 tiltX = Math.max(-0.6, Math.min(0.6, tiltX + (e.clientY - py) * 0.002));
                 px = e.clientX; py = e.clientY;
             });
-            window.addEventListener('touchmove', e => {
+            window.addEventListener('touchmove', function(e){
                 if(!dragging) return;
                 velY = (e.touches[0].clientX - px) * 0.004;
                 tiltX = Math.max(-0.6, Math.min(0.6, tiltX + (e.touches[0].clientY - py) * 0.002));
                 px = e.touches[0].clientX; py = e.touches[0].clientY;
             }, {passive:true});
 
-            window.addEventListener('mouseup', () => dragging=false);
-            window.addEventListener('touchend', () => dragging=false);
+            window.addEventListener('mouseup', function(){ dragging=false; });
+            window.addEventListener('touchend', function(){ dragging=false; });
 
             function animate(){
                 requestAnimationFrame(animate);
@@ -3338,7 +3446,101 @@
                 renderer.render(scene, camera);
             }
             animate();
+        }
+
+        var primaryUrl = 'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg';
+        var cloudUrl = 'https://unpkg.com/three-globe/example/img/earth-clouds.png';
+        createEarth(primaryUrl, cloudUrl);
+    });
+    </script>
+
+    <script>
+        // ===== SOUND EFFECTS ON BUTTON CLICKS =====
+        (function() {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            function playClickSound() {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.08);
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+                osc.start(audioCtx.currentTime);
+                osc.stop(audioCtx.currentTime + 0.1);
+            }
+            document.addEventListener('click', function(e) {
+                const btn = e.target.closest('a, button, .btn, .magnetic-btn, .social a, .nav-links a, .project-card, .cert-card');
+                if (btn) playClickSound();
+            });
         })();
+
+        // ===== LOADER WITH NAME ANIMATION =====
+        (function() {
+            const nameEl = document.getElementById('loaderName');
+            const name = 'LIKITH RAJ';
+            name.split('').forEach(function(ch, i) {
+                const span = document.createElement('span');
+                span.textContent = ch === ' ' ? '\u00A0' : ch;
+                span.style.animationDelay = (i * 0.08) + 's';
+                nameEl.appendChild(span);
+            });
+        })();
+
+        // ===== KONAMI CODE EASTER EGG =====
+        (function() {
+            const code = [38,38,40,40,37,39,37,39,66,65];
+            let index = 0;
+            document.addEventListener('keydown', function(e) {
+                if (e.keyCode === code[index]) {
+                    index++;
+                    if (index === code.length) {
+                        document.getElementById('konami-overlay').classList.add('show');
+                        // Confetti burst
+                        for (let i = 0; i < 50; i++) {
+                            const conf = document.createElement('div');
+                            conf.style.cssText = 'position:fixed;width:10px;height:10px;z-index:9999999;border-radius:2px;pointer-events:none;background:' +
+                                ['#ff3366','#00ccff','#ffcc00','#ff6600','#66ff66'][Math.floor(Math.random()*5)] +
+                                ';left:' + Math.random()*100 + 'vw;top:-10px;animation:confettiFall ' + (2+Math.random()*3) + 's forwards;';
+                            document.body.appendChild(conf);
+                            setTimeout(function() { conf.remove(); }, 5000);
+                        }
+                        index = 0;
+                    }
+                } else {
+                    index = 0;
+                });
+            });
+            // Confetti keyframe
+            const style = document.createElement('style');
+            style.textContent = '@keyframes confettiFall { to { top: 105vh; transform: rotate(' + Math.random()*720 + 'deg); opacity: 0; } }';
+            document.head.appendChild(style);
+        })();
+
+        // ===== SMOOTH SCROLL GLOW DOT =====
+        (function() {
+            var dot = document.getElementById('scroll-glow-dot');
+            var rafId = null;
+            function updateDot() {
+                var scrollTop = window.scrollY;
+                var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                if (docHeight <= 0) { dot.classList.remove('visible'); return; }
+                var pct = scrollTop / docHeight;
+                var trackTop = 80;
+                var trackBottom = window.innerHeight - 80;
+                var y = trackTop + pct * (trackBottom - trackTop);
+                dot.style.top = y + 'px';
+                dot.classList.toggle('visible', scrollTop > 200);
+                rafId = null;
+            }
+            window.addEventListener('scroll', function() {
+                if (!rafId) rafId = requestAnimationFrame(updateDot);
+            }, {passive: true});
+            updateDot();
+        })();
+
     </script>
 </body>
 </html>
