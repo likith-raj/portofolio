@@ -514,6 +514,8 @@
 
         .hero-content {
             max-width: 820px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero .badge {
@@ -1024,42 +1026,6 @@
             50% { transform: translateX(6px); opacity: 1; }
         }
 
-        .cert-stats {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 12px 24px;
-            background: var(--stat-bg);
-            border-radius: 14px;
-            border: 1px solid var(--stat-border);
-            min-width: 80px;
-        }
-
-        .stat-number {
-            display: block;
-            font-size: 28px;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--highlight), var(--highlight2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-        }
-
-        .stat-label {
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
         .contact-section {
             padding: 80px 6% 60px;
             min-height: 60vh;
@@ -1224,13 +1190,8 @@
         #earth-container {
             width: 300px;
             height: 300px;
-            border-radius: 50%;
-            overflow: hidden;
             cursor: grab;
-            box-shadow:
-                0 0 50px rgba(30, 100, 200, 0.3),
-                0 0 100px rgba(30, 100, 200, 0.15),
-                0 0 150px rgba(30, 100, 200, 0.07);
+            touch-action: pan-y;
             position: relative;
             z-index: 2;
         }
@@ -2180,16 +2141,6 @@
                 gap: 20px;
                 max-width: 400px;
             }
-            .cert-stats {
-                gap: 15px;
-            }
-            .stat-item {
-                padding: 10px 16px;
-                min-width: 70px;
-            }
-            .stat-number {
-                font-size: 24px;
-            }
             #fullscreen-overlay .close-btn {
                 font-size: 30px;
                 top: 20px;
@@ -2298,6 +2249,142 @@
                 justify-content: center;
             }
         }
+
+        /* ============================================================
+           V2 UPGRADE — LIVE SOC OPS LAYER
+           ============================================================ */
+        :root {
+            --grid-line: rgba(124, 58, 237, 0.07);
+            --console-bg: rgba(6, 8, 14, 0.75);
+            --console-border: rgba(124, 58, 237, 0.18);
+            --console-head: rgba(255, 255, 255, 0.04);
+            --sev-info: #7dd3fc;
+            --sev-warn: #fbbf24;
+            --sev-crit: #f87171;
+            --sev-ok: #4ade80;
+            --bar-track: rgba(255, 255, 255, 0.05);
+            --radar-grid: rgba(124, 58, 237, 0.22);
+            --radar-sweep: rgba(167, 139, 250, 0.9);
+            --ring: rgba(124, 58, 237, 0.35);
+        }
+
+        [data-theme="brown"] {
+            --grid-line: rgba(217, 119, 6, 0.09);
+            --console-bg: rgba(14, 9, 6, 0.8);
+            --console-border: rgba(217, 119, 6, 0.22);
+            --console-head: rgba(255, 245, 230, 0.04);
+            --bar-track: rgba(255, 245, 230, 0.06);
+            --radar-grid: rgba(217, 119, 6, 0.22);
+            --radar-sweep: rgba(245, 158, 11, 0.9);
+            --ring: rgba(217, 119, 6, 0.35);
+        }
+
+        /* --- selection restored on real content --- */
+        html, body { user-select: text; }
+        #particleCanvas, .bubbles-container, #cursor-dot, #cursor-glow,
+        #stickman-container, .cyber-grid, .soc-console, #themeToggle,
+        #soundToggle, .scroll-indicator, .radar-wrap { user-select: none; }
+
+        /* --- cyber grid backdrop --- */
+        .cyber-grid {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 48px 48px;
+            -webkit-mask-image: radial-gradient(ellipse 70% 70% at 28% 45%, #000 0%, transparent 72%);
+            mask-image: radial-gradient(ellipse 70% 70% at 28% 45%, #000 0%, transparent 72%);
+            animation: gridDrift 24s linear infinite;
+        }
+        @keyframes gridDrift {
+            0%   { background-position: 0 0, 0 0; }
+            100% { background-position: 48px 48px, 48px 48px; }
+        }
+
+        /* --- char reveal --- */
+        .word { display: inline-block; white-space: nowrap; }
+        .char {
+            display: inline-block;
+            white-space: pre;
+            opacity: 0;
+            transform: translateY(26px) rotateX(-55deg);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .chars-ready.visible .char,
+        .chars-ready .char.in { opacity: 1; transform: none; }
+
+        /* --- spotlight follow --- */
+        .card-spot { position: relative; }
+        .spotlight-layer {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%),
+                        rgba(217, 119, 6, 0.16), transparent 62%);
+        }
+        .card-spot:hover .spotlight-layer { opacity: 1; }
+
+        /* --- focus visibility --- */
+        a:focus-visible, button:focus-visible,
+        input:focus-visible, textarea:focus-visible {
+            outline: 2px solid var(--highlight);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+
+        /* ===== SOUND TOGGLE (bottom-right, stacked above scroll-to-top) ===== */
+        #soundToggle {
+            position: fixed;
+            bottom: 92px;
+            right: 34px;
+            z-index: 10001;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 20px var(--shadow);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        #soundToggle:hover {
+            transform: translateY(-4px) scale(1.06);
+            border-color: var(--highlight);
+            color: var(--highlight-text);
+            box-shadow: 0 8px 26px rgba(217, 119, 6, 0.22);
+        }
+        #soundToggle .icon-on { display: inline; }
+        #soundToggle .icon-off { display: none; }
+        #soundToggle.muted .icon-on { display: none; }
+        #soundToggle.muted .icon-off { display: inline; }
+        #soundToggle.muted { opacity: 0.55; }
+        @media (max-width: 480px) {
+            #soundToggle { width: 38px; height: 38px; bottom: 90px; right: 36px; font-size: 0.8rem; }
+        }
+
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .cyber-grid { animation: none !important; }
+        }
     </style>
 </head>
 
@@ -2342,6 +2429,12 @@
     <button id="themeToggle" aria-label="Toggle theme">
         <span class="icon-sun"><i class="fas fa-sun"></i></span>
         <span class="icon-moon"><i class="fas fa-moon"></i></span>
+    </button>
+
+    <!-- ===== SOUND TOGGLE ===== -->
+    <button id="soundToggle" aria-label="Toggle interface sounds" title="Toggle sounds">
+        <span class="icon-on"><i class="fas fa-volume-up"></i></span>
+        <span class="icon-off"><i class="fas fa-volume-mute"></i></span>
     </button>
 
     <!-- ===== SCROLL PROGRESS BAR ===== -->
@@ -2506,6 +2599,7 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
+        <div class="cyber-grid"></div>
         <div class="hero-content">
             <div class="badge float-animation">🔍 SOC ANALYST | SIEM | SPLUNK</div>
             <h1>
@@ -2630,6 +2724,7 @@
                 <div class="skill-desc">Penetration Testing</div>
             </div>
         </div>
+
     </section>
 
     <!-- ===== PROJECTS ===== -->
@@ -2912,20 +3007,6 @@
             if (e.key === 'Escape') closeFullScreen();
         });
 
-        // ===== COUNTER ANIMATION =====
-        function animateCounter(elementId, target, duration = 1200) {
-            const el = document.getElementById(elementId);
-            let start = 0;
-            const step = Math.max(1, Math.floor(target / 50));
-            const interval = duration / 50;
-            const timer = setInterval(() => {
-                start += step;
-                if (start >= target) { start = target;
-                    clearInterval(timer); }
-                el.textContent = start;
-            }, interval);
-        }
-
         // ===== PARTICLES =====
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
@@ -2984,11 +3065,6 @@
 
                 setTimeout(function() {
                     startTyping();
-                    setTimeout(() => {
-                        animateCounter('stat1', 3);
-                        animateCounter('stat2', 11);
-                        animateCounter('stat3', 2026);
-                    }, 400);
                 }, 300);
             }
         }
@@ -3099,27 +3175,38 @@
             }
         });
 
-        // ===== PARALLAX EFFECTS =====
+        // ===== BUBBLES: PARALLAX + MOUSE DRIFT (single transform owner) =====
         const bubbles = document.querySelectorAll('.bubble');
-        let scrollY = 0;
-        let ticking = false;
+        const bubbleState = { scrollY: 0, mx: 0, my: 0, ticking: false };
 
-        function updateParallax() {
+        function applyBubbles() {
+            bubbleState.ticking = false;
             bubbles.forEach((bubble, index) => {
-                const speed = (index + 1) * 0.1;
-                const yPos = -(scrollY * speed);
-                bubble.style.transform = `translateY(${yPos}px) scale(1)`;
+                const depth = (index + 1) * 0.1;
+                const yPos = -(bubbleState.scrollY * depth);
+                const xDrift = bubbleState.mx * (index + 1) * 8;
+                const yDrift = bubbleState.my * (index + 1) * 8;
+                bubble.style.transform = 'translate(' + xDrift + 'px, ' + (yPos + yDrift) + 'px)';
             });
-            ticking = false;
+        }
+
+        function requestBubbleUpdate() {
+            if (!bubbleState.ticking) {
+                bubbleState.ticking = true;
+                requestAnimationFrame(applyBubbles);
+            }
         }
 
         window.addEventListener('scroll', () => {
-            scrollY = window.pageYOffset;
-            if (!ticking) {
-                requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        });
+            bubbleState.scrollY = window.pageYOffset;
+            requestBubbleUpdate();
+        }, { passive: true });
+
+        window.addEventListener('mousemove', (e) => {
+            bubbleState.mx = (e.clientX / window.innerWidth) - 0.5;
+            bubbleState.my = (e.clientY / window.innerHeight) - 0.5;
+            requestBubbleUpdate();
+        }, { passive: true });
 
         // ===== MAGNETIC BUTTONS =====
         document.querySelectorAll('.btn, .magnetic-btn').forEach(btn => {
@@ -3213,14 +3300,6 @@
         }
         animateCursor();
 
-        // ===== PREVENT DEFAULT CURSOR ANIMATION =====
-        document.removeEventListener('mousemove', function(e) {
-            cursorDot.style.left = e.clientX - 4 + 'px';
-            cursorDot.style.top = e.clientY - 4 + 'px';
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
-        });
-
         // ===== SCROLL PROGRESS BAR =====
         const scrollProgress = document.getElementById('scroll-progress');
         
@@ -3270,277 +3349,610 @@
             });
         });
 
-        // ===== TILT EFFECT ON HERO =====
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            hero.addEventListener('mousemove', (e) => {
-                const rect = hero.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 50;
-                const rotateY = (centerX - x) / 50;
-                
-                hero.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            });
-
-            hero.addEventListener('mouseleave', () => {
-                hero.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-            });
+        // ===== REDUCED MOTION: skip pointer-driven decoration =====
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) {
+            bubbles.forEach(b => { b.style.transform = 'none'; });
         }
-
-        // ===== SMOOTH REVEAL ON SCROLL =====
-        const revealElements = document.querySelectorAll('.skill-card, .project-card, .cert-card, .stat-item');
-        const cardRevealObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0) scale(1)';
-                    }, index * 100);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        revealElements.forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px) scale(0.95)';
-            el.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
-            cardRevealObserver.observe(el);
-        });
-
-        // ===== PARTICLE INTERACTION =====
-        document.addEventListener('mousemove', (e) => {
-            const particles = document.querySelectorAll('.bubble');
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            
-            particles.forEach((particle, index) => {
-                const speed = (index + 1) * 0.5;
-                const xPos = (x - 0.5) * speed * 20;
-                const yPos = (y - 0.5) * speed * 20;
-                particle.style.transform = `translate(${xPos}px, ${yPos}px)`;
-            });
-        });
     </script>
 
     <!-- Three.js for 3D Earth -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-    window.addEventListener('DOMContentLoaded', function(){
+    window.addEventListener('DOMContentLoaded', function () {
         var container = document.getElementById('earth-container');
-        if(!container) return;
-        if(typeof THREE === 'undefined') return;
+        if (!container) return;
+        if (typeof THREE === 'undefined') return;
 
-        var w = 300, h = 300;
+        var SIZE = 300;
+        var RADIUS = 1;
+        var AXIAL_TILT = 23.44;           // real Earth obliquity, in degrees
+        var IDLE_RATE = 0.105;            // rad/s natural spin (~60s per rotation)
+        var TILT_MAX = 0.62;              // how far the user can tip the globe
+
+        /* ---------------------------------------------------------------
+           renderer / camera / scene
+           --------------------------------------------------------------- */
         var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(45, w/h, 0.1, 1000);
-        camera.position.z = 2.5;
 
-        var renderer = new THREE.WebGLRenderer({alpha:true, antialias:true});
-        renderer.setSize(w, h);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        var camera = new THREE.PerspectiveCamera(38, 1, 0.1, 2000);
+        camera.position.set(0, 0.45, 3.3);
+        camera.lookAt(0, 0, 0);
+
+        var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        if (THREE.sRGBEncoding) { renderer.outputEncoding = THREE.sRGBEncoding; }
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.1;
+        renderer.toneMappingExposure = 1.05;
         container.appendChild(renderer.domElement);
 
-        var texLoader = new THREE.TextureLoader();
-
-        function createEarth(mapUrl, cloudUrl){
-            var earthGeo = new THREE.SphereGeometry(1, 64, 64);
-            var earthMat = new THREE.MeshPhongMaterial({
-                map: texLoader.load(mapUrl),
-                specular: new THREE.Color(0x333333),
-                shininess: 20
-            });
-            var earth = new THREE.Mesh(earthGeo, earthMat);
-            scene.add(earth);
-
-            var cloudGeo = new THREE.SphereGeometry(1.012, 48, 48);
-            var cloudMat = new THREE.MeshPhongMaterial({
-                map: texLoader.load(cloudUrl),
-                transparent: true,
-                opacity: 0.35,
-                depthWrite: false
-            });
-            var clouds = new THREE.Mesh(cloudGeo, cloudMat);
-            scene.add(clouds);
-
-            var atmosGeo = new THREE.SphereGeometry(1.04, 48, 48);
-            var atmosMat = new THREE.ShaderMaterial({
-                vertexShader: 'varying vec3 vNormal; void main(){ vNormal = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
-                fragmentShader: 'varying vec3 vNormal; void main(){ float intensity = pow(0.65 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.5); gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity * 1.2; }',
-                blending: THREE.AdditiveBlending,
-                side: THREE.FrontSide,
-                transparent: true,
-                depthWrite: false
-            });
-            var atmos = new THREE.Mesh(atmosGeo, atmosMat);
-            scene.add(atmos);
-
-            var glowGeo = new THREE.SphereGeometry(1.12, 48, 48);
-            var glowMat = new THREE.ShaderMaterial({
-                vertexShader: 'varying vec3 vNormal; void main(){ vNormal = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
-                fragmentShader: 'varying vec3 vNormal; void main(){ float intensity = pow(0.55 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 3.0); gl_FragColor = vec4(0.2, 0.5, 1.0, 1.0) * intensity * 0.8; }',
-                blending: THREE.AdditiveBlending,
-                side: THREE.BackSide,
-                transparent: true,
-                depthWrite: false
-            });
-            var glow = new THREE.Mesh(glowGeo, glowMat);
-            scene.add(glow);
-
-            var sun = new THREE.DirectionalLight(0xffffff, 1.4);
-            sun.position.set(-5, 3, 5);
-            scene.add(sun);
-            scene.add(new THREE.AmbientLight(0x223355, 0.45));
-            var backLight = new THREE.DirectionalLight(0x4488cc, 0.25);
-            backLight.position.set(3, -2, -3);
-            scene.add(backLight);
-
-            var starGeo = new THREE.BufferGeometry();
-            var starArr = new Float32Array(1000 * 3);
-            for(var i=0; i<1000*3; i++) starArr[i] = (Math.random()-0.5)*25;
-            starGeo.setAttribute('position', new THREE.BufferAttribute(starArr, 3));
-            scene.add(new THREE.Points(starGeo, new THREE.PointsMaterial({
-                color:0xffffff, size:0.012, transparent:true, opacity:0.55
-            })));
-
-            var dragging = false, px = 0, py = 0;
-            var velY = 0.002, tiltX = 0;
-
-            container.addEventListener('mousedown', function(e){ dragging=true; px=e.clientX; py=e.clientY; velY=0; });
-            container.addEventListener('touchstart', function(e){ dragging=true; px=e.touches[0].clientX; py=e.touches[0].clientY; velY=0; }, {passive:true});
-
-            window.addEventListener('mousemove', function(e){
-                if(!dragging) return;
-                velY = (e.clientX - px) * 0.004;
-                tiltX = Math.max(-0.6, Math.min(0.6, tiltX + (e.clientY - py) * 0.002));
-                px = e.clientX; py = e.clientY;
-            });
-            window.addEventListener('touchmove', function(e){
-                if(!dragging) return;
-                velY = (e.touches[0].clientX - px) * 0.004;
-                tiltX = Math.max(-0.6, Math.min(0.6, tiltX + (e.touches[0].clientY - py) * 0.002));
-                px = e.touches[0].clientX; py = e.touches[0].clientY;
-            }, {passive:true});
-
-            window.addEventListener('mouseup', function(){ dragging=false; });
-            window.addEventListener('touchend', function(){ dragging=false; });
-
-            function animate(){
-                requestAnimationFrame(animate);
-                if(!dragging){
-                    velY += (0.002 - velY) * 0.03;
-                    tiltX *= 0.96;
-                }
-                earth.rotation.y += velY;
-                clouds.rotation.y += velY * 0.95;
-                earth.rotation.x += (tiltX - earth.rotation.x) * 0.06;
-                clouds.rotation.x = earth.rotation.x;
-                atmos.rotation.y = earth.rotation.y;
-                atmos.rotation.x = earth.rotation.x;
-                glow.rotation.y = earth.rotation.y;
-                glow.rotation.x = earth.rotation.x;
-                renderer.render(scene, camera);
-            }
-            animate();
+        /* ---------------------------------------------------------------
+           texture loading with graceful fallbacks
+           (a missing CDN file must never leave a black or white ball)
+           --------------------------------------------------------------- */
+        function solidTex(r, g, b) {
+            var c = document.createElement('canvas');
+            c.width = 2; c.height = 2;
+            var cx = c.getContext('2d');
+            cx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+            cx.fillRect(0, 0, 2, 2);
+            var t = new THREE.CanvasTexture(c);
+            return t;
         }
 
-        var primaryUrl = 'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg';
-        var cloudUrl = 'https://unpkg.com/three-globe/example/img/earth-clouds.png';
-        createEarth(primaryUrl, cloudUrl);
+        var texLoader = new THREE.TextureLoader();
+        texLoader.setCrossOrigin('anonymous');
+
+        var maxAniso = 1;
+        if (renderer.capabilities && renderer.capabilities.getMaxAnisotropy) {
+            maxAniso = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+        }
+
+        // sun direction is shared by the surface shader, the cloud lighting and
+        // the atmosphere shell so the terminator lines up everywhere
+        var sunDir = new THREE.Vector3(0.82, 0.20, 0.30).normalize();
+
+        var uniforms = {
+            dayMap:   { value: solidTex(12, 26, 52) },
+            nightMap: { value: solidTex(0, 0, 0) },
+            specMap:  { value: solidTex(0, 0, 0) },
+            sunDir:   { value: sunDir }
+        };
+
+        function loadInto(url, key, fallback, srgb) {
+            texLoader.load(url, function (tex) {
+                if (srgb && THREE.sRGBEncoding) { tex.encoding = THREE.sRGBEncoding; }
+                tex.anisotropy = maxAniso;
+                uniforms[key].value = tex;
+            }, undefined, function () {
+                uniforms[key].value = solidTex(fallback[0], fallback[1], fallback[2]);
+            });
+        }
+
+        var CDN = 'https://unpkg.com/three-globe/example/img/';
+        loadInto(CDN + 'earth-blue-marble.jpg', 'dayMap',   [12, 26, 52], true);
+        loadInto(CDN + 'earth-night.jpg',       'nightMap', [0, 0, 0],    true);
+        loadInto(CDN + 'earth-water.png',       'specMap',  [0, 0, 0],    false);
+
+        /* ---------------------------------------------------------------
+           globe surface — day/night blend + ocean specular + rim light
+           --------------------------------------------------------------- */
+        var surfaceVert = [
+            'varying vec2 vUv;',
+            'varying vec3 vWorldNormal;',
+            'varying vec3 vWorldPos;',
+            'void main() {',
+            '    vUv = uv;',
+            '    vWorldNormal = normalize(mat3(modelMatrix) * normal);',
+            '    vec4 wp = modelMatrix * vec4(position, 1.0);',
+            '    vWorldPos = wp.xyz;',
+            '    gl_Position = projectionMatrix * viewMatrix * wp;',
+            '}'
+        ].join('\n');
+
+        var surfaceFrag = [
+            'uniform sampler2D dayMap;',
+            'uniform sampler2D nightMap;',
+            'uniform sampler2D specMap;',
+            'uniform vec3 sunDir;',
+            'varying vec2 vUv;',
+            'varying vec3 vWorldNormal;',
+            'varying vec3 vWorldPos;',
+            'void main() {',
+            '    vec3 N = normalize(vWorldNormal);',
+            '    vec3 V = normalize(cameraPosition - vWorldPos);',
+            '    float lambert = dot(N, sunDir);',
+            // soft terminator instead of a hard edge
+            '    float dayMix = smoothstep(-0.14, 0.34, lambert);',
+            '    vec3 dayCol = texture2D(dayMap, vUv).rgb;',
+            // keep the night side deep blue rather than pure black, so the limb
+            // never reads as a hard black outline against the page background
+            '    vec3 nightCol = max(texture2D(nightMap, vUv).rgb * 1.75, vec3(0.014, 0.024, 0.052));',
+            '    vec3 lit = dayCol * (0.20 + 1.06 * max(lambert, 0.0));',
+            '    vec3 color = mix(nightCol, lit, dayMix);',
+            // sun glint on water only
+            '    vec3 H = normalize(sunDir + V);',
+            '    float spec = pow(max(dot(N, H), 0.0), 46.0);',
+            '    float water = texture2D(specMap, vUv).r;',
+            '    color += vec3(0.42, 0.60, 0.86) * spec * water * 1.15 * dayMix;',
+            // two-stage rim: a wide soft halo plus a bright tight edge, so the
+            // silhouette always glows instead of terminating in black
+            '    float edge = 1.0 - max(dot(N, V), 0.0);',
+            '    color += vec3(0.11, 0.30, 0.74) * pow(edge, 2.0) * 0.45;',
+            '    color += vec3(0.40, 0.64, 1.00) * pow(edge, 6.0) * 0.80;',
+            '    gl_FragColor = vec4(color, 1.0);',
+            '}'
+        ].join('\n');
+
+        var surfaceMat = new THREE.ShaderMaterial({
+            uniforms: uniforms,
+            vertexShader: surfaceVert,
+            fragmentShader: surfaceFrag
+        });
+
+        /* ---------------------------------------------------------------
+           scene graph:  viewGroup (user tip)
+                         -> tiltGroup (23.44 deg axial tilt)
+                         -> spinGroup (daily rotation)
+           keeping them separate means the tilt never fights the spin
+           --------------------------------------------------------------- */
+        var viewGroup = new THREE.Group();
+        scene.add(viewGroup);
+
+        var tiltGroup = new THREE.Group();
+        tiltGroup.rotation.z = (THREE.MathUtils
+            ? THREE.MathUtils.degToRad(-AXIAL_TILT)
+            : -AXIAL_TILT * Math.PI / 180);
+        viewGroup.add(tiltGroup);
+
+        var spinGroup = new THREE.Group();
+        tiltGroup.add(spinGroup);
+
+        var globe = new THREE.Mesh(new THREE.SphereGeometry(RADIUS, 96, 96), surfaceMat);
+        spinGroup.add(globe);
+
+        /* ---------------------------------------------------------------
+           clouds — added only once the texture actually arrives, so a CDN
+           failure can never leave a translucent white shell around Earth
+           --------------------------------------------------------------- */
+        var clouds = null;
+        texLoader.load(CDN + 'earth-clouds.png', function (tex) {
+            tex.anisotropy = maxAniso;
+            clouds = new THREE.Mesh(
+                new THREE.SphereGeometry(RADIUS * 1.006, 64, 64),
+                new THREE.MeshPhongMaterial({
+                    map: tex,
+                    transparent: true,
+                    opacity: 0.46,
+                    depthWrite: false
+                })
+            );
+            spinGroup.add(clouds);
+        }, undefined, function () { /* no clouds is a fine outcome */ });
+
+        /* ---------------------------------------------------------------
+           atmosphere shell
+           --------------------------------------------------------------- */
+        var atmosphere = new THREE.Mesh(
+            new THREE.SphereGeometry(RADIUS * 1.055, 64, 64),
+            new THREE.ShaderMaterial({
+                uniforms: { sunDir: uniforms.sunDir },
+                vertexShader: surfaceVert,
+                fragmentShader: [
+                    'uniform vec3 sunDir;',
+                    'varying vec3 vWorldNormal;',
+                    'varying vec3 vWorldPos;',
+                    'void main() {',
+                    '    vec3 N = normalize(vWorldNormal);',
+                    '    vec3 V = normalize(cameraPosition - vWorldPos);',
+                    '    float rim = pow(1.0 - max(dot(N, V), 0.0), 2.6);',
+                    '    float sun = clamp(dot(N, sunDir) * 0.42 + 0.76, 0.0, 1.0);',
+                    '    vec3 col = mix(vec3(0.10, 0.30, 0.78), vec3(0.48, 0.72, 1.0), rim);',
+                    '    gl_FragColor = vec4(col, rim * 0.88 * sun);',
+                    '}'
+                ].join('\n'),
+                transparent: true,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false,
+                side: THREE.BackSide
+            })
+        );
+        viewGroup.add(atmosphere);
+
+        /* ---------------------------------------------------------------
+           lighting (drives the cloud layer)
+           --------------------------------------------------------------- */
+        var sunLight = new THREE.DirectionalLight(0xfff6e8, 1.5);
+        sunLight.position.copy(sunDir).multiplyScalar(10);
+        scene.add(sunLight);
+        scene.add(new THREE.AmbientLight(0x2a4468, 0.5));
+
+        /* ---------------------------------------------------------------
+           starfield
+           --------------------------------------------------------------- */
+        (function () {
+            var count = 1800;
+            var positions = new Float32Array(count * 3);
+            for (var i = 0; i < count * 3; i++) {
+                positions[i] = (Math.random() - 0.5) * 34;
+            }
+            var geo = new THREE.BufferGeometry();
+            geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            scene.add(new THREE.Points(geo, new THREE.PointsMaterial({
+                color: 0xffffff,
+                size: 0.028,
+                sizeAttenuation: true,
+                transparent: true,
+                opacity: 0.62,
+                depthWrite: false
+            })));
+        })();
+
+        /* ---------------------------------------------------------------
+           drag physics — direct control while held, then inertia that
+           eases back to the natural rotation rate
+           --------------------------------------------------------------- */
+        var dragging = false;
+        var pointerX = 0, pointerY = 0, pointerT = 0;
+        var spin = 0;          // current rotation, radians
+        var spinVel = IDLE_RATE;
+        var tip = 0;           // user tip offset, radians
+        var tipVel = 0;
+        var sunAngle = Math.atan2(sunDir.z, sunDir.x);
+
+        function clamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
+
+        function down(x, y, t) {
+            dragging = true;
+            pointerX = x; pointerY = y; pointerT = t;
+            spinVel = 0; tipVel = 0;
+            container.style.cursor = 'grabbing';
+        }
+
+        function move(x, y, t) {
+            if (!dragging) return;
+            var dx = x - pointerX;
+            var dy = y - pointerY;
+            var dt = Math.max((t - pointerT) / 1000, 0.008);
+
+            spin += dx * 0.0062;
+            spinVel = clamp((dx * 0.0062) / dt, -6, 6);
+            tip = clamp(tip + dy * 0.0042, -TILT_MAX, TILT_MAX);
+            tipVel = clamp((dy * 0.0042) / dt, -6, 6);
+
+            pointerX = x; pointerY = y; pointerT = t;
+        }
+
+        function up() {
+            if (!dragging) return;
+            dragging = false;
+            container.style.cursor = 'grab';
+        }
+
+        container.style.cursor = 'grab';
+
+        if (window.PointerEvent) {
+            container.addEventListener('pointerdown', function (e) {
+                if (e.button !== undefined && e.button !== 0) return;
+                try {
+                    if (container.setPointerCapture) { container.setPointerCapture(e.pointerId); }
+                } catch (err) { /* capture is a nicety, not a requirement */ }
+                down(e.clientX, e.clientY, e.timeStamp);
+            });
+            window.addEventListener('pointermove', function (e) {
+                move(e.clientX, e.clientY, e.timeStamp);
+            }, { passive: true });
+            window.addEventListener('pointerup', up);
+            window.addEventListener('pointercancel', up);
+        } else {
+            container.addEventListener('mousedown', function (e) {
+                down(e.clientX, e.clientY, e.timeStamp);
+            });
+            window.addEventListener('mousemove', function (e) {
+                move(e.clientX, e.clientY, e.timeStamp);
+            });
+            window.addEventListener('mouseup', up);
+            container.addEventListener('touchstart', function (e) {
+                down(e.touches[0].clientX, e.touches[0].clientY, e.timeStamp);
+            }, { passive: true });
+            window.addEventListener('touchmove', function (e) {
+                move(e.touches[0].clientX, e.touches[0].clientY, e.timeStamp);
+            }, { passive: true });
+            window.addEventListener('touchend', up);
+        }
+
+        /* ---------------------------------------------------------------
+           sizing
+           --------------------------------------------------------------- */
+        function resize() {
+            var w = container.clientWidth || SIZE;
+            renderer.setSize(w, w, false);   // CSS keeps the canvas responsive
+            camera.aspect = 1;
+            camera.updateProjectionMatrix();
+        }
+        resize();
+        window.addEventListener('resize', resize, { passive: true });
+
+        /* ---------------------------------------------------------------
+           frame loop
+           --------------------------------------------------------------- */
+        var last = performance.now();
+
+        function animate(now) {
+            requestAnimationFrame(animate);
+            var dt = Math.min((now - last) / 1000, 0.05);
+            last = now;
+
+            if (!dragging) {
+                // inertia bleeds off toward the natural rotation rate
+                spinVel += (IDLE_RATE - spinVel) * Math.min(dt * 2.0, 1);
+                spin += spinVel * dt;
+
+                // the tip springs back to the axial tilt
+                tipVel += (-tip) * 9 * dt;
+                tipVel *= Math.pow(0.02, dt);
+                tip += tipVel * dt;
+                if (Math.abs(tip) < 0.0006 && Math.abs(tipVel) < 0.0006) {
+                    tip = 0; tipVel = 0;
+                }
+            }
+
+            // the sun creeps around, so the night side slowly drifts in and out
+            sunAngle += dt * 0.02;
+            sunDir.set(Math.cos(sunAngle) * 0.86, 0.20, Math.sin(sunAngle) * 0.86).normalize();
+            sunLight.position.copy(sunDir).multiplyScalar(10);
+
+            spinGroup.rotation.y = spin;
+            if (clouds) { clouds.rotation.y = spin * 0.035; }
+            viewGroup.rotation.x = tip;
+
+            renderer.render(scene, camera);
+        }
+        requestAnimationFrame(animate);
     });
     </script>
 
     <script>
-        // ===== SOUND EFFECTS ON BUTTON CLICKS =====
-        (function() {
-            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            function playClickSound() {
-                if (audioCtx.state === 'suspended') audioCtx.resume();
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.08);
-                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-                osc.start(audioCtx.currentTime);
-                osc.stop(audioCtx.currentTime + 0.1);
-            }
-            document.addEventListener('click', function(e) {
-                const btn = e.target.closest('a, button, .btn, .magnetic-btn, .social a, .nav-links a, .project-card, .cert-card');
-                if (btn) playClickSound();
-            });
-        })();
+    (function () {
+        'use strict';
 
-        // ===== LOADER WITH NAME ANIMATION =====
-        (function() {
-            const nameEl = document.getElementById('loaderName');
-            const name = 'LIKITH RAJ';
-            name.split('').forEach(function(ch, i) {
-                const span = document.createElement('span');
-                span.textContent = ch === ' ' ? '\u00A0' : ch;
+        /* ============================================================
+           1 · AUDIO ENGINE + MUTE TOGGLE
+           ============================================================ */
+        var audioCtx = null;
+        var soundOn = localStorage.getItem('ui-sound') !== 'off';
+
+        function ensureAudio() {
+            if (!audioCtx) {
+                var AC = window.AudioContext || window.webkitAudioContext;
+                if (!AC) return null;
+                audioCtx = new AC();
+            }
+            if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+            return audioCtx;
+        }
+
+        function blip(freq, endFreq, dur, vol, type) {
+            if (!soundOn) return;
+            var ctx = ensureAudio();
+            if (!ctx) return;
+            var osc = ctx.createOscillator();
+            var gain = ctx.createGain();
+            osc.type = type || 'sine';
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            var t = ctx.currentTime;
+            osc.frequency.setValueAtTime(freq, t);
+            osc.frequency.exponentialRampToValueAtTime(Math.max(endFreq, 1), t + dur);
+            gain.gain.setValueAtTime(vol, t);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+            osc.start(t);
+            osc.stop(t + dur + 0.03);
+        }
+
+        var soundToggle = document.getElementById('soundToggle');
+        if (soundToggle) {
+            if (!soundOn) soundToggle.classList.add('muted');
+            soundToggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                soundOn = !soundOn;
+                localStorage.setItem('ui-sound', soundOn ? 'on' : 'off');
+                soundToggle.classList.toggle('muted', !soundOn);
+                if (soundOn) blip(660, 1320, 0.12, 0.07, 'triangle');
+            });
+        }
+
+        document.addEventListener('click', function (e) {
+            var t = e.target;
+            if (!t || typeof t.closest !== 'function') return;
+            if (t.closest('a, button, .btn, .magnetic-btn, .social a, .project-card, .cert-card')) {
+                blip(840, 430, 0.09, 0.05, 'sine');
+            }
+        }, { passive: true });
+
+        /* ============================================================
+           2 · LOADER NAME (letter-by-letter)
+           ============================================================ */
+        (function () {
+            var nameEl = document.getElementById('loaderName');
+            if (!nameEl) return;
+            var NAME = 'LIKITH RAJ';
+            for (var i = 0; i < NAME.length; i++) {
+                var span = document.createElement('span');
+                span.textContent = NAME.charAt(i) === ' ' ? '\u00A0' : NAME.charAt(i);
                 span.style.animationDelay = (i * 0.08) + 's';
                 nameEl.appendChild(span);
-            });
-        })();
-
-        // ===== KONAMI CODE EASTER EGG =====
-        (function() {
-            const code = [38,38,40,40,37,39,37,39,66,65];
-            let index = 0;
-            document.addEventListener('keydown', function(e) {
-                if (e.keyCode === code[index]) {
-                    index++;
-                    if (index === code.length) {
-                        document.getElementById('konami-overlay').classList.add('show');
-                        // Confetti burst
-                        for (let i = 0; i < 50; i++) {
-                            const conf = document.createElement('div');
-                            conf.style.cssText = 'position:fixed;width:10px;height:10px;z-index:9999999;border-radius:2px;pointer-events:none;background:' +
-                                ['#ff3366','#00ccff','#ffcc00','#ff6600','#66ff66'][Math.floor(Math.random()*5)] +
-                                ';left:' + Math.random()*100 + 'vw;top:-10px;animation:confettiFall ' + (2+Math.random()*3) + 's forwards;';
-                            document.body.appendChild(conf);
-                            setTimeout(function() { conf.remove(); }, 5000);
-                        }
-                        index = 0;
-                    }
-                } else {
-                    index = 0;
-                });
-            });
-            // Confetti keyframe
-            const style = document.createElement('style');
-            style.textContent = '@keyframes confettiFall { to { top: 105vh; transform: rotate(' + Math.random()*720 + 'deg); opacity: 0; } }';
-            document.head.appendChild(style);
-        })();
-
-        // ===== SMOOTH SCROLL GLOW DOT =====
-        (function() {
-            var dot = document.getElementById('scroll-glow-dot');
-            var rafId = null;
-            function updateDot() {
-                var scrollTop = window.scrollY;
-                var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                if (docHeight <= 0) { dot.classList.remove('visible'); return; }
-                var pct = scrollTop / docHeight;
-                var trackTop = 80;
-                var trackBottom = window.innerHeight - 80;
-                var y = trackTop + pct * (trackBottom - trackTop);
-                dot.style.top = y + 'px';
-                dot.classList.toggle('visible', scrollTop > 200);
-                rafId = null;
             }
-            window.addEventListener('scroll', function() {
-                if (!rafId) rafId = requestAnimationFrame(updateDot);
-            }, {passive: true});
-            updateDot();
         })();
 
+        /* ============================================================
+           3 · KONAMI CODE EASTER EGG
+           ============================================================ */
+        (function () {
+            var overlay = document.getElementById('konami-overlay');
+            if (!overlay) return;
+
+            var style = document.createElement('style');
+            style.textContent = '@keyframes confettiFall { to { top: 105vh; transform: rotate(720deg); opacity: 0; } }';
+            document.head.appendChild(style);
+
+            var code = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+            var idx = 0;
+            var COLORS = ['#ff3366', '#00ccff', '#ffcc00', '#ff6600', '#66ff66'];
+
+            document.addEventListener('keydown', function (e) {
+                if (e.keyCode !== code[idx]) { idx = 0; return; }
+                idx++;
+                if (idx < code.length) return;
+                idx = 0;
+                overlay.classList.add('show');
+                blip(520, 1400, 0.35, 0.09, 'triangle');
+                for (var i = 0; i < 60; i++) {
+                    var conf = document.createElement('div');
+                    conf.style.cssText = 'position:fixed;width:9px;height:9px;z-index:9999999;border-radius:2px;' +
+                        'pointer-events:none;background:' + COLORS[Math.floor(Math.random() * COLORS.length)] +
+                        ';left:' + (Math.random() * 100).toFixed(2) + 'vw;top:-12px;' +
+                        'animation:confettiFall ' + (2 + Math.random() * 3).toFixed(2) + 's ease-in forwards;';
+                    document.body.appendChild(conf);
+                    setTimeout(conf.remove.bind(conf), 5400);
+                }
+            });
+        })();
+
+        /* ============================================================
+           4 · SCROLL GLOW DOT (velocity-reactive)
+           ============================================================ */
+        (function () {
+            var dot = document.getElementById('scroll-glow-dot');
+            if (!dot) return;
+            var raf = null;
+            var lastY = window.scrollY;
+            var lastT = performance.now();
+
+            function update() {
+                raf = null;
+                var y = window.scrollY;
+                var docH = document.documentElement.scrollHeight - window.innerHeight;
+                var now = performance.now();
+                var dt = Math.max(now - lastT, 16);
+                var vel = Math.abs(y - lastY) / dt;
+                lastY = y;
+                lastT = now;
+
+                if (docH <= 0) { dot.classList.remove('visible'); return; }
+                var pct = Math.min(1, Math.max(0, y / docH));
+                dot.style.top = (80 + pct * (window.innerHeight - 160)) + 'px';
+                dot.style.transform = 'scale(' + (1 + Math.min(vel * 0.9, 1.2)).toFixed(2) + ')';
+                dot.classList.toggle('visible', y > 200);
+            }
+
+            window.addEventListener('scroll', function () {
+                if (!raf) { raf = requestAnimationFrame(update); }
+            }, { passive: true });
+            window.addEventListener('resize', function () { update(); }, { passive: true });
+            update();
+        })();
+
+        /* ============================================================
+           9 · CARD SPOTLIGHT (cursor-following glow)
+           ============================================================ */
+        (function () {
+            if (window.matchMedia && window.matchMedia('(hover: none)').matches) return;
+            var cards = document.querySelectorAll('.skill-card, .project-card, .cert-card');
+            Array.prototype.forEach.call(cards, function (card) {
+                card.classList.add('card-spot');
+                var layer = document.createElement('div');
+                layer.className = 'spotlight-layer';
+                card.appendChild(layer);
+                card.addEventListener('mousemove', function (e) {
+                    var r = card.getBoundingClientRect();
+                    layer.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                    layer.style.setProperty('--my', (e.clientY - r.top) + 'px');
+                }, { passive: true });
+            });
+        })();
+
+        /* ============================================================
+           10 · HEADING CHARACTER REVEAL
+           ============================================================ */
+        (function () {
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var heads = document.querySelectorAll('h2');
+            if (!heads.length) return;
+
+            var io = ('IntersectionObserver' in window)
+                ? new IntersectionObserver(function (entries) {
+                    entries.forEach(function (en) {
+                        if (en.isIntersecting) {
+                            en.target.classList.add('visible');
+                            io.unobserve(en.target);
+                        }
+                    });
+                }, { threshold: 0.25 })
+                : null;
+
+            Array.prototype.forEach.call(heads, function (h) {
+                var units = [];
+
+                function wrapText(text, frag) {
+                    var parts = text.split(/(\s+)/);
+                    for (var p = 0; p < parts.length; p++) {
+                        var part = parts[p];
+                        if (!part) { continue; }
+                        if (/^\s+$/.test(part)) {
+                            var sp = document.createElement('span');
+                            sp.className = 'char';
+                            sp.textContent = part;
+                            units.push(sp);
+                            frag.appendChild(sp);
+                        } else {
+                            var word = document.createElement('span');
+                            word.className = 'word';
+                            for (var c = 0; c < part.length; c++) {
+                                var ch = document.createElement('span');
+                                ch.className = 'char';
+                                ch.textContent = part.charAt(c);
+                                units.push(ch);
+                                word.appendChild(ch);
+                            }
+                            frag.appendChild(word);
+                        }
+                    }
+                }
+
+                function walk(node) {
+                    var kids = Array.prototype.slice.call(node.childNodes);
+                    for (var i = 0; i < kids.length; i++) {
+                        var child = kids[i];
+                        if (child.nodeType === 3) {
+                            if (!child.textContent.trim()) { continue; }
+                            var frag = document.createDocumentFragment();
+                            wrapText(child.textContent, frag);
+                            node.replaceChild(frag, child);
+                        } else if (child.nodeType === 1) {
+                            if (child.tagName === 'BR') { continue; }
+                            if (child.classList.contains('accent')) {
+                                child.classList.add('char');
+                                units.push(child);
+                            } else {
+                                walk(child);
+                            }
+                        }
+                    }
+                }
+
+                walk(h);
+
+                for (var u = 0; u < units.length; u++) {
+                    units[u].style.transitionDelay = (u * 0.028).toFixed(3) + 's';
+                }
+                h.classList.add('chars-ready');
+
+                if (io) { io.observe(h); } else { h.classList.add('visible'); }
+            });
+        })();
+
+    })();
     </script>
 </body>
 </html>

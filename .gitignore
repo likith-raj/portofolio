@@ -1,1 +1,14 @@
-"*.png" 
+# --- local / editor artifacts (do not publish) ---
+index.backup.html
+verify-report.txt
+.DS_Store
+Thumbs.db
+
+# NOTE: the previous line here was  "*.png"  (with literal quote characters).
+# Quotes are not special in .gitignore, so that pattern matched files literally
+# named  "something.png"  and never ignored a single real PNG. It has been removed.
+#
+# Do NOT ignore *.png here: index.html loads ccna.png, img.png and img2.png,
+# so they must stay in the repo for GitHub Pages to serve them.
+# If you want to keep new screenshots out of the repo, uncomment the next line:
+# Screenshot*.png
